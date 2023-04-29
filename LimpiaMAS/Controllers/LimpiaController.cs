@@ -44,7 +44,7 @@ namespace LimpiaMAS.Controllers
             return View();
         }
         [Route("Nosotros")]
-        public IActionResult Nos()
+        public IActionResult Nosotros()
         {
             return View();
         }

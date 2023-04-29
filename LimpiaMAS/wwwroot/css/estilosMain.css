@@ -1,0 +1,90 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: antiquewhite;
+    background-image: url(https://th.bing.com/th/id/R.c5bef9f44c9bd868c37ff9a439d3945f?rik=eSktmMPGRrryYg&riu=http%3a%2f%2fwww.solofondos.com%2fwp-content%2fuploads%2f2016%2f02%2fanime-8k.jpg&ehk=53vfnWjVywnH6070IkJaNYFQdKQ4AF%2fpgClb6KIeo%2fc%3d&risl=&pid=ImgRaw&r=0);
+    background-size: cover;
+    background-position: center;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+    a:hover {
+        color: #e4c23d
+    }
+
+/*HEADER*/
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+    .navbar .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .navbar .links {
+        display: flex;
+        gap: 5rem;
+        height: 0px;
+    }
+
+.register-btn {
+    background-color: #f58d3f;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+    /*hover, aplicar estilos a un elemento cuando el cursor esta sobre el*/
+    .register-btn:hover {
+        scale: 1.035;
+        color: #ffffff;
+    }
+    /*active, aplica estilos a un elemento cuando se clickea estem mismo*/
+    .register-btn:active {
+        scale: 0.95;
+    }
+
+/*DISENIO RESPONSIVO*/
+@media(max-width: 990px) {
+    .navbar-links,
+    .navbar .register-btn {
+        display: none;
+    }
+
+    .navbar .toggle-btn {
+        display: block;
+    }
+}
