@@ -11,15 +11,91 @@ body {
     background-size: cover;
     background-position: center;
 }
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+    a:hover {
+        color: #e4c23d
+    }
+
+/*HEADER*/
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+    .navbar .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .navbar .links {
+        display: flex;
+        gap: 5rem;
+        height: 0px;
+    }
+
+.register-btn {
+    background-color: #f58d3f;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+    /*hover, aplicar estilos a un elemento cuando el cursor esta sobre el*/
+    .register-btn:hover {
+        scale: 1.035;
+        color: #ffffff;
+    }
+    /*active, aplica estilos a un elemento cuando se clickea estem mismo*/
+    .register-btn:active {
+        scale: 0.95;
+    }
+
+/*DISENIO RESPONSIVO*/
+@media(max-width: 990px) {
+    .navbar-links,
+    .navbar .register-btn {
+        display: none;
+    }
+
+    .navbar .toggle-btn {
+        display: block;
+    }
+}
 .titulo {
-    font-style:oblique;
-    color:#f6b544
+    font-style: oblique;
+    text-align:center;
+    color: #f6b544;
 }
 .Contenedor {
     width: 790px;
-    height: 900px;
+    height: 400px;
     margin: auto;
     margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 .VisionYmision {
     width: 750px;
@@ -28,10 +104,12 @@ body {
     justify-content: end;
     font-style: italic;
     line-height:30px;
+    
 }
 .eslogan {
     font-weight: bold;
     font-style: italic;
+    text-align:center;
 }
 .vision {
     width:300px;
@@ -47,4 +125,5 @@ h2 {
     margin-left:10%;
     color:#000000
 }
+
 

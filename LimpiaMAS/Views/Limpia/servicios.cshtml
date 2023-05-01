@@ -6,25 +6,27 @@
 <html>
 <head> <link rel="stylesheet" href="~/css/Servicios.css" /></head>
 <body>
-    <h1>Servicios Lista Más</h1>
-    <p>Ofrecemos una alta variedad de servicios tanto para el empleado como para el empleador, siendo altamente beneficiados,
-        debido a la ayuda que brindamos a la hora de que nuestro cliente encuentre una persona confiable y accesible que pueda
-        limpiar su casa,sin tener que preguntar recomendaciones a terceros,cosa que hacia que lo volvia tedioso.</p>
-    <p>Tambien le ofrecemos a las personas que quieran formar parte de nuestro servicio un horario flexible y sin limite de ganancias ya que
-       ustedes ponen el precio,debido a que los pedidos que las ofertas que le lleguén dependera de su rendimiento a la hora de limpiar los hogares 
-        de nuestrosclientes, siendo estos los cuales calificarán su rendimiento</p>
-    <h2>Caracteristicas</h2>
-    <h3>Servicio Cliente</h3>
-    <p>-Puede escoger entre todos los que ofrescan sus servicios </p>
-    <p>-Negociar el precio dentro de la plataforma</p>
-    <p>-Calificar el servicio brindado en una escala de 0 estrelas a 5 estrellas</p>
-    <p>-De no estar satisfecho con el servicio podra mandar las pruebas de que no se hizo el trabajo correctamente y se le rembolsara su dinero</p>
-    <p>-De producirse un accidente como el que se rompa algo, nosotros nos encargaremos de mediar la situación</p>
-    <h3>Servicio Trabajador</h3>
-    <p>-Podra calificar al empleador con un sistema de 0-5 estrellas</p>
-    <p>-Negociar el precio de su servicio dentro de la plataforma</p>
-    <p>-No tendra limites de aceptar encargos</p>
-    <p>-Nosotros seremos los mediadores entre el empleador y usted,</p>
-    <p>-Al realizarse el pago la plataforma lo retiene hasta que ambas partes confirmen que el trabajo fue terminado</p>
+    <div class="navbar">
+        <div class="logo"><a href="#">LimpiaMAS</a></div>
+        <ul class="links">
+            <li>
+                <a asp-action="Servicios">Servicios</a>
+            </li>
+            <li>
+                <a asp-action="Nosotros">Nosotros</a>
+            </li>
+            <li>
+                <a asp-action="Login">Ingresar</a>
+            </li>
+        </ul>
+        <a asp-action="Register" class="register-btn">Únete a nosotros</a>
+        <div class="toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+   
+        
+    </div>
+    
 </body>
 </html>
