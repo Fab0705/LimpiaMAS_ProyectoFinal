@@ -8,6 +8,24 @@
     <link rel="stylesheet" href="~/css/Nosotros.css" />
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo"><a href="#">LimpiaMAS</a></div>
+        <ul class="links">
+            <li>
+                <a asp-action="Servicios">Servicios</a>
+            </li>
+            <li>
+                <a asp-action="Nosotros">Nosotros</a>
+            </li>
+            <li>
+                <a asp-action="Login">Ingresar</a>
+            </li>
+        </ul>
+        <a asp-action="Register" class="register-btn">Únete a nosotros</a>
+        <div class="toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
     <div class="Contenedor">
         <div class="titulo">
             <h1>LIMPIAMÁS</h1>
