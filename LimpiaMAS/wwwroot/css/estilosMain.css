@@ -26,6 +26,7 @@ a {
     text-decoration: none;
     color: black;
     font-size: 1.2rem;
+    transition: all 0.2s ease-in-out;
 }
 
     a:hover {
@@ -59,9 +60,11 @@ header {
         font-weight: bold;
         color: black;
         margin-left: 5vw;
+        transition: all 0.2s ease-in-out;
     }
 
         .navbar .logo a:hover {
+            transform: scale(1.05);
             color: white;
         }
     .navbar .links {
@@ -83,15 +86,16 @@ header {
     font-weight: bold;
     cursor: pointer;
     margin-left: 150px;
+    transition: all 0.2s ease-in-out;
 }
     /*hover, aplicar estilos a un elemento cuando el cursor esta sobre el*/
     .register-btn:hover {
-        scale: 1.050;
+        transform: scale(1.05);
         color: #ffffff;
     }
     /*active, aplica estilos a un elemento cuando se clickea estem mismo*/
     .register-btn:active {
-        scale: 0.95;
+        transform: scale(0.95);
     }
 
     .container{
@@ -112,73 +116,85 @@ header {
 
     .info-bar li {
         margin-top: 1.5vh;
-        margin-left: 6.8vw;
+        margin-left: 9vw;
         display: inline-block;
-        margin-right: 80px;
         font-size: 16px;
     }
 
 .contenedor_imgtext {
     margin-left: 6vw;
-    width: 84vw;
-    position: sticky;
-    display: flex;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100vw;
 }
 
     .contenedor_imgtext .imagen {
-        width: 1022px;
-        height: 768px;
+        max-width: 100%; /*auto?*/
+        height: 768px; /*auto?*/
+        object-fit: cover;
         background-image: url("../images/ordenado.jpg");
         background-repeat: no-repeat;
     }
 
-    .contenedor_imgtext .text {
-        width: 590px;
-        height: 768px;
+    .contenedor_imgtext .text-btn {
+        width: 37rem; /*auto*/
+        height: 48rem; /*79vh*/
         position: absolute;
-        top: 0;
-        margin-left: 64rem;
-        padding: 3rem;
-        font-size: 48px;
+        top: 12vh;
+        margin-left: 64rem; /*margin-right:8.5vw*/
+        margin-right: 8.5vw;
+        font-size: 3rem;
         font-weight: bold;
         display: flex;
         text-align: center;
-        line-height: 6rem;
         background-color: rgba(253,175,171, 0.6);
     }
 
-        .contenedor_imgtext .text .servicios-btn {
-            position: absolute;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            border: none;
-            outline: none;
-            border-radius: 30px;
-            font-size: 2rem;
+
+        .contenedor_imgtext .text-btn .text {
+            width: 60rem; /*auto*/
+            height: 35rem; /*79vh*/
+            position: relative;
+            /*margin-right:8.5vw*/
+            padding: 1rem;
+            font-size: 3rem;
             font-weight: bold;
-            cursor: pointer;
-            left: 100px;
-            bottom: 80px;
-            background-color: rgba(182,227,233, 1);
-            color: black;
+            display: flow;
+            line-height: 8rem;
+            text-align: center;
         }
 
-            .contenedor_imgtext .text .servicios-btn:hover {
-                scale: 1.050;
-                color: #ffffff;
+            .contenedor_imgtext .text-btn .text .servicios-btn {
+                position: relative;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                border: none;
+                outline: none;
+                border-radius: 30px;
+                font-size: 2rem;
+                font-weight: bold;
+                cursor: pointer;
+                background-color: rgba(182,227,233, 1);
+                color: black;
+                transition: all 0.2s ease-in-out;
             }
 
-            .contenedor_imgtext .text .servicios-btn:active {
-                scale: 0.95;
-            }
+                .contenedor_imgtext .text-btn .text .servicios-btn:hover {
+                    transform: scale(0.95);
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+                    color: #ffffff;
+                }
+
+                .contenedor_imgtext .text-btn .text .servicios-btn:active {
+                    transform: scale(0.95);
+                }
 
 .contenedor_limpiaMAS .pasos {
     list-style: none;
+    display: grid;
 }
 
 .contenedor_limpiaMAS {
-    position: relative;
     width: 84vw;
     height: 42vh;
     background-color: white;
@@ -193,7 +209,7 @@ header {
     }
 
     .contenedor_limpiaMAS .pasos {
-        position: sticky;
+        position: relative;
     }
 
         .contenedor_limpiaMAS .pasos .servicio {
@@ -207,11 +223,11 @@ header {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-         .contenedor_limpiaMAS .pasos .servicio img {
-            padding-bottom: 1rem;
-            margin-left: 11rem;
-            width: 20%;
-         }
+            .contenedor_limpiaMAS .pasos .servicio img {
+                padding-bottom: 1rem;
+                margin-left: 11rem;
+                width: 20%;
+            }
         .contenedor_limpiaMAS .pasos .servicio h6 {
             text-align: center;
             font-size: 1.5rem;
@@ -227,7 +243,7 @@ header {
 
         .contenedor_limpiaMAS .pasos .pago {
             position: inherit;
-            bottom:1200px;
+            bottom:30vh;
             margin-left: 34rem; /*movemos la caja a la derecha de la caja mas grande*/
             padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
             padding-bottom: 1rem;
@@ -259,7 +275,7 @@ header {
 
         .contenedor_limpiaMAS .pasos .satisfaccion {
             position: inherit;
-            bottom: 1300px;
+            bottom: 60vh;
             margin-left: 67rem; /*movemos la caja a la derecha de la caja mas grande*/
             padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
             padding-bottom: 1rem;
@@ -312,14 +328,23 @@ header {
     }
 
     /*DISENIO RESPONSIVO*/
-        @media screen and (max-width: 990px) {
-        .navbar-links, .navbar .register-btn {
-            display: none;
+        @media screen and (max-width:1280px) {
+            /*NAVBAR*/
+        .navbar-links, .navbar .register-btn, .info-bar {
+            display: block;
         }
-
+        
         .navbar .toggle-btn {
             display: block;
         }
+
+        /*CONTENIDO*/
+            .contenedor_imgtext .text {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+            }
+
     }
     /*ctrl+shift+R para borrar la cache del navegador y ver los cambios
 

@@ -7,11 +7,13 @@
 <html>
 <head>
     <LINK REL=StyleSheet HREF="~/css/estilosMain.css" TYPE="text/css" MEDIA=screen>
+    <meta name="viewport" content="width=device-width" />
+
 </head>
 <body>
-    <header>
+    <!--<header>
         <img src="image/xxxx" alt="LimpiaMÁS" />
-    </header>
+    </header>-->
     <div class="navbar">
         <div class="logo"><a href="#">LimpiaMÁS</a></div>
         <ul class="links">
@@ -51,9 +53,11 @@
         <div class="imagen">
             <img src="images/ordenado.jpg"/>
          <div/>
-         <div class="text">
-                <p>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</p>
-                <a asp-action="Servicios" class="servicios-btn">Solicita tu reserva</a>
+         <div class="text-btn">
+                <div class="text">
+                    <p><em>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</em></p>
+                    <a asp-action="Servicios" class="servicios-btn">Solicita tu reserva</a>
+                </div>
          </div>
     </div>
 
@@ -78,7 +82,7 @@
                 <li>
                     <img src="images/limpieza1.png"/>
                     <h6>3. Disfruta de tu espacio limpio y libre de gérmenes</h6>
-                        <p>Tu casa ahora está´perfectamente limpia y desinfectada.<br> Esperamos verte de nuevo pronto.</p>
+                <p>Tu casa ahora está´perfectamente limpia y desinfectada.<br><b> Esperamos verte de nuevo pronto.</b></p>
                 </li>
             </div>
         </ul>
