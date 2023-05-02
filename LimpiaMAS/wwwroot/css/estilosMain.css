@@ -178,7 +178,7 @@ header {
 }
 
 .contenedor_limpiaMAS {
-    position: sticky;
+    position: relative;
     width: 84vw;
     height: 42vh;
     background-color: white;
@@ -193,20 +193,25 @@ header {
     }
 
     .contenedor_limpiaMAS .pasos {
-        margin-left: 4rem; /*movemos la caja a la derecha de la caja mas grande*/
-        padding-right: 2rem;/*con padding-right le estamos dando un marco derecho a la caja*/
-        padding-bottom: 1rem;
-        padding-top: 2.5rem;
-        width: 30%;
-        height: 70%;
-        background-color: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: sticky;
     }
 
-        .contenedor_limpiaMAS .pasos .servicio img {
+        .contenedor_limpiaMAS .pasos .servicio {
+            margin-left: 1rem; /*movemos la caja a la derecha de la caja mas grande*/
+            padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
+            padding-bottom: 1rem;
+            padding-top: 2rem;
+            width: 24vw;
+            height: 30vh;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+         .contenedor_limpiaMAS .pasos .servicio img {
+            padding-bottom: 1rem;
             margin-left: 11rem;
             width: 20%;
-        }
+         }
         .contenedor_limpiaMAS .pasos .servicio h6 {
             text-align: center;
             font-size: 1.5rem;
@@ -215,11 +220,73 @@ header {
         }
 
         .contenedor_limpiaMAS .pasos .servicio p {
+            padding-top: 1rem;
             text-align: center;
             font-size: 1rem;
         }
 
+        .contenedor_limpiaMAS .pasos .pago {
+            position: inherit;
+            bottom:1200px;
+            margin-left: 34rem; /*movemos la caja a la derecha de la caja mas grande*/
+            padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
+            padding-bottom: 1rem;
+            padding-top: 2rem;
+            width: 24vw;
+            height: 30vh;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
+        .contenedor_limpiaMAS .pasos .pago h6 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #F5727B;
+        }
+
+        .contenedor_limpiaMAS .pasos .pago img {
+            margin-left: 11rem;
+            width: 20%;
+            padding-bottom:1rem;
+        }
+
+        .contenedor_limpiaMAS .pasos .pago p {
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .contenedor_limpiaMAS .pasos .satisfaccion {
+            position: inherit;
+            bottom: 1300px;
+            margin-left: 67rem; /*movemos la caja a la derecha de la caja mas grande*/
+            padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
+            padding-bottom: 1rem;
+            padding-top: 2rem;
+            width: 24vw;
+            height: 30vh;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .contenedor_limpiaMAS .pasos .satisfaccion h6 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #F5727B;
+        }
+
+        .contenedor_limpiaMAS .pasos .satisfaccion img {
+            margin-left: 11rem;
+            width: 20%;
+            padding-bottom: 1rem;
+        }
+
+        .contenedor_limpiaMAS .pasos .satisfaccion p {
+            text-align: center;
+            font-size: 1rem;
+        }
 
 /*DESCRIPCION SERVICIOS*/
 .contenedor {
