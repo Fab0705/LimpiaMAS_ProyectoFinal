@@ -328,24 +328,32 @@ header {
     }
 
     /*DISENIO RESPONSIVO*/
-        @media screen and (max-width:1280px) {
-            /*NAVBAR*/
-        .navbar-links, .navbar .register-btn, .info-bar {
-            display: block;
-        }
-        
-        .navbar .toggle-btn {
-            display: block;
-        }
-
-        /*CONTENIDO*/
-            .contenedor_imgtext .text {
-                position: fixed;
-                width: 100%;
-                height: 100vh;
-            }
-
+@media screen and (max-width:1920px) {
+    /*NAVBAR*/
+    .navbar-links, .navbar .register-btn, .info-bar {
+        display: block;
     }
+
+    .navbar .toggle-btn {
+        display: block;
+    }
+
+    /*CONTENIDO*/
+    .contenedor_imgtext .text {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .contenedor_imgtext img{
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width:1680px)
+{
+
+}
     /*ctrl+shift+R para borrar la cache del navegador y ver los cambios
 
 

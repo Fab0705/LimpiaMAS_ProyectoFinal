@@ -3,138 +3,136 @@
 *@
 @{
 }
-<!DOCTYPE html>
 <html>
-<head>
-    <LINK REL=StyleSheet HREF="~/css/estilosMain.css" TYPE="text/css" MEDIA=screen>
-    <meta name="viewport" content="width=device-width" />
-
-</head>
-<body>
-    <!--<header>
-        <img src="image/xxxx" alt="LimpiaMÁS" />
-    </header>-->
-    <div class="navbar">
-        <div class="logo"><a href="#">LimpiaMÁS</a></div>
-        <ul class="links">
-            <li>
-                <a asp-action="Servicios" class="dropdown">Servicios</a>
-            </li>
-            <li>
-                <a asp-action="Nosotros">Nosotros</a>
-            </li>
-            <li>
-                <a asp-action="Login">Ingresar</a>
-            </li>
-        </ul>
-        <a asp-action="Register" class="register-btn">Únete a nosotros</a>
-        <div class="toggle-btn">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-    </div>
-    <div class="info-bar">
-        <!-- contenido de la barra de información -->
-        <ul>
-            <li>
-                <em>✓CALIDAD ASEGURADA</em>
-            </li>
-            <li>
-                <em>✓GARANTÍA DE SATISFACCIÓN</em>
-            </li>
-            <li>
-                <em>✓PRECIOS JUSTOS</em>
-            </li>
-            <li>
-                <em>✓PROFESIONALISMO GARANTIZADO</em>
-            </li>
-        </ul>
-    </div>
-    <div class="contenedor_imgtext">
-        <div class="imagen">
-            <img src="images/ordenado.jpg"/>
-         <div/>
-         <div class="text-btn">
-                <div class="text">
-                    <p><em>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</em></p>
-                    <a asp-action="Servicios" class="servicios-btn">Solicita tu reserva</a>
-                </div>
-         </div>
-    </div>
-
-    <div class="contenedor_limpiaMAS">
-            <p class="header">Conviértete en un cliente "LimpiaMÁS"</p>
-        <ul class="pasos">
-            <div class="servicio">
-                  <li>
-                       <img src="images/agenda.png" />
-                       <h6>1. Elige tu servicio</h6>
-                       <p>Elige tu servicio, selecciona la fecha y características del servicio que necesites (limpieza, mudanza, etc).</p>
-                  </li>
-            </div>
-            <div class="pago">
+    <head>
+        <LINK rel=StyleSheet href="~/css/estilosMain.css" media="screen">
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        <!--<header>
+            <img src="image/xxxx" alt="LimpiaMÁS" />
+        </header>-->
+        <div class="navbar">
+            <div class="logo"><a href="#">LimpiaMÁS</a></div>
+            <ul class="links">
                 <li>
-                    <img src="images/tarjeta2.png" />
-                    <h6>2. Realiza tus pagos con tranquilidad</h6>
-                    <p>Nuestra plataforma de pago es segura y encriptada.</p>
+                    <a asp-action="Servicios" class="dropdown">Servicios</a>
                 </li>
-            </div>
-            <div class="satisfaccion">
                 <li>
-                    <img src="images/limpieza1.png"/>
-                    <h6>3. Disfruta de tu espacio limpio y libre de gérmenes</h6>
-                <p>Tu casa ahora está´perfectamente limpia y desinfectada.<br><b> Esperamos verte de nuevo pronto.</b></p>
+                    <a asp-action="Nosotros">Nosotros</a>
                 </li>
+                <li>
+                    <a asp-action="Login">Ingresar</a>
+                </li>
+            </ul>
+            <a asp-action="Register" class="register-btn">Únete a nosotros</a>
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
             </div>
-        </ul>
-    </div>
-
-    <div class="contenedor">
-        <div class="titulo_parrafos">
-            <div class="titulo">
-                <h1><u>Servicios <b>LimpiaMÁS</b></u></h1>
-            </div>
-                <div>
-                    <p>
-                        <br>
-                    ●Ofrecemos una variedad de servicios tanto para el colaborador como para el cliente, facilitamos el proceso en el cual el cliente encuentra una persona confiable y preparada que pueda
-                        limpiar su casa sin la necesidad de preguntar por recomendaciones a terceros, ahorrándoles tiempo a nuestros clientes.
-                    </p>
-                </div>
-                <div>
-                    <p>
-                    ●Tambien le ofrecemos a las personas que quieran formar parte de nuestro equipo un horario flexible y sin limite de ganancias,
-                        ustedes ponen el precio debido a que los clientes serán los que tomarán el servicio, siendo estos los cuales calificarán su rendimiento.
-                    </p>
-                 </div>
         </div>
+        <div class="info-bar">
+            <!-- contenido de la barra de información -->
+            <ul>
+                <li>
+                    <em>✓CALIDAD ASEGURADA</em>
+                </li>
+                <li>
+                    <em>✓GARANTÍA DE SATISFACCIÓN</em>
+                </li>
+                <li>
+                    <em>✓PRECIOS JUSTOS</em>
+                </li>
+                <li>
+                    <em>✓PROFESIONALISMO GARANTIZADO</em>
+                </li>
+            </ul>
+        </div>
+        <div class="contenedor_imgtext">
+            <div class="imagen">
+                <img src="images/ordenado.jpg"/>
+             <div/>
+             <div class="text-btn">
+                    <div class="text">
+                        <p><em>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</em></p>
+                        <a asp-action="Servicios" class="servicios-btn">Solicita tu reserva</a>
+                    </div>
+             </div>
+        </div>
+
+        <div class="contenedor_limpiaMAS">
+                <p class="header">Conviértete en un cliente "LimpiaMÁS"</p>
+            <ul class="pasos">
+                <div class="servicio">
+                      <li>
+                           <img src="images/agenda.png" />
+                           <h6>1. Elige tu servicio</h6>
+                           <p>Elige tu servicio, selecciona la fecha y características del servicio que necesites (limpieza, mudanza, etc).</p>
+                      </li>
+                </div>
+                <div class="pago">
+                    <li>
+                        <img src="images/tarjeta2.png" />
+                        <h6>2. Realiza tus pagos con tranquilidad</h6>
+                        <p>Nuestra plataforma de pago es segura y encriptada.</p>
+                    </li>
+                </div>
+                <div class="satisfaccion">
+                    <li>
+                        <img src="images/limpieza1.png"/>
+                        <h6>3. Disfruta de tu espacio limpio y libre de gérmenes</h6>
+                    <p>Tu casa ahora está´perfectamente limpia y desinfectada.<br><b> Esperamos verte de nuevo pronto.</b></p>
+                    </li>
+                </div>
+            </ul>
+        </div>
+
+        <div class="contenedor">
+            <div class="titulo_parrafos">
+                <div class="titulo">
+                    <h1><u>Servicios <b>LimpiaMÁS</b></u></h1>
+                </div>
+                    <div>
+                        <p>
+                            <br>
+                        ●Ofrecemos una variedad de servicios tanto para el colaborador como para el cliente, facilitamos el proceso en el cual el cliente encuentra una persona confiable y preparada que pueda
+                            limpiar su casa sin la necesidad de preguntar por recomendaciones a terceros, ahorrándoles tiempo a nuestros clientes.
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                        ●Tambien le ofrecemos a las personas que quieran formar parte de nuestro equipo un horario flexible y sin limite de ganancias,
+                            ustedes ponen el precio debido a que los clientes serán los que tomarán el servicio, siendo estos los cuales calificarán su rendimiento.
+                        </p>
+                     </div>
+            </div>
        
-        <!--<div class="Subtitulos">
-            <div class="subtitulo ">
-                <h2>Servicio Cliente</h2>
-            </div>
-            <div class="CaracteristicasCliente">
-                <em>
-                <p>-Podrá escoger entre todos las opciones disponibles. </p>
-                <p>-Encontrará los mejores precios de acuerdo a sus necesidades.</p>
-                <p>-Podrá calificar el servicio en una escala de 0 estrelas a 5 estrellas.</p>
-                <p>-De no estar satisfecho con el servicio podrá mandar las pruebas<br> de que no se hizo el trabajo correctamente y se le reembolsará su dinero.</p>
-                <p>-De producirse un accidente como el que se rompa algo, nosotros<br> nos encargaremos de mediar la situación.</p>
-                </em>
-            </div>
-            <div class="subtitulo2">
-                <h3>Servicio Trabajador</h3>
-            </div>
-            <div class="ServicioTra">
-                <em>
-                <p>-Podrá calificar al empleador con un sistema de 0-5 estrellas.</p>
-                <p>-Ofrecerá el precio de acuerdo a su consideración.</p>
-                <p>-No tendra limites de aceptar encargos siempre y cuando los pueda completar.</p>
-                <p>-Nosotros seremos los mediadores entre el empleador y usted.</p>
-                <p>-Al realizarse el pago la plataforma lo retendrá hasta que ambas partes<br> confirmen que el trabajo fue terminado.</p>
-                </em>
-            </div>
-        </div>-->
+            <!--<div class="Subtitulos">
+                <div class="subtitulo ">
+                    <h2>Servicio Cliente</h2>
+                </div>
+                <div class="CaracteristicasCliente">
+                    <em>
+                    <p>-Podrá escoger entre todos las opciones disponibles. </p>
+                    <p>-Encontrará los mejores precios de acuerdo a sus necesidades.</p>
+                    <p>-Podrá calificar el servicio en una escala de 0 estrelas a 5 estrellas.</p>
+                    <p>-De no estar satisfecho con el servicio podrá mandar las pruebas<br> de que no se hizo el trabajo correctamente y se le reembolsará su dinero.</p>
+                    <p>-De producirse un accidente como el que se rompa algo, nosotros<br> nos encargaremos de mediar la situación.</p>
+                    </em>
+                </div>
+                <div class="subtitulo2">
+                    <h3>Servicio Trabajador</h3>
+                </div>
+                <div class="ServicioTra">
+                    <em>
+                    <p>-Podrá calificar al empleador con un sistema de 0-5 estrellas.</p>
+                    <p>-Ofrecerá el precio de acuerdo a su consideración.</p>
+                    <p>-No tendra limites de aceptar encargos siempre y cuando los pueda completar.</p>
+                    <p>-Nosotros seremos los mediadores entre el empleador y usted.</p>
+                    <p>-Al realizarse el pago la plataforma lo retendrá hasta que ambas partes<br> confirmen que el trabajo fue terminado.</p>
+                    </em>
+                </div>
+            </div>-->
 
-    </div>
-</body>
+        </div>
+    </body>
 </html>
