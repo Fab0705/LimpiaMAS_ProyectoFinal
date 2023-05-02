@@ -130,7 +130,7 @@ header {
         max-width: 100%; /*auto?*/
         height: 768px; /*auto?*/
         object-fit: cover;
-        background-image: url("../images/ordenado.jpg");
+        /*background-image: url("../images/ordenado.jpg");*/
         background-repeat: no-repeat;
     }
 
@@ -328,7 +328,7 @@ header {
     }
 
     /*DISENIO RESPONSIVO*/
-@media screen and (max-width:1920px) {
+@media screen and (max-width:1900px) {
     /*NAVBAR*/
     .navbar-links, .navbar .register-btn, .info-bar {
         display: block;
@@ -339,14 +339,25 @@ header {
     }
 
     /*CONTENIDO*/
+    
     .contenedor_imgtext .text {
-        position: fixed;
-        width: 100%;
+        position: absolute;
+        width: 50vw;
         height: 100vh;
     }
 
-    .contenedor_imgtext img{
+    .contenedor_imgtext {
         width: 50vw;
+    }
+
+    .contenedor_imgtext .text-btn {
+        margin-left: 50vw;
+        height: 37.5vw;
+    }
+
+    .contenedor_imgtext .servicios-btn
+    {
+        font-size: 1rem;
     }
 }
 
