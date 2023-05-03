@@ -102,31 +102,7 @@ header {
     .navbar .toggle-btn {
         display: block;
     }
-}
-    font-style: oblique;
-    text-align:center;
-    color: #f6b544;
-}
-    font-style: oblique;
-    text-align:center;
-    color: #f6b544;
-}
-    font-style: oblique;
-    text-align:center;
-    color: #f6b544;
-}
-    font-style: oblique;
-    text-align:center;
-    color: #f6b544;
-}
-    font-style: oblique;
-    text-align:center;
-    color: #f6b544;
-}
-    font-style: oblique;
-    text-align:center;
-    color: #f6b544;
-}
+
 .Contenedor {
     width:  172vh;
     height: 60vw;
@@ -201,7 +177,7 @@ h2 {
 
     .navbar .links {
         gap: 2rem;
-        margin-right: 2rem;
+        margin-right: 0rem;
     }
 }
 
