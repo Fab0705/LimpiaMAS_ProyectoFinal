@@ -5,28 +5,26 @@
 }
 <html>
     <head>
-        <link rel="stylesheet" href="~/css/resgister.css" />
+        <link rel="stylesheet" href="~/css/register.css" />
     </head>
     <body>
         <main class="container-fluid">
-            <img src="~/images/background_login.jpg" class="mx-auto d-block" />
             <form action="">
-                <h2 class="title">Login</h2>
+                <h2 class="title">Register</h2>
                 <div class="container">
                     <label class="label">Nombre:</label>
-                    <input type="text" id="usr" placeholder="Ingresar Usuario" />
+                    <input type="text" class="input_D" id="nam" placeholder="Ingresar nombres" />
                     <label class="label">Apellido:</label>
-                    <input type="text" id="usr" placeholder="Ingresar Usuario" />
+                    <input type="text" class="input_D" id="ape" placeholder="Ingresar apellidos" />
                     <label class="label">Usuario:</label>
-                    <input type="text" id="usr" placeholder="Ingresar Usuario" />
+                    <input type="text" class="input_D" id="usr" placeholder="Cree Usuario" />
                     <label class="label">Contraseña:</label>
-                    <input type="password" id="pwd" placeholder="Ingresar Usuario" />
+                    <input type="password" class="input_D" id="pwd" placeholder="Establezca Contraseña" />
                     <label class="label">Confirmar Contraseña:</label>
-                    <input type="password" id="pwd" placeholder="Ingresar Usuario" />
+                    <input type="password" class="input_D" id="pwd" placeholder="Confirmar Contraseña" />
                 </div>
 
-                <input type="submit" value="INGRESAR" onclick="return Procesar()" />
-                <p>¿No tiene una cuenta? <a href="###">Registrate</a></p>
+                <input type="submit" value="CREAR CUENTA" onclick="return Procesar()" />
             </form>
         </main>
     </body>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&display=swap');
 
 * {
@@ -220,5 +221,92 @@ header {
 
     .carrito {
         width: 100%;
+=======
+﻿* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body
+{
+    height:100vh;
+    background-image:url();
+    background-position:center;
+
+}
+}
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+    a:hover {
+        color: #e4c23d
+    }
+
+/*HEADER*/
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+    .navbar .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .navbar .links {
+        display: flex;
+        gap: 5rem;
+        height: 0px;
+    }
+
+.register-btn {
+    background-color: #f58d3f;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+    /*hover, aplicar estilos a un elemento cuando el cursor esta sobre el*/
+    .register-btn:hover {
+        scale: 1.035;
+        color: #ffffff;
+    }
+    /*active, aplica estilos a un elemento cuando se clickea estem mismo*/
+    .register-btn:active {
+        scale: 0.95;
+    }
+
+/*DISENIO RESPONSIVO*/
+@media(max-width: 990px) {
+    .navbar-links,
+    .navbar .register-btn {
+        display: none;
+    }
+
+    .navbar .toggle-btn {
+        display: block;
+>>>>>>> 7b02e54e53a05ada906b4e565a1066e27cf6ad44
     }
 }
