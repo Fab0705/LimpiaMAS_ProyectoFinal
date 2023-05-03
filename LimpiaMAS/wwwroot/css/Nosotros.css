@@ -28,6 +28,7 @@ a {
     text-decoration: none;
     color: black;
     font-size: 1.2rem;
+    transition: all 0.2s ease-in-out;
 }
 
     a:hover {
@@ -97,17 +98,7 @@ header {
         scale: 0.95;
     }
 
-/*DISENIO RESPONSIVO*/
-@media(max-width: 990px) {
-    .navbar-links,
-    .navbar .register-btn {
-        display: none;
-    }
 
-    .navbar .toggle-btn {
-        display: block;
-    }
-}
 .titulo {
     font-style: oblique;
     text-align:center;
@@ -152,3 +143,26 @@ h2 {
 }
 
 
+/*DISENIO RESPONSIVO*/
+@media screen and (max-width:1542px) {
+
+    .navbar .logo a {
+        margin-left: 2vw;
+    }
+
+    .navbar .links {
+        gap: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+    @media(max-width: 990px) {
+        .navbar-links,
+        .navbar .register-btn {
+            display: none;
+        }
+
+        .navbar .toggle-btn {
+            display: block;
+        }
+    }
