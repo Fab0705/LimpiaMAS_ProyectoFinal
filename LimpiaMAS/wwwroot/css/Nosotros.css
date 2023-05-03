@@ -15,7 +15,7 @@ body {
     height: 1200px;
     width: 100%;
     max-width: 1200px;
-    background-image: url("../images/casaLimpia.jpg");
+   background-color:white;
     background-size: cover;
     background-position: center;
 }
@@ -99,47 +99,96 @@ header {
     }
 
 
-.titulo {
+    .navbar .toggle-btn {
+        display: block;
+    }
+}
+    font-style: oblique;
+    text-align:center;
+    color: #f6b544;
+}
+    font-style: oblique;
+    text-align:center;
+    color: #f6b544;
+}
+    font-style: oblique;
+    text-align:center;
+    color: #f6b544;
+}
+    font-style: oblique;
+    text-align:center;
+    color: #f6b544;
+}
+    font-style: oblique;
+    text-align:center;
+    color: #f6b544;
+}
     font-style: oblique;
     text-align:center;
     color: #f6b544;
 }
 .Contenedor {
-    width: 790px;
-    height: 900px;
+    width:  172vh;
+    height: 60vw;
     margin: auto;
     margin-top: 50px;
+    margin-left:100px;
+    background-color:#FAD4AE;
 }
 .VisionYmision {
-    width: 40vw;
-    height: 700px;
-    display: flex;
-    margin: 50px;
-    justify-content: end;
-    font-style: italic;
-    line-height:30px;
+    width:150vh;
+    height:40vw;
+    background-color:white;
+    margin-left:70px;
+    margin-top:5vh;
     
 }
 .eslogan {
     font-weight: bold;
     font-style: italic;
 }
+.ContenedorImgTxt1 {
+    width:200vh;
+    height:20vw;
+    display:flex;
+}
+.Contenedor .VisionYmision .ContenedorImgTxt1 .imagen {
+    width: 250px;
+    height: 170px;
+    margin-top: 3vh;
+    margin-left: 4vh;
+}
+img {
+    width: 250px;
+    height: 170px;
+}
 .vision {
-    width:250px;
+    width:700px;
     height:200px;
     /*margin-left:10%;*/
-    margin-top:10vh;
+    margin-top: 2vh;
+    margin-left:20px;
 }
 h2 {
     color:#f6b544;
     font-size: 36px;
 }
+.ContenedorImgTxt2 {
+    width: 200vh;
+    height: 20vw;
+    display: flex;
+}
 .mision {
-    width: 250px;
+    width: 400px;
     height: 50px;
-    margin-left: 10%;
+    margin-left: 40vh;
     color: #000000;
     margin-top: 10vh;
+}
+.Contenedor .VisionYmision .ContenedorImgTxt2 .imagen2 {
+    
+    margin-top: 25px;
+    margin-left: 50px;
 }
 
 
@@ -156,13 +205,3 @@ h2 {
     }
 }
 
-    @media(max-width: 990px) {
-        .navbar-links,
-        .navbar .register-btn {
-            display: none;
-        }
-
-        .navbar .toggle-btn {
-            display: block;
-        }
-    }
