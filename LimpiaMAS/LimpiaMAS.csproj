@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Limpia\Carrito.cshtml" />
+    <Content Remove="wwwroot\css\carrito.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\register.css" />
   </ItemGroup>
 
