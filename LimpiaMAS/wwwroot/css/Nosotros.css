@@ -12,7 +12,7 @@
 body {
     margin: 0;
     margin-right: 300px;
-    height: 1200px;
+    height: 55vh;
     width: 100%;
     max-width: 1200px;
    background-color:white;
@@ -104,16 +104,16 @@ header {
     }
 
 .Contenedor {
-    width:  172vh;
-    height: 60vw;
+    width: 172vh;
+    height: 45vw;
     margin: auto;
     margin-top: 50px;
-    margin-left:100px;
-    background-color:#FAD4AE;
+    margin-left: 100px;
+    background-color: #FDAFAB;
 }
 .VisionYmision {
     width:150vh;
-    height:40vw;
+    height:30vw;
     background-color:white;
     margin-left:70px;
     margin-top:5vh;
@@ -124,9 +124,10 @@ header {
     font-style: italic;
 }
 .ContenedorImgTxt1 {
-    width:200vh;
-    height:20vw;
+    width:150vh;
+    height:15vw;
     display:flex;
+    background-color:#D9F1F1;
 }
 .Contenedor .VisionYmision .ContenedorImgTxt1 .imagen {
     width: 250px;
@@ -146,25 +147,30 @@ img {
     margin-left:20px;
 }
 h2 {
-    color:#f6b544;
+    color: #FDAFAB;
     font-size: 36px;
 }
 .ContenedorImgTxt2 {
-    width: 200vh;
+    width: 150vh;
     height: 20vw;
     display: flex;
+    
+    background-color:#B6E3E9;
+    
 }
 .mision {
     width: 400px;
     height: 50px;
     margin-left: 40vh;
+    margin-top:3vh;
     color: #000000;
-    margin-top: 10vh;
+   
 }
 .Contenedor .VisionYmision .ContenedorImgTxt2 .imagen2 {
     
     margin-top: 25px;
     margin-left: 50px;
+
 }
 
 
