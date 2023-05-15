@@ -25,7 +25,6 @@ body {
 a {
     text-decoration: none;
     color: black;
-    font-size: 1.2rem;
     transition: all 0.2s ease-in-out;
 }
 
@@ -68,10 +67,11 @@ header {
             color: white;
         }
     .navbar .links {
+        font-size: calc(0.4rem + 0.6vw);
         display: flex;
-        gap: 12rem;
+        gap: 2.5vw;
         height: 8px;
-        margin-left: 6vw; /*"viewport width" (ancho de la ventana gráfica)*/
+        /*margin-left: 6vw; "viewport width" (ancho de la ventana gráfica)*/
     }
 
 
@@ -79,13 +79,13 @@ header {
     background-color: #B6E3E9;
     color: black;
     padding: 0.5rem 1rem;
+    margin-top:-0.1vw;
     border: none;
     outline: none;
     border-radius: 15px;
-    font-size: 1.15rem;
+    font-size: calc(0.6rem + 0.6vw);
     font-weight: bold;
     cursor: pointer;
-    margin-left: 150px;
     transition: all 0.2s ease-in-out;
 }
     /*hover, aplicar estilos a un elemento cuando el cursor esta sobre el*/
@@ -115,10 +115,11 @@ header {
 }
 
     .info-bar li {
+        padding: 0% 0;
         margin-top: 1.5vh;
         margin-left: 9vw;
         display: inline-block;
-        font-size: 16px;
+        font-size: calc(0.25rem + 0.6vw);
     }
 
 .contenedor_imgtext {
@@ -141,7 +142,7 @@ header {
         top: 12vh;
         margin-left: 64rem; /*margin-right:8.5vw*/
         margin-right: 8.5vw;
-        font-size: 3rem;
+        /*font-size: 3rem;*/
         font-weight: bold;
         display: flex;
         text-align: center;
@@ -149,15 +150,14 @@ header {
     }
 
 
-        .contenedor_imgtext .text-btn .text {
+        .contenedor_imgtext .text-btn .text{
             width: 60rem; /*auto*/
             height: 35rem; /*79vh*/
             position: relative;
             /*margin-right:8.5vw*/
             padding: 1rem;
-            font-size: 3rem;
+            font-size: calc(0.5rem + 2vw);
             font-weight: bold;
-            display: flow;
             line-height: 8rem;
             text-align: center;
         }
@@ -379,7 +379,7 @@ header {
 
 @media screen and (max-width:1748px) {
     .contenedor_imgtext .text-btn .text {
-        font-size: 3rem;
+        /*font-size: 3rem;*/
         line-height: 7rem;
     }
 
@@ -389,81 +389,82 @@ header {
         bottom: 1vh;
     }
 }
-    @media screen and (max-width:1542px) {
+@media screen and (max-width:1542px) {
 
-        .navbar .logo a {
-            margin-left: 2vw;
+    .navbar .logo a {
+        margin-left: 2vw;
+    }
+
+    .navbar .links {
+        /*gap: 6rem;*/
+        margin-right: 2rem;
+    }
+
+    .info-bar li {
+        position: relative;
+        margin-left: 7vw;
+        bottom: 1vh;
+    }
+
+    .contenedor_imgtext .text-btn {
+        width: 34vw;
+    }
+
+        .contenedor_imgtext .text-btn .text {
+            /*font-size: 2.5rem;*/
+            line-height: 5.5rem;
         }
 
-        .navbar .links {
-            gap: 6rem;
-            margin-right:2rem;
+    .contenedor_limpiaMAS {
+        width: 84vw;
+        height: 60vh;
+    }
+
+        .contenedor_limpiaMAS .pasos .servicio {
+            height: 40vh;
         }
 
-        .info-bar li {
-            position: relative;
-            margin-left: 7vw;
-            bottom: 1vh;
-        }
-
-        .contenedor_imgtext .text-btn {
-            width: 34vw;
-        }
-
-            .contenedor_imgtext .text-btn .text {
-                font-size: 2.5rem;
-                line-height: 5.5rem;
+            .contenedor_limpiaMAS .pasos .servicio img {
+                margin-left: 8rem;
+                width: 20%;
+                padding-bottom: 0.5rem;
             }
 
-        .contenedor_limpiaMAS {
-            width: 84vw;
-            height: 60vh;
+            .contenedor_limpiaMAS .pasos .servicio p {
+                font-size: 0.9rem;
+                padding-bottom: 0.5rem;
+            }
+
+        .contenedor_limpiaMAS .pasos .pago {
+            height: 40vh;
         }
 
-            .contenedor_limpiaMAS .pasos .servicio {
-                height: 40vh;
+            .contenedor_limpiaMAS .pasos .pago img {
+                margin-left: 8.5rem;
+                width: 20%;
+                padding-bottom: 0.5rem;
             }
 
-                .contenedor_limpiaMAS .pasos .servicio img {
-                    margin-left: 8rem;
-                    width: 20%;
-                    padding-bottom: 0.5rem;
-                }
-
-                .contenedor_limpiaMAS .pasos .servicio p {
-                    font-size: 0.9rem;
-                    padding-bottom: 0.5rem;
-                }
-
-            .contenedor_limpiaMAS .pasos .pago {
-                height: 40vh;
+            .contenedor_limpiaMAS .pasos .pago p {
+                font-size: 0.9rem;
+                padding-bottom: 0.5rem;
             }
 
-                .contenedor_limpiaMAS .pasos .pago img {
-                    margin-left: 8.5rem;
-                    width: 20%;
-                    padding-bottom: 0.5rem;
-                }
+        .contenedor_limpiaMAS .pasos .satisfaccion {
+            height: 40vh;
+        }
 
-                .contenedor_limpiaMAS .pasos .pago p {
-                    font-size: 0.9rem;
-                    padding-bottom: 0.5rem;
-                }
-
-            .contenedor_limpiaMAS .pasos .satisfaccion {
-                height: 40vh;
+            .contenedor_limpiaMAS .pasos .satisfaccion img {
+                margin-left: 9rem;
+                width: 20%;
+                padding-bottom: 0.5rem;
             }
 
-                .contenedor_limpiaMAS .pasos .satisfaccion img {
-                    margin-left: 9rem;
-                    width: 20%;
-                    padding-bottom: 0.5rem;
-                }
-
-                .contenedor_limpiaMAS .pasos .satisfaccion p {
-                    font-size: 0.9rem;
-                    padding-bottom: 0.5rem;
-                }
+            .contenedor_limpiaMAS .pasos .satisfaccion p {
+                font-size: 0.9rem;
+                padding-bottom: 0.5rem;
+            }
+}
 
         /*ctrl+shift+R para borrar la cache del navegador y ver los cambios
 

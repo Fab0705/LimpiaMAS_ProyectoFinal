@@ -12,10 +12,10 @@
 body {
     margin: 0;
     margin-right: 300px;
-    height: 55vh;
+    height: 1200px;
     width: 100%;
     max-width: 1200px;
-   background-color:white;
+    background-color: white;
     background-size: cover;
     background-position: center;
 }
@@ -27,7 +27,6 @@ body {
 a {
     text-decoration: none;
     color: black;
-    font-size: 1.2rem;
     transition: all 0.2s ease-in-out;
 }
 
@@ -62,17 +61,20 @@ header {
         font-weight: bold;
         color: black;
         margin-left: 5vw;
+        transition: all 0.2s ease-in-out;
     }
 
         .navbar .logo a:hover {
+            transform: scale(1.05);
             color: white;
         }
 
     .navbar .links {
+        font-size: calc(0.4rem + 0.6vw);
         display: flex;
-        gap: 12rem;
+        gap: 4vw;
         height: 8px;
-        margin-left: 6vw; /*"viewport width" (ancho de la ventana gráfica)*/
+        /*margin-left: 6vw; "viewport width" (ancho de la ventana gráfica)*/
     }
 
 
@@ -80,28 +82,29 @@ header {
     background-color: #B6E3E9;
     color: black;
     padding: 0.5rem 1rem;
+    margin-top: -0.1vw;
     border: none;
     outline: none;
     border-radius: 15px;
-    font-size: 1.15rem;
+    font-size: calc(0.6rem + 0.6vw);
     font-weight: bold;
     cursor: pointer;
-    margin-left: 150px;
+    transition: all 0.2s ease-in-out;
 }
     /*hover, aplicar estilos a un elemento cuando el cursor esta sobre el*/
     .register-btn:hover {
-        scale: 1.050;
+        transform: scale(1.05);
         color: #ffffff;
     }
     /*active, aplica estilos a un elemento cuando se clickea estem mismo*/
     .register-btn:active {
-        scale: 0.95;
+        transform: scale(0.95);
     }
 
+.container {
+    color: none;
+}
 
-    .navbar .toggle-btn {
-        display: block;
-    }
 
 .Contenedor {
     width: 172vh;

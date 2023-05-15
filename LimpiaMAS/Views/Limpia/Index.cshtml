@@ -13,10 +13,10 @@
             <img src="image/xxxx" alt="LimpiaMÁS" />
         </header>-->
         <div class="navbar">
-            <div class="logo"><a href="#">LIMPIAMÁS</a></div>
+        <div class="logo"><a href="#">LIMPIAMÁS</a></div>
             <ul class="links">
                 <li>
-                    <a asp-action="Servicios" class="dropdown">Servicios</a>
+                    <a asp-action="Servicios">Servicios</a>
                 </li>
                 <li>
                     <a asp-action="Nosotros">Nosotros</a>
@@ -24,8 +24,11 @@
                 <li>
                     <a asp-action="Login">Ingresar</a>
                 </li>
+                <li>
+                    <a asp-action="FormLimpiadores">Trabaja con nosotros</a>
+                </li>
             </ul>
-            <a asp-action="Register" class="register-btn">Únete a nosotros</a>
+                <a asp-action="Register" class="register-btn">Registrate!</a>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -51,7 +54,7 @@
              <img src="images/ordenado.jpg" class="img-fluid"/>
              <div class="text-btn">
                     <div class="text">
-                        <p><em>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</em></p>
+                        <p>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</p>
                         <a asp-action="Servicios" class="servicios-btn">Solicita tu reserva</a>
                     </div>
              </div>
@@ -63,7 +66,7 @@
                 <li class="servicio">
                     <img src="images/agenda.png" />
                     <h6>1. Elige tu servicio</h6>
-                    <p>Elige tu servicio, selecciona la fecha y características del servicio que necesites (limpieza, mudanza, etc).</p>
+                    <p>Elige tu servicio, selecciona la fecha y características del servicio que necesites.</p>
                 </li>
                 <li class="pago">
                     <img src="images/tarjeta2.png" />
