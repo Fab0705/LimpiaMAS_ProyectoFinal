@@ -46,6 +46,7 @@ header {
     position: sticky;
     width: 84vw;
     height: 8vh; /*"viewport height" (altura de la ventana gráfica)*/
+    padding:0 4em;
     border-radius:1rem;
     display: flex;
     align-items: center;
@@ -60,7 +61,7 @@ header {
         font-size: 1.5rem;
         font-weight: bold;
         color: black;
-        margin-left: 5vw;
+        margin:auto;
         transition: all 0.2s ease-in-out;
     }
 
@@ -74,6 +75,13 @@ header {
         gap: 2.5vw;
         height: 8px;
         /*margin-left: 6vw; "viewport width" (ancho de la ventana gráfica)*/
+    }
+
+    .navbar .toggle-btn {
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display:none;
     }
 
 
@@ -340,9 +348,6 @@ header {
         display: block;
     }
 
-    .navbar .toggle-btn {
-        display: block;
-    }
 
     /*CONTENIDO*/
     

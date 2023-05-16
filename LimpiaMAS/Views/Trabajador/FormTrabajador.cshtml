@@ -5,13 +5,33 @@
 }
 <html>
     <head>
-       <LINK rel=StyleSheet href="~/css/formTrabajador.css" media="screen">
+       <link rel=StyleSheet href="~/css/formTrabajador.css" media="screen">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        <meta charset="UTF-8">
     </head>
     <body>
-    <div class="navbar">
-        <div class="logo"><a asp-controller="Limpia" asp-action="Index">LIMPIAMÁS</a></div>
-        <ul class="links">
+        <div class="navbar">
+            <div class="logo"><a asp-controller="Limpia" asp-action="Index">LIMPIAMÁS</a></div>
+            <ul class="links">
+                <li>
+                    <a asp-controller="Limpia" asp-action="Servicios">Servicios</a>
+                </li>
+                <li>
+                    <a asp-controller="Limpia" asp-action="Nosotros">Nosotros</a>
+                </li>
+                <li>
+                    <a asp-controller="Limpia" asp-action="Login">Ingresar</a>
+                </li>
+                <li>
+                    <a asp-controller="Trabajador" asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
+                </li>
+            </ul>
+            <a asp-controller="Limpia" asp-action="Register" class="register-btn">Registrate!</a>
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="menu_desplegable">
             <li>
                 <a asp-controller="Limpia" asp-action="Servicios">Servicios</a>
             </li>
@@ -24,12 +44,8 @@
             <li>
                 <a asp-controller="Trabajador" asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
             </li>
-        </ul>
-        <a asp-controller="Limpia" asp-action="Register" class="register-btn">Registrate!</a>
-        <div class="toggle-btn">
-            <i class="fa-solid fa-bars"></i>
+            <li><a asp-controller="Limpia" asp-action="Register" class="register-btn">Registrate!</a></li>
         </div>
-    </div>
         <div class="contenedor">
             <div class="titulo">Formulario de trabajadores</div>
             <div class="contenido">
@@ -94,5 +110,19 @@
                 </form>
             </div>
         </div>
+        <script>
+            const toggleBtn = document.querySelector('.toggle-btn')
+            const toggleBtnIcon = document.querySelector('.toggle-btn i')
+            const menuDesplegable = document.querySelector('.menu-desplegable')
+
+            toggleBtn.onc = () => {
+                menuDesplegable.classList.toggle('abierto')
+                const isOpen = menuDesplegable.classList.contains('abierto')
+
+                menuDesplegable.classList = isOpen
+                ? 'fa-solid fa-bars'
+                : 'fa-solid fa-bars'
+            }
+        </script>
     </body>
 </html>
