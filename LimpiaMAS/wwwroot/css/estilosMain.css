@@ -1,10 +1,11 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Comme&family=Lato&family=Montserrat&family=Poppins&family=Roboto&family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Roboto Mono;
+    font-family: 'Poppins',sans-serif;
 }
 
 body {
@@ -45,6 +46,7 @@ header {
     position: sticky;
     width: 84vw;
     height: 8vh; /*"viewport height" (altura de la ventana gráfica)*/
+    border-radius:1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -102,8 +104,10 @@ header {
         color: none;
     }
 
+
 /*INFOBAR*/
 .info-bar {
+    margin: auto;
     position: sticky;
     width: 95vw; /*"viewport width" (ancho de la ventana gráfica).*/
     height: 4vh;
@@ -198,7 +202,7 @@ header {
 .contenedor_limpiaMAS {
     width: 84vw;
     height: 46vh;
-    margin-left:6vw;
+    margin-left: 6vw;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

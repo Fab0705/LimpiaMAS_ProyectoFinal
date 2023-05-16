@@ -1,0 +1,90 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+    <head>
+       <LINK rel=StyleSheet href="~/css/formTrabajador.css" media="screen">
+       <meta charset="UTF-8">
+    </head>
+    <body>
+    <div class="navbar">
+        <div class="logo"><a asp-controller="Limpia" asp-action="Index">LIMPIAMÁS</a></div>
+        <ul class="links">
+            <li>
+                <a asp-controller="Limpia" asp-action="Servicios">Servicios</a>
+            </li>
+            <li>
+                <a asp-controller="Limpia" asp-action="Nosotros">Nosotros</a>
+            </li>
+            <li>
+                <a asp-controller="Limpia" asp-action="Login">Ingresar</a>
+            </li>
+            <li>
+                <a asp-controller="Trabajador" asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
+            </li>
+        </ul>
+        <a asp-controller="Limpia" asp-action="Register" class="register-btn">Registrate!</a>
+        <div class="toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+        <div class="contenedor">
+            <div class="titulo">Formulario de trabajadores</div>
+            <div class="contenido">
+                <form action="#">
+                    <div class="detalles-trabajador">
+                        <div class="input-box">
+                            <span class="detalles">Nombre</span>
+                            <input type="text" placeholder="Ingresa tu nombre" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detalles">Apellidos</span>
+                            <input type="text" placeholder="Ingresa tus apellidos" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detalles">Direccion</span>
+                            <input type="text" placeholder="Ingrese su domicilio" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detalles">Numero telefonico</span>
+                            <input type="text" placeholder="Ingrese su numero" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detalles">Disponibilidad</span>
+                            <textarea type="text" placeholder="Ingrese su disponibilidad horaria" required></textarea>
+                        </div>
+                        <div class="input-box">
+                            <span class="detalles">Experiencia</span>
+                            <textarea type="text" placeholder="Ingrese su experiencia en el ámbito" required></textarea>
+                        </div>
+                    </div>
+                    <div class="detalles-genero">
+                        <input type="radio" name="genero" id="pto-1">
+                        <input type="radio" name="genero" id="pto-2">
+                        <input type="radio" name="genero" id="pto-3">
+                        <span class="titulo-genero">Género</span>
+                        <div class="categoria">
+                            <label for="pto-1">
+                                <span class="pto uno"></span>
+                                <span class="genero">Hombre</span>
+                            </label>
+                            <label for="pto-2">
+                                <span class="pto dos"></span>
+                                <span class="genero">Mujer</span>
+                            </label>
+                            <label for="pto-3">
+                                <span class="pto tres"></span>
+                                <span class="genero">Prefiero no decirlo</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Registrar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
