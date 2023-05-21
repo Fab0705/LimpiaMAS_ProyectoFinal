@@ -158,6 +158,16 @@ form .input-box span.details {
     transition: all 0.3s ease;
 }
 
+.detalles-trabajador .input-box .combo-box {
+    padding-top:1.5em;
+}
+
+.detalles-trabajador .input-box select {
+    height: 40px;
+    overflow-y: scroll;
+    border-radius: 5px;
+}
+
 .detalles-trabajador .input-box textarea {
     height: 100px;
     width: 100%;
@@ -169,6 +179,10 @@ form .input-box span.details {
     border-bottom-width: 2px;
     transition: all 0.3s ease;
 }
+
+.detalles-trabajador .input-box .file{
+    padding-top:0.4em;
+}
     /*efecto para los input*/
     .detalles-trabajador .input-box input:focus,
     .detalles-trabajador .input-box input:valid {
@@ -177,6 +191,10 @@ form .input-box span.details {
     /*efecto para los textarea*/
     .detalles-trabajador .input-box textarea:focus,
     .detalles-trabajador .input-box textarea:valid {
+        border-color: #6f97f5;
+    }
+
+    .detalles-trabajador .input-box select:focus{
         border-color: #6f97f5;
     }
 
