@@ -15,6 +15,8 @@ public partial class Limpia_MasC : DbContext
     {
     }
 
+    public virtual DbSet<TbAdmin> TbAdmins { get; set; }
+
     public virtual DbSet<TbCliente> TbClientes { get; set; }
 
     public virtual DbSet<TbDetalledi> TbDetalledis { get; set; }
@@ -25,12 +27,39 @@ public partial class Limpia_MasC : DbContext
 
     public virtual DbSet<TbServiciocat> TbServiciocats { get; set; }
 
+    public virtual DbSet<TbUser> TbUsers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=FAB-PC\\SQLEXPRESS01;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<TbAdmin>(entity =>
+        {
+            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA5F10D9593");
+
+            entity.ToTable("TB_ADMIN");
+
+            entity.Property(e => e.UsrAdm)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("USR_ADM");
+            entity.Property(e => e.Etiqueta)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("ETIQUETA");
+            entity.Property(e => e.PwdAdm)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("PWD_ADM");
+
+            entity.HasOne(d => d.UsrAdmNavigation).WithOne(p => p.TbAdmin)
+                .HasForeignKey<TbAdmin>(d => d.UsrAdm)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__TB_ADMIN__USR_AD__6FE99F9F");
+        });
+
         modelBuilder.Entity<TbCliente>(entity =>
         {
             entity.HasKey(e => e.IdCli).HasName("PK__TB_CLIEN__2BF8836D891CE6A0");
@@ -50,15 +79,32 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("DIR_CLI");
+            entity.Property(e => e.Etiqueta)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("ETIQUETA");
             entity.Property(e => e.NomCli)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("NOM_CLI");
+            entity.Property(e => e.Pwd)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("PWD");
             entity.Property(e => e.TelCli)
                 .HasMaxLength(9)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("TEL_CLI");
+            entity.Property(e => e.Usr)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("USR");
+
+            entity.HasOne(d => d.UsrNavigation).WithMany(p => p.TbClientes)
+                .HasForeignKey(d => d.Usr)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__TB_CLIENTE__USR__5CD6CB2B");
         });
 
         modelBuilder.Entity<TbDetalledi>(entity =>
@@ -107,11 +153,19 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("DIS_LIMP");
+            entity.Property(e => e.Etiqueta)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("ETIQUETA");
             entity.Property(e => e.FotLimp).HasColumnName("FOT_LIMP");
             entity.Property(e => e.NomLimp)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("NOM_LIMP");
+            entity.Property(e => e.Pwd)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("PWD");
             entity.Property(e => e.TarLimp)
                 .HasColumnType("money")
                 .HasColumnName("TAR_LIMP");
@@ -120,6 +174,15 @@ public partial class Limpia_MasC : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("TEL_LIMP");
+            entity.Property(e => e.Usr)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("USR");
+
+            entity.HasOne(d => d.UsrNavigation).WithMany(p => p.TbLimpiadors)
+                .HasForeignKey(d => d.Usr)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__TB_LIMPIADO__USR__5DCAEF64");
         });
 
         modelBuilder.Entity<TbServicio>(entity =>
@@ -197,6 +260,22 @@ public partial class Limpia_MasC : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("YARD_CAT");
+        });
+
+        modelBuilder.Entity<TbUser>(entity =>
+        {
+            entity.HasKey(e => e.Usr).HasName("PK__TB_USER__C5B108E3C25AAA8B");
+
+            entity.ToTable("TB_USER");
+
+            entity.Property(e => e.Usr)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("USR");
+            entity.Property(e => e.Pwd)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("PWD");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -1,6 +1,9 @@
+using LimpiaMAS.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Add(new ServiceDescriptor(typeof(iCliente), new ClienteRepository()));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

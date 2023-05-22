@@ -21,7 +21,15 @@ public partial class TbLimpiador
 
     public byte[] FotLimp { get; set; } = null!;
 
+    public string Usr { get; set; } = null!;
+
+    public string Etiqueta { get; set; } = null!;
+
+    public string Pwd { get; set; } = null!;
+
     public virtual TbDetalledi? TbDetalledi { get; set; }
 
     public virtual ICollection<TbServicio> TbServicios { get; set; } = new List<TbServicio>();
+
+    public virtual TbUser UsrNavigation { get; set; } = null!;
 }
