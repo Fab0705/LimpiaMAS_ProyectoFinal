@@ -4,7 +4,6 @@ namespace LimpiaMAS.Service
 {
     public interface iLogeo
     {
-        void LogeoComparision(string User, string Pwd);
-        void LogeoPage(TbCliente cli, TbLimpiador limp);
+        int LoginComparision(TbUser user);
     }
 }
