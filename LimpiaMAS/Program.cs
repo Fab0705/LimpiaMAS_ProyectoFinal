@@ -3,6 +3,7 @@ using LimpiaMAS.Service;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Add(new ServiceDescriptor(typeof(iCliente), new ClienteRepository()));
 builder.Services.AddControllersWithViews();
 builder.Services.Add(new ServiceDescriptor(typeof(iRegister), new RegisterRepository()));
 builder.Services.Add(new ServiceDescriptor(typeof(iLogeo), new LogeoRepository()));

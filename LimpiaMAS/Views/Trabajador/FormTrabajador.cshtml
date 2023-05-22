@@ -65,6 +65,54 @@
                             <input type="text" asp-for="DirLimp" placeholder="Ingrese su domicilio" required>
                         </div>
                         <div class="input-box">
+                            <section class="combo-box">
+                                <span class="detalles">Distrito</span>
+                                <select name="distrito">
+                                        <option value="Ancon" id="ancon">Ancon</option>
+                                        <option value="Ate-Vitarte" id="ate-vitarte">Ate Vitarte</option>
+                                        <option value="Barranco" id="barranco">Barranco</option>
+                                        <option value="Breña" id="breña">Breña</option>
+                                        <option value="Carabayllo" id="barranco">Carabayllo</option>
+                                        <option value="Chaclacayo" id="chaclacayo">Chaclacayo</option>
+                                        <option value="Chorrillos" id="chorrillos">Chorrillos</option>
+                                        <option value="Cieneguilla" id="cieneguilla">Cieneguilla</option>
+                                        <option value="Comas" id="comas">Comas</option>
+                                        <option value="El-Agustino" id="el-agustino">El Agustino</option>
+                                        <option value="Independencia" id="independencia">Independencia</option>
+                                        <option value="Jesus-Maria" id="el-agustino">Jesus Maria</option>
+                                        <option value="La-Molina" id="la-molina">La Molina</option>
+                                        <option value="La-Victoria" id="la-victoria">La Victoria</option>
+                                        <option value="Jesus-Maria" id="el-agustino">Jesus Maria</option>
+                                        <option value="Lima" id="lima">Centro de Lima</option>
+                                        <option value="Lince" id="lince">Lince</option>
+                                        <option value="Los-Olivos" id="los-olivos">Los Olivos</option>
+                                        <option value="SJL" id="sjl">San Juan de Lurigancho</option>
+                                        <option value="Lurin" id="lurin">Lurin</option>
+                                        <option value="Magdalena" id="magdalena">Madgalena</option>
+                                        <option value="Miraflores" id="miraflores">Miraflores</option>
+                                        <option value="Pachacamac" id="pachacamac">Pachacamac</option>
+                                        <option value="Pucusana" id="pucusana">Pachacamac</option>
+                                        <option value="Pueblo-Libre" id="pueblo-libre">Pueblo Libre</option>
+                                        <option value="Punta-Hermosa" id="punta-hermosa">Punta Hermosa</option>
+                                        <option value="Punta-Negra" id="punta-negra">Punta Negra</option>
+                                        <option value="Rimac" id="rimac">Rimac</option>
+                                        <option value="San-Bartolo" id="san-bartolo">San Bartolo</option>
+                                        <option value="San-Borja" id="san-borja">San Borja</option>
+                                        <option value="San-Isidro" id="san-isidro">San Isidro</option>
+                                        <option value="SJM" id="sjm">San Juan de Miraflores</option>
+                                        <option value="San-Luis" id="san-luis">San Luis</option>
+                                        <option value="SMP" id="smp">San Martin de Porres</option>
+                                        <option value="San-Miguel" id="san-miguel">San Miguel</option>
+                                        <option value="Santa-Anita" id="santa-anita">Santa Anita</option>
+                                        <option value="Santa-Maria" id="santa-maria">Santa Maria del Mar</option>
+                                        <option value="Surco" id="surco">Santiago de Surco</option>
+                                        <option value="Surquillo" id="surquillo">Surquillo</option>
+                                        <option value="Villa-El-Salvador" id="villa-el-salvador">Villa El Salvador</option>
+                                        <option value="VMT" id="vmt">Villa Maria del Triunfo</option>
+                                    </select>
+                            </section>
+                        </div>
+                        <div class="input-box">
                             <span class="detalles">Numero telefonico</span>
                             <input type="number" asp-for="TelLimp" placeholder="Ingrese su numero" required>
                         </div>
@@ -73,16 +121,25 @@
                             <input type="text" asp-for="TarLimp" placeholder="Ingrese su tarifa por metro cuadrado" required>
                         </div>
                         <div class="input-box">
+<<<<<<< HEAD
                             <span class="detalles">Foto carnet</span>
                             <input type="file" asp-for="FotLimp" name="Suba una foto tipo carnet" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Disponibilidad</span>
                             <textarea type="text" asp-for="DisLimp" placeholder="Ingrese su disponibilidad horaria" required></textarea>
+=======
+                            <span class="detalles">Disponibilidad</span>
+                            <textarea type="text" placeholder="Ingrese su disponibilidad horaria de manera breve" required></textarea>
+>>>>>>> 5f528d0f77a7f1956a6bb014c4b83ba6a346b544
                         </div>
                         <div class="input-box">
                             <span class="detalles">Experiencia</span>
                             <textarea type="text"  placeholder="Ingrese su experiencia en el ámbito" required></textarea>
+                        </div>
+                        <div class="input-box">
+                            <span class="detalles">Foto carnet</span>
+                            <input class="file" type="file" accept="image/jpeg, image/png" name="Suba una foto tipo carnet" required>
                         </div>
                     </div>
                     <div class="detalles-genero">
