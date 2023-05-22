@@ -1,7 +1,17 @@
+using LimpiaMAS.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Add(new ServiceDescriptor(typeof(iRegister), new RegisterRepository()));
+builder.Services.Add(new ServiceDescriptor(typeof(iLogeo), new LogeoRepository()));
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(3600);
+});
 
 var app = builder.Build();
 
@@ -19,6 +29,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession(); //Activar el uso de sesiones
 
 app.MapControllerRoute(
     name: "default",
