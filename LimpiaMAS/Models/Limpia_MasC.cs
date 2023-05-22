@@ -37,7 +37,7 @@ public partial class Limpia_MasC : DbContext
     {
         modelBuilder.Entity<TbAdmin>(entity =>
         {
-            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA5F10D9593");
+            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA537163730");
 
             entity.ToTable("TB_ADMIN");
 
@@ -53,11 +53,6 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("PWD_ADM");
-
-            entity.HasOne(d => d.UsrAdmNavigation).WithOne(p => p.TbAdmin)
-                .HasForeignKey<TbAdmin>(d => d.UsrAdm)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_ADMIN__USR_AD__6FE99F9F");
         });
 
         modelBuilder.Entity<TbCliente>(entity =>
@@ -272,6 +267,14 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("USR");
+            entity.Property(e => e.Ape)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("APE");
+            entity.Property(e => e.Nom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("NOM");
             entity.Property(e => e.Pwd)
                 .HasMaxLength(30)
                 .IsUnicode(false)

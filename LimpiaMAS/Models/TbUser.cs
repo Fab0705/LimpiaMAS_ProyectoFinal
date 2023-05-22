@@ -9,7 +9,9 @@ public partial class TbUser
 
     public string Pwd { get; set; } = null!;
 
-    public virtual TbAdmin? TbAdmin { get; set; }
+    public string Nom { get; set; } = null!;
+
+    public string Ape { get; set; } = null!;
 
     public virtual ICollection<TbCliente> TbClientes { get; set; } = new List<TbCliente>();
 

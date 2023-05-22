@@ -10,6 +10,4 @@ public partial class TbAdmin
     public string PwdAdm { get; set; } = null!;
 
     public string Etiqueta { get; set; } = null!;
-
-    public virtual TbUser UsrAdmNavigation { get; set; } = null!;
 }
