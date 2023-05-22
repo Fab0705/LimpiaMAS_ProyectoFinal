@@ -15,6 +15,8 @@ public partial class Limpia_MasC : DbContext
     {
     }
 
+    public virtual DbSet<TbAdmin> TbAdmins { get; set; }
+
     public virtual DbSet<TbCliente> TbClientes { get; set; }
 
     public virtual DbSet<TbDetalledi> TbDetalledis { get; set; }
@@ -33,6 +35,31 @@ public partial class Limpia_MasC : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<TbAdmin>(entity =>
+        {
+            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA5F10D9593");
+
+            entity.ToTable("TB_ADMIN");
+
+            entity.Property(e => e.UsrAdm)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("USR_ADM");
+            entity.Property(e => e.Etiqueta)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("ETIQUETA");
+            entity.Property(e => e.PwdAdm)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("PWD_ADM");
+
+            entity.HasOne(d => d.UsrAdmNavigation).WithOne(p => p.TbAdmin)
+                .HasForeignKey<TbAdmin>(d => d.UsrAdm)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__TB_ADMIN__USR_AD__6FE99F9F");
+        });
+
         modelBuilder.Entity<TbCliente>(entity =>
         {
             entity.HasKey(e => e.IdCli).HasName("PK__TB_CLIEN__2BF8836D891CE6A0");
