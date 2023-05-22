@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/estilos.css">
+</head>
+    <body>
+        <header class="encabezado">
+            <h1>Bienvenido administrador.</h1>
+        </header>
+        <div class="navbar">
+            <div class="logo"><a href="#">LIMPIAMÁS</a></div>
+            <ul class="links">
+                <li>
+                    <a asp-action="Servicios">Servicios</a>
+                </li>
+                <li>
+                    <a asp-action="Nosotros">Nosotros</a>
+                </li>
+                <li>
+                    <a asp-action="Login">Ingresar</a>
+                </li>
+                <li>
+                    <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
+                </li>
+            </ul>
+            <a asp-action="Register" class="register-btn">Registrate!</a>
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <main class="contenedor-lista">
+            <div class="tarjeta">
+                <img src="user-icon-vector-cropped.png" alt="Imagen 1">
+                <h3>Usuarios</h3>
+                <p>Mantenimiento de usuarios</p>
+            </div>
+            <div class="tarjeta">
+                <img src="limpiador-cropped.png" alt="Imagen 2">
+                <h3>Limpiadores</h3>
+                <p>Mantenimiento de limpiadores</p>
+            </div>
+            <div class="tarjeta">
+                <img src="cliente-cropped.png" alt="Imagen 3">
+                <h3>Clientes</h3>
+                <p>Mantenimiento de clientes</p>
+            </div>
+            <div class="tarjeta">
+                <img src="categorias-cropped.png" alt="Imagen 3">
+                <h3>Categorias de servicios</h3>
+                <p>Mantenimiento de categorias de servicios</p>
+            </div>
+        </main>
+        <footer class="pie">
+            <h1>LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i></h1>
+        </footer>
+    </body>
+</html>

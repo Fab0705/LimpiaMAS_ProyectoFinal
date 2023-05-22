@@ -1,4 +1,5 @@
-﻿@*
+﻿@model LimpiaMAS.Models.TbUser
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -9,22 +10,22 @@
     </head>
     <body>
         <main class="container-fluid">
-            <form action="">
+            <form asp-controller="Register" asp-action="new_usr" method="post">
                 <h2 class="title">Register</h2>
                 <div class="container">
                     <label class="label">Nombre:</label>
-                    <input type="text" class="input_D" id="nam" placeholder="Ingresar nombres" />
+                    <input type="text" class="input_D" asp-for="Nom" placeholder="Ingresar nombres" />
                     <label class="label">Apellido:</label>
-                    <input type="text" class="input_D" id="ape" placeholder="Ingresar apellidos" />
+                    <input type="text" class="input_D" asp-for="Ape" placeholder="Ingresar apellidos" />
                     <label class="label">Usuario:</label>
-                    <input type="text" class="input_D" id="usr" placeholder="Cree Usuario" />
+                    <input type="text" class="input_D" asp-for="Usr" placeholder="Cree Usuario" />
                     <label class="label">Contraseña:</label>
-                    <input type="password" class="input_D" id="pwd" placeholder="Establezca Contraseña" />
+                    <input type="password" class="input_D" asp-for="Pwd" placeholder="Establezca Contraseña" />
                     <label class="label">Confirmar Contraseña:</label>
                     <input type="password" class="input_D" id="pwd" placeholder="Confirmar Contraseña" />
                 </div>
 
-                <input type="submit" value="CREAR CUENTA" onclick="return Procesar()" />
+                <input type="submit" value="CREAR CUENTA" />
             </form>
         </main>
     </body>

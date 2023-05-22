@@ -1,4 +1,5 @@
-﻿@*
+﻿@model LimpiaMAS.Models.TbLimpiador
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -49,39 +50,39 @@
         <div class="contenedor">
             <div class="titulo">Formulario de trabajadores</div>
             <div class="contenido">
-                <form action="#">
+                <form asp-controller="Register" asp-action="new_limp" method="post">
                     <div class="detalles-trabajador">
                         <div class="input-box">
                             <span class="detalles">Nombre</span>
-                            <input type="text" placeholder="Ingresa tu nombre" required>
+                            <input type="text" asp-for="NomLimp" placeholder="Ingresa tu nombre" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Apellidos</span>
-                            <input type="text" placeholder="Ingresa tus apellidos" required>
+                            <input type="text" asp-for="ApeLimp" placeholder="Ingresa tus apellidos" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Direccion</span>
-                            <input type="text" placeholder="Ingrese su domicilio" required>
+                            <input type="text" asp-for="DirLimp" placeholder="Ingrese su domicilio" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Numero telefonico</span>
-                            <input type="text" placeholder="Ingrese su numero" required>
+                            <input type="number" asp-for="TelLimp" placeholder="Ingrese su numero" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Tarifa x m^2</span>
-                            <input type="text" placeholder="Ingrese su tarifa por metro cuadrado" required>
+                            <input type="text" asp-for="TarLimp" placeholder="Ingrese su tarifa por metro cuadrado" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Foto carnet</span>
-                            <input type="file" name="Suba una foto tipo carnet" required>
+                            <input type="file" asp-for="FotLimp" name="Suba una foto tipo carnet" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Disponibilidad</span>
-                            <textarea type="text" placeholder="Ingrese su disponibilidad horaria" required></textarea>
+                            <textarea type="text" asp-for="DisLimp" placeholder="Ingrese su disponibilidad horaria" required></textarea>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Experiencia</span>
-                            <textarea type="text" placeholder="Ingrese su experiencia en el ámbito" required></textarea>
+                            <textarea type="text"  placeholder="Ingrese su experiencia en el ámbito" required></textarea>
                         </div>
                     </div>
                     <div class="detalles-genero">
