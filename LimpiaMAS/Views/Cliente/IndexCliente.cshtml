@@ -18,15 +18,14 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
-                        <th>Contraseña</th>
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Dirección</th>
                         <th>Celular</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
                         <th>Etiqueta</th>
-                        <th>Agregar</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -35,17 +34,17 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Usr</td>
-                            <td>@item.Pwd</td>
                             <td>@item.IdCli</td>
                             <td>@item.NomCli</td>
                             <td>@item.ApeCli</td>
                             <td>@item.DirCli</td>
                             <td>@item.TelCli</td>
+                            <td>@item.Usr</td>
+                            <td>@item.Pwd</td>
                             <td>@item.Etiqueta</td>
-                            <!--le pasamos el codigo del distrito para saber cual eliminar-->
-                            <td><a asp-action="Eliminar" asp-route-id="@item.IdCli">Eliminar</a></td>
+                            <!--le pasamos el codigo del distrito para saber cual eliminar-->                            
                             <td><a asp-action="Editar" asp-route-id="@item.IdCli">Editar</a></td>
+                            <td><a asp-action="Eliminar" asp-route-id="@item.IdCli">Eliminar</a></td>
                         </tr>
                     }
                 </tbody>

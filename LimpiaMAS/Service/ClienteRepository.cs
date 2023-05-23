@@ -25,6 +25,13 @@ namespace LimpiaMAS.Service
         {
             var objModificar = (from tCli in conexion.TbClientes where tCli.IdCli == cliente.IdCli select tCli).Single();
             objModificar.NomCli = cliente.NomCli;
+            objModificar.ApeCli = cliente.ApeCli;
+            objModificar.DirCli = cliente.DirCli;
+            objModificar.TelCli = cliente.TelCli;
+            objModificar.Usr = cliente.Usr;
+            objModificar.Pwd = cliente.Pwd;
+            objModificar.Etiqueta = cliente.Etiqueta;
+
             conexion.SaveChanges();
         }
 

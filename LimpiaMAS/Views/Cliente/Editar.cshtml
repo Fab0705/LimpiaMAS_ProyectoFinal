@@ -10,11 +10,15 @@
 <body>
     <div class="tabla">
     </div>
-    <form asp-controller="Cliente" asp-action="grabar" method="post">
+    <form asp-controller="Cliente" asp-action="editarCliente" method="post">
+        <input type="hidden" asp-for="IdCli"/>
         Nombre:<input type="text" asp-for="NomCli" placeholder="Ingrese el nuevo Nombre del Cliente" />
         Apellido:<input type="text" asp-for="ApeCli" placeholder="Ingrese el nuevo Apellido del Cliente" />
         Dirección:<input type="text" asp-for="DirCli" placeholder="Ingrese la nueva dirección del Cliente" />
         Celular:<input type="text" asp-for="TelCli" placeholder="Ingresar el nuevo numero de telefono del Cliente" />
+        Usuario:<input type="text" asp-for="Usr" placeholder="Ingresar el nuevo usuario del Cliente" />
+        Contraseña:<input type="text" asp-for="Pwd" placeholder="Ingresar la nueva contraseña del Cliente" />
+        Etiqueta:<input type="text" asp-for="Etiqueta" placeholder="Ingresar la nueva etiqueta del Cliente" />
         <input type="submit" value="Grabar" />
     </form>
 </body>
