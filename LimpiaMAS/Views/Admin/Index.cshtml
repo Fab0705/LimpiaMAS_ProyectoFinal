@@ -9,25 +9,25 @@
 </head>
     <body>
         <header class="encabezado">
-            <h1>Bienvenido administrador.</h1>
+            <p>Bienvenido administrador.</p>
         </header>
         <div class="navbar">
-            <div class="logo"><a href="#">LIMPIAMÁS</a></div>
+        <div class="logo"><a asp-controller="Limpia" asp-action="Index">LIMPIAMÁS</a></div>
             <ul class="links">
                 <li>
-                    <a asp-action="Servicios">Servicios</a>
+                    <a asp-controller="Limpia" asp-action="Servicios">Servicios</a>
                 </li>
                 <li>
-                    <a asp-action="Nosotros">Nosotros</a>
+                    <a asp-controller="Limpia" asp-action="Nosotros">Nosotros</a>
                 </li>
                 <li>
-                    <a asp-action="Login">Ingresar</a>
+                    <a asp-controller="Limpia" asp-action="Login">Ingresar</a>
                 </li>
                 <li>
                     <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
                 </li>
             </ul>
-            <a asp-action="Register" class="register-btn">Registrate!</a>
+            <a asp-controller="Limpia" asp-action="Register" class="register-btn">Registrate!</a>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -41,18 +41,18 @@
             <div class="tarjeta">
                 <img src="/images/limpiador-cropped.png" alt="Imagen 2">
                 <h3>Limpiadores</h3>
-                <p>Mantenimiento de limpiadores</p>
+                <a asp-controller="Limpiador" asp-action="IndexLimpiador">Mantenimiento de clientes</a>
             </div>
             <div class="tarjeta">
                 <img src="~/images/cliente-cropped.png" alt="Imagen 3">
                 <h3>Clientes</h3>
                 <a asp-controller="Cliente" asp-action="IndexCliente">Mantenimiento de clientes</a>
             </div>
-            <div class="tarjeta">
+            <!--<div class="tarjeta">
                 <img src="/images/categorias-cropped.png" alt="Imagen 3">
                 <h3>Categorias de servicios</h3>
             <a asp-controller="Servicios" asp-action="Index">Mantenimiento de categorias</a>
-            </div>
+            </div>-->
         </main>
         <footer class="pie">
             <p>LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i></p>

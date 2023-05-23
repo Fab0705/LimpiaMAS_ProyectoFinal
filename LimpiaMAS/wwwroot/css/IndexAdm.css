@@ -17,7 +17,8 @@ header,main{
 .encabezado{
     background-color: #B6E3E9;
     text-align: center;
-    font-size: calc(1rem + 1.5vw);
+    font-size: calc(1.6rem + 1.5vw);
+    font-weight: bold;
 }
 
 .navbar .links{
@@ -63,6 +64,7 @@ header,main{
         display: flex;
         gap: 2.5vw;
         cursor:pointer;
+        margin-top:2vh;
         /*margin-left: 6vw; "viewport width" (ancho de la ventana gráfica)*/
     }
 
@@ -121,15 +123,9 @@ header,main{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.contenedor-lista .tarjeta:hover{
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
-    transform: translateY(-3%);
-}
 
 .contenedor-lista .tarjeta img {
     width: 30%;
-    height: 50%;
     border-radius: 5px;
   }
 
@@ -143,8 +139,8 @@ header,main{
 
 footer{
     font-weight: bold;
-    margin-top: 2vh;
+    margin-top: 2.5vh;
     text-align: center;
-    font-size: calc(0.6em + 1vw);
+    font-size: calc(0.6em + 0.8vw);
     background-color: #B6E3E9;
 }

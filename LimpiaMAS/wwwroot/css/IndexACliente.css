@@ -47,7 +47,7 @@ table, th, td {
 .tabla-body {
     width: 95%;
     max-height: calc(89% - .8rem);
-    background-color: lightgrey;
+    background-color: rgba(211, 211, 211, 0.3);
     margin: .8rem auto;
     border-radius: .6rem;
     overflow: auto;
@@ -58,14 +58,14 @@ table, th, td {
         height: .5rem;
     }
 
-/cambiamos el estilo del scrollbar/
+/*cambiamos el estilo del scrollbar*/
 .tabla-body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-/cuando se pasa el cursor por la tabla, aparecera el scrollbar/
+/*cuando se pasa el cursor por la tabla, aparecera el scrollbar*/
 .tabla-body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
@@ -82,7 +82,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: #fff6ff;
+    background-color: rgba(211, 211, 211, 0.8);
 }
 
 a {
