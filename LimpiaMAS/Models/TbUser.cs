@@ -5,6 +5,8 @@ namespace LimpiaMAS.Models;
 
 public partial class TbUser
 {
+    public string IdUsr { get; set; } = null!;
+
     public string Usr { get; set; } = null!;
 
     public string Pwd { get; set; } = null!;
@@ -12,8 +14,4 @@ public partial class TbUser
     public string Nom { get; set; } = null!;
 
     public string Ape { get; set; } = null!;
-
-    public virtual ICollection<TbCliente> TbClientes { get; set; } = new List<TbCliente>();
-
-    public virtual ICollection<TbLimpiador> TbLimpiadors { get; set; } = new List<TbLimpiador>();
 }

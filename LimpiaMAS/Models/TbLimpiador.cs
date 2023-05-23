@@ -30,6 +30,4 @@ public partial class TbLimpiador
     public virtual TbDetalledi? TbDetalledi { get; set; }
 
     public virtual ICollection<TbServicio> TbServicios { get; set; } = new List<TbServicio>();
-
-    public virtual TbUser UsrNavigation { get; set; } = null!;
 }

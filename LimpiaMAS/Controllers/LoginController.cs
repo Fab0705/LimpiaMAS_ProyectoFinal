@@ -1,6 +1,7 @@
 ﻿using LimpiaMAS.Models;
 using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LimpiaMAS.Controllers
 {
@@ -17,11 +18,12 @@ namespace LimpiaMAS.Controllers
             if (_logeo.LoginComparision(obj) == 1)
             {
                 //Crear variable de sesion
-                //HttpContext.Session.SetString("sUsuario",);
+                HttpContext.Session.SetString("sUsuario",JsonConvert.SerializeObject(obj));
                 return View("~/Views/Usuario/Index.cshtml");
             }
             else if(_logeo.LoginComparision(obj) == 2)
             {
+                HttpContext.Session.SetString("sUsuario", JsonConvert.SerializeObject(obj));
                 return View("~/Views/Admin/Index.cshtml");
             }
             else
