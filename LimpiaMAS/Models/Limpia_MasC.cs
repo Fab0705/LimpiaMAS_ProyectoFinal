@@ -31,7 +31,7 @@ public partial class Limpia_MasC : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=RYZEN-PC\\SQLEXPRESS;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        => optionsBuilder.UseSqlServer("Data Source=FAB-PC\\SQLEXPRESS01;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -95,11 +95,6 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("USR");
-
-            entity.HasOne(d => d.UsrNavigation).WithMany(p => p.TbClientes)
-                .HasForeignKey(d => d.Usr)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_CLIENTE__USR__5CD6CB2B");
         });
 
         modelBuilder.Entity<TbDetalledi>(entity =>
@@ -173,11 +168,6 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("USR");
-
-            entity.HasOne(d => d.UsrNavigation).WithMany(p => p.TbLimpiadors)
-                .HasForeignKey(d => d.Usr)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_LIMPIADO__USR__5DCAEF64");
         });
 
         modelBuilder.Entity<TbServicio>(entity =>
@@ -259,14 +249,15 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbUser>(entity =>
         {
-            entity.HasKey(e => e.Usr).HasName("PK__TB_USER__C5B108E3C25AAA8B");
+            entity.HasKey(e => e.IdUsr).HasName("PK__TB_USER__2A8C692A3B155425");
 
             entity.ToTable("TB_USER");
 
-            entity.Property(e => e.Usr)
-                .HasMaxLength(30)
+            entity.Property(e => e.IdUsr)
+                .HasMaxLength(6)
                 .IsUnicode(false)
-                .HasColumnName("USR");
+                .IsFixedLength()
+                .HasColumnName("ID_USR");
             entity.Property(e => e.Ape)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -279,6 +270,10 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("PWD");
+            entity.Property(e => e.Usr)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("USR");
         });
 
         OnModelCreatingPartial(modelBuilder);

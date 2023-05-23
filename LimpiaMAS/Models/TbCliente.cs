@@ -22,6 +22,4 @@ public partial class TbCliente
     public string Pwd { get; set; } = null!;
 
     public virtual ICollection<TbServicio> TbServicios { get; set; } = new List<TbServicio>();
-
-    public virtual TbUser UsrNavigation { get; set; } = null!;
 }
