@@ -18,6 +18,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Usuario</th>
                         <th>Contraseña</th>
                         <th>Nombre</th>
@@ -30,13 +31,14 @@
                     @foreach (var item in Model)
                     {
                     <tr>
+                        <td>@item.IdUsr</td>
                         <td>@item.Usr</td>
                         <td>@item.Pwd</td>
                         <td>@item.Nom</td>
                         <td>@item.Ape</td>
                         <!--le pasamos el codigo del distrito para saber cual eliminar-->
-                        <td><a asp-action="Eliminar" asp-route-id="@item.Pwd">Eliminar</a></td>
-                        <td><a asp-action="Editar" asp-route-id="@item.Pwd">Editar</a></td>
+                            <td><a asp-action="Editar" asp-route-id="@item.IdUsr">Editar</a></td>
+                            <td><a asp-action="Eliminar" asp-route-id="@item.IdUsr">Eliminar</a></td>
                     </tr>
                     }
                 </tbody>

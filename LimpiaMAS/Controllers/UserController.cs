@@ -27,5 +27,24 @@ namespace LimpiaMAS.Controllers
             _usuario.add(user);
             return RedirectToAction("IndexUser");
         }
+
+        [Route("Usuario/Eliminar/{Id}")]
+        public IActionResult eliminar(string id)
+        {
+            _usuario.remove(id);
+            return RedirectToAction("IndexUser");
+        }
+
+        [Route("Usuario/Editar/{Id}")]
+        public IActionResult Editar(string id)
+        {
+            return View(_usuario.edit(id));
+        }
+
+        public IActionResult editarUser(TbUser user)
+        {
+            _usuario.EditDetails(user);
+            return RedirectToAction("IndexUser");
+        }
     }
 }

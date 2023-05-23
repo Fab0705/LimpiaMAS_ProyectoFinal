@@ -20,10 +20,10 @@ namespace LimpiaMAS.Service
             }
         }
 
-        public TbUser edit(string usr)
+        public TbUser edit(string id)
         {
             var obj = (from tUser in conexion.TbUsers
-                       where tUser.Usr == usr
+                       where tUser.IdUsr == id
                        select tUser).Single();
             return obj;
         }
@@ -31,7 +31,7 @@ namespace LimpiaMAS.Service
         public void EditDetails(TbUser user)
         {
             var objAModificar = (from tUser in conexion.TbUsers
-                                 where tUser.Usr == user.Usr
+                                 where tUser.IdUsr == user.IdUsr
                                  select tUser).Single();
             objAModificar.Nom = user.Nom;
             objAModificar.Ape = user.Ape;
@@ -44,10 +44,10 @@ namespace LimpiaMAS.Service
         {
             return conexion.TbUsers;
         }
-        public void remove(string usr)
+        public void remove(string id)
         {
             var obj = (from tUser in conexion.TbUsers
-                       where tUser.Usr == usr
+                       where tUser.IdUsr == id
                        select tUser).Single();
             conexion.Remove(obj);
             conexion.SaveChanges();
