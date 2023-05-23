@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Add(new ServiceDescriptor(typeof(iCliente), new ClienteRepository()));
 builder.Services.AddControllersWithViews();
 builder.Services.Add(new ServiceDescriptor(typeof(iRegister), new RegisterRepository()));
+builder.Services.Add(new ServiceDescriptor(typeof(iLimpiador), new LimpiadorRepository()));
 builder.Services.Add(new ServiceDescriptor(typeof(iLogeo), new LogeoRepository()));
 
 builder.Services.AddControllersWithViews();
