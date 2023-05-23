@@ -17,7 +17,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(#feb9f8, #b17aa9);
+    background: linear-gradient(#c8e3e8, #fabce8);
 }
 
 table {
@@ -39,7 +39,7 @@ table, th, td {
 .tabla-head {
     width: 100%;
     height: 10%;
-    background-color: #b6e3e9;
+    background-color: rgba(253, 171, 171, 0.8);
     padding: .8rem 1rem;
     text-align: center;
 }
@@ -47,7 +47,7 @@ table, th, td {
 .tabla-body {
     width: 95%;
     max-height: calc(89% - .8rem);
-    background-color: aqua;
+    background-color: lightgrey;
     margin: .8rem auto;
     border-radius: .6rem;
     overflow: auto;
@@ -74,7 +74,7 @@ thead th {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #808080;
+    background-color: rgba(182, 227, 233);
 }
 
 tbody tr:nth-child(even) {
@@ -84,3 +84,12 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #fff6ff;
 }
+
+a {
+    font-weight: bold;
+    color: black;
+}
+
+    a:hover {
+        color: white;
+    }

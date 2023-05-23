@@ -5,7 +5,7 @@
 }
 <html>
 <head>
-    <link rel="stylesheet" href="~/css/estilos.css">
+    <link rel="stylesheet" href="~/css/IndexAdm.css">
 </head>
     <body>
         <header class="encabezado">
@@ -34,28 +34,28 @@
         </div>
         <main class="contenedor-lista">
             <div class="tarjeta">
-                <img src="user-icon-vector-cropped.png" alt="Imagen 1">
+                <img src="~/images/user-icon-vector-cropped.png" alt="Imagen 1">
                 <h3>Usuarios</h3>
                 <p>Mantenimiento de usuarios</p>
             </div>
             <div class="tarjeta">
-                <img src="limpiador-cropped.png" alt="Imagen 2">
+                <img src="/images/limpiador-cropped.png" alt="Imagen 2">
                 <h3>Limpiadores</h3>
                 <p>Mantenimiento de limpiadores</p>
             </div>
             <div class="tarjeta">
-                <img src="cliente-cropped.png" alt="Imagen 3">
+                <img src="~/images/cliente-cropped.png" alt="Imagen 3">
                 <h3>Clientes</h3>
-                <p>Mantenimiento de clientes</p>
+                <a asp-controller="Cliente" asp-action="IndexCliente">Mantenimiento de clientes</a>
             </div>
             <div class="tarjeta">
-                <img src="categorias-cropped.png" alt="Imagen 3">
+                <img src="/images/categorias-cropped.png" alt="Imagen 3">
                 <h3>Categorias de servicios</h3>
-                <p>Mantenimiento de categorias de servicios</p>
+            <a asp-controller="Servicios" asp-action="Index">Mantenimiento de categorias</a>
             </div>
         </main>
         <footer class="pie">
-            <h1>LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i></h1>
+            <p>LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i> - LIMPIAMÁS <i>derechos registrados 2023</i></p>
         </footer>
     </body>
 </html>

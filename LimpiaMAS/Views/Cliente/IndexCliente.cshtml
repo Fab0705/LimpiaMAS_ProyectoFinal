@@ -5,24 +5,27 @@
 @{
 }
 <html>
-    <head>
-        <link rel="stylesheet" href="~/css/IndexACliente.css" />
-    </head>
+<head>
+    <link rel="stylesheet" href="~/css/IndexACliente.css" />
+</head>
 <body>
     <div class="tabla">
         <section class="tabla-head">
-            <h2><a asp-action="Nuevo">Agregar producto</a></h2>
-            <h3>Listado de productos</h3>
+            <h2><a asp-action="Nuevo">Agregar cliente</a></h2>
+            <h3>Listado de clientes</h3>
         </section>
         <section class="tabla-body">
             <table>
                 <thead>
                     <tr>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Dirección</th>
                         <th>Celular</th>
+                        <th>Etiqueta</th>
                         <th>Agregar</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
@@ -32,15 +35,17 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <tr>@item.Usr</tr>
+                            <tr>@item.Pwd</tr>
                             <td>@item.IdCli</td>
                             <td>@item.NomCli</td>
                             <td>@item.ApeCli</td>
                             <td>@item.DirCli</td>
                             <td>@item.TelCli</td>
+                            <td>@item.Etiqueta</td>
                             <!--le pasamos el codigo del distrito para saber cual eliminar-->
                             <td><a asp-action="Eliminar" asp-route-id="@item.IdCli">Eliminar</a></td>
                             <td><a asp-action="Editar" asp-route-id="@item.IdCli">Editar</a></td>
-                            <div id="popupContainer"></div>
                         </tr>
                     }
                 </tbody>

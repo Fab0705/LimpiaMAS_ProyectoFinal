@@ -5,7 +5,7 @@ namespace LimpiaMAS.Service
     public class ClienteRepository : iCliente
     {
         Limpia_MasC conexion = new Limpia_MasC();
-        public void Add(TbCliente cliente)
+        public void add(TbCliente cliente)
         {
             try { 
                 conexion.TbClientes.Add(cliente);
@@ -33,7 +33,7 @@ namespace LimpiaMAS.Service
             return conexion.TbClientes;
         }
 
-        public void Remove(string id)
+        public void remove(string id)
         {
             var obj = (from tbCli in conexion.TbClientes where tbCli.IdCli == id select tbCli).Single();
             conexion.Remove(obj);

@@ -11,22 +11,22 @@ namespace LimpiaMAS.Controllers
         { 
             _Cliente = cliente;
         }
-        public IActionResult Index()
+        public IActionResult IndexCliente()
         {
             return View(_Cliente.GetAllClientes());
         }
         [Route("Cliente/Eliminar/{Id}")]
         public IActionResult eliminar(string id) {
-            _Cliente.Remove(id);
-             return RedirectToAction("IndexACliente");
+            _Cliente.remove(id);
+             return RedirectToAction("IndexCliente");
         }
         public IActionResult nuevo() 
         {
             return View();
         }
-        public IActionResult gravar(TbCliente cliente) {
-            _Cliente.Add(cliente);
-            return RedirectToAction("IndexAClliente");
+        public IActionResult grabar(TbCliente cliente) {
+            _Cliente.add(cliente);
+            return RedirectToAction("IndexCliente");
         }
         [Route("Cliente/Editar/{Id}")]
         public IActionResult Editar(string id) {
@@ -34,7 +34,7 @@ namespace LimpiaMAS.Controllers
         }
         public IActionResult editarCliente(TbCliente cliente) {
             _Cliente.EditDatails(cliente);
-            return RedirectToAction("IndexACliente");
+            return RedirectToAction("IndexCliente");
         }
     }
 }
