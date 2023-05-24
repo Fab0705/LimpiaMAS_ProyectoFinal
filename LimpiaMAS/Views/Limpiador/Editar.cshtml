@@ -10,13 +10,18 @@
 <body>
     <div class="tabla">
     </div>
-    <form asp-controller="Limpiador" asp-action="grabar" method="post">
+    <form asp-controller="Limpiador" asp-action="editarLimp" method="post">
+        <input type="hidden" asp-for="IdLimp" />
+        <input type="hidden" asp-for="Usr" />
+        <input type="hidden" asp-for="Pwd" />
+        <input type="hidden" asp-for="Etiqueta" />
         Nombre:<input type="text" asp-for="NomLimp" placeholder="Ingrese el nuevo Nombre del Limpiador" />
         Apellido:<input type="text" asp-for="ApeLimp" placeholder="Ingrese el nuevo Apellido del Limpiador" />
         Dirección:<input type="text" asp-for="DirLimp" placeholder="Ingrese la nueva dirección del Limpiador" />
         Celular:<input type="text" asp-for="TelLimp" placeholder="Ingresar el nuevo numero de telefono del Limpiador" />
         Disponibilidad:<input type="text" asp-for="DisLimp" placeholder="Ingrese el nuevo Disponibilidad" />
         Tarifa:<input type="number" asp-for="TarLimp" placeholder="Ingrese el nuevo Precio" />
+        <!--Foto:<input type="file" accept="image/jpeg, image/jpg, image/png" name="FotoLimpiador" placeholder="Ingrese la nueva foto del limpiador" />-->
         <input type="submit" value="Grabar" />
     </form>
 </body>

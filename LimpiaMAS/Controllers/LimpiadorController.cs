@@ -2,6 +2,7 @@
 using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace LimpiaMAS.Controllers
 {
     public class LimpiadorController : Controller
@@ -11,7 +12,7 @@ namespace LimpiaMAS.Controllers
         {
             _Limpiador = Limpiador;
         }
-        public IActionResult Index()
+        public IActionResult IndexLimpiador()
         {
             return View(_Limpiador.GetAllCleaners());
         }
@@ -19,20 +20,45 @@ namespace LimpiaMAS.Controllers
         {
             return View();
         }
-        public IActionResult grabar(TbLimpiador limp)
+        public IActionResult grabar(TbLimpiador limp, IFormFile? FotoLimpiador)
         {
+            // se selecciono algun archivo?
+            if (FotoLimpiador != null && FotoLimpiador.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    FotoLimpiador.CopyTo(memoryStream);
+                    byte[] fotoBytes = memoryStream.ToArray();
+                    Console.WriteLine("Bytes: " + BitConverter.ToString(fotoBytes));
+                    //asignamos la foto a nuestro modelo
+                    limp.FotLimp = fotoBytes;
+                }
+            }
             _Limpiador.add(limp);
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexLimpiador");
         }
+
+
         [Route("Limpiador/Editar/{Id}")]
         public IActionResult Editar(string id) 
         {
             return View(_Limpiador.edit(id));
         }
-        public IActionResult editarLimp(TbLimpiador limpiador) 
+        public IActionResult editarLimp(TbLimpiador limpiador, IFormFile? FotoLimpiador) 
         {
+            /*if (FotoLimpiador != null && FotoLimpiador.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    FotoLimpiador.CopyTo(memoryStream);
+                    byte[] fotoBytes = memoryStream.ToArray();
+                    Console.WriteLine("Bytes: " + BitConverter.ToString(fotoBytes));
+                    //asignamos la foto a nuestro modelo
+                    limpiador.FotLimp = fotoBytes;
+                }
+            }*/
             _Limpiador.EditDatails(limpiador);
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexLimpiador");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<LimpiaMAS.Models.TbLimpiador>
+﻿
+@model IEnumerable<LimpiaMAS.Models.TbLimpiador>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -10,7 +11,7 @@
     <div class="tabla">
         <section class="tabla-head">
             <h2><a asp-action="Newlimp">Agregar Limpiador</a></h2>
-            <h3>Listado de clientes</h3>
+            <h3>Listado de limpiadores</h3>
         </section>
         <section class="tabla-body">
             <table>
@@ -44,9 +45,14 @@
                             <td>@item.TelLimp</td>
                             <td>@item.DisLimp</td>
                             <td>@item.TarLimp</td>
-                            <td>@item.FotLimp</td>
+                            <td>
+                                <!--Convert.ToBase64String de la clase System.Convert para convertir el arreglo de bytes item.FotLimp 
+                                a una cadena en formato Base64. Esto se hace para que la imagen pueda ser representada como una URL de 
+                                datos (data URI) en el atributo src de la etiqueta <img>.-->
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.FotLimp)" alt="Imagen">
+                            </td>
                             <td>@item.Etiqueta</td>
-                            <!--le pasamos el codigo del distrito para saber cual eliminar-->
+                            <!--le pasamos el codigo del limpiador para saber cual eliminar-->
                             <td><a asp-action="Editar" asp-route-id="@item.IdLimp">Editar</a></td>
                             <td><a asp-action="Eliminar" asp-route-id="@item.IdLimp">Eliminar</a></td>
                         </tr>

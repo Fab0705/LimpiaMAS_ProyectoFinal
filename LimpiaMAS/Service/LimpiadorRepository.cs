@@ -28,7 +28,14 @@ namespace LimpiaMAS.Service
         public void EditDatails(TbLimpiador limpiador)
         {
             var objModificar = (from tLimp in conexion.TbLimpiadors where tLimp.IdLimp == limpiador.IdLimp select tLimp).Single();
-            objModificar.NomLimp = limpiador.IdLimp;
+            objModificar.NomLimp = limpiador.NomLimp;
+            objModificar.ApeLimp = limpiador.ApeLimp;
+            objModificar.DirLimp = limpiador.DirLimp;
+            objModificar.TelLimp = limpiador.TelLimp;
+            objModificar.DisLimp = limpiador.DisLimp;
+            objModificar.TarLimp = limpiador.TarLimp;
+            /*bjModificar.FotLimp = limpiador.FotLimp;*/
+
             conexion.SaveChanges();
         }
 
