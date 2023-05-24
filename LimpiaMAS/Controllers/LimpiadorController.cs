@@ -60,5 +60,15 @@ namespace LimpiaMAS.Controllers
             _Limpiador.EditDatails(limpiador);
             return RedirectToAction("IndexLimpiador");
         }
+        [Route("Limpiador/Eliminar/{Id}")]
+        public IActionResult eliminar(string id)
+        {
+            _Limpiador.remove(id);
+            return RedirectToAction("IndexLimpiador");
+        }
+        public IActionResult returnIndexAdmin()
+        {
+            return View("~/Views/Admin/Index.cshtml");
+        }
     }
 }
