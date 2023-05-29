@@ -130,7 +130,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detalles">Foto carnet</span>
-                            <input type="file" asp-for="FotLimp" name="Suba una foto tipo carnet" required>
+                        <input type="file" accept="image/jpeg, image/jpg, image/png" name="FotoLimpiador" placeholder="Ingrese la nueva foto del limpiador" required/>
                         </div>
                     </div>
                     <div class="detalles-genero">
@@ -140,7 +140,7 @@
                         <span class="titulo-genero">Género</span>
                         <div class="categoria">
                             <label for="pto-1">
-                                <span class="pto uno"></span>
+                            <span class="pto uno" name="hombre" onclick="obtenerValor(this)"></span>
                                 <span class="genero">Hombre</span>
                             </label>
                             <label for="pto-2">
@@ -159,19 +159,10 @@
                 </form>
             </div>
         </div>
-        <script>
-            const toggleBtn = document.querySelector('.toggle-btn')
-            const toggleBtnIcon = document.querySelector('.toggle-btn i')
-            const menuDesplegable = document.querySelector('.menu-desplegable')
-
-            toggleBtn.onc = () => {
-                menuDesplegable.classList.toggle('abierto')
-                const isOpen = menuDesplegable.classList.contains('abierto')
-
-                menuDesplegable.classList = isOpen
-                ? 'fa-solid fa-bars'
-                : 'fa-solid fa-bars'
-            }
-        </script>
+    <script>
+        function obtenerValor(elemento) {
+            var valor = elemento.getAttribute("name");
+        }
+    </script>
     </body>
 </html>

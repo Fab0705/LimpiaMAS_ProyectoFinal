@@ -17,5 +17,23 @@ namespace LimpiaMAS.Controllers
             _register.add_usr(obj);
             return RedirectToAction("login", "Limpia");
         }
+
+        public IActionResult new_limp(TbLimpiador obj, IFormFile FotoLimpiador)
+        {
+            // se selecciono algun archivo?
+            if (FotoLimpiador != null && FotoLimpiador.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    FotoLimpiador.CopyTo(memoryStream);
+                    byte[] fotoBytes = memoryStream.ToArray();
+                    Console.WriteLine("Bytes: " + BitConverter.ToString(fotoBytes));
+                    //asignamos la foto a nuestro modelo
+                    obj.FotLimp = fotoBytes;
+                }
+            }
+            _register.add_limp(obj);
+            return RedirectToAction("login", "Limpia");
+        }
     }
 }
