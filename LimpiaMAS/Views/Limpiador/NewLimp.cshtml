@@ -10,18 +10,18 @@
 <body>
     <div class="tabla">
     </div>
-    <form asp-controller="Limpiador" asp-action="grabar" method="post">
-        ID:<input type="text" asp-for="IdLimp" placeholder="Ingrese el nuevo ID del Limpiador" />
-        Nombre:<input type="text" asp-for="NomLimp" placeholder="Ingrese el nuevo Nombre del Limpiador" />
-        Apellido:<input type="text" asp-for="ApeLimp" placeholder="Ingrese el nuevo Apellido del Limpiador" />
-        Dirección:<input type="text" asp-for="DirLimp" placeholder="Ingrese la nueva dirección del Limpiador" />
-        Celular:<input type="text" asp-for="TelLimp" placeholder="Ingresar el nuevo numero de telefono del Limpiador" />
-        Disponibilidad:<input type="text" asp-for="DisLimp" placeholder="Ingrese el nuevo Disponibilidad" />
-        Tarifa:<input type="number" asp-for="TarLimp" placeholder="Ingrese el nuevo Precio" />
-        Usuario:<input type="text" asp-for="Usr" placeholder="Ingrese el nuevo Usuario del Limpiador" />
-        Contraseña:<input type="password" asp-for="Pwd" placeholder="Ingrese el nueva contraseña" />
-        Etiqueta:<input type="text" asp-for="Etiqueta" placeholder="Ingrese el nueva Etiqueta" />
-        Foto:<input type="file" accept="image/jpeg, image/png" asp-for="FotLimp" placeholder="Ingrese el nueva contraseña" />
+    <form asp-controller="Limpiador" asp-action="grabar" method="post" enctype="multipart/form-data">
+        ID:<input type="text" asp-for="IdLimp" placeholder="Ingrese el nuevo ID del Limpiador" required />
+        Nombre:<input type="text" asp-for="NomLimp" placeholder="Ingrese el nuevo Nombre del Limpiador" required />
+        Apellido:<input type="text" asp-for="ApeLimp" placeholder="Ingrese el nuevo Apellido del Limpiador" required />
+        Dirección:<input type="text" asp-for="DirLimp" placeholder="Ingrese la nueva dirección del Limpiador" required />
+        Celular:<input type="text" asp-for="TelLimp" placeholder="Ingresar el nuevo numero de telefono del Limpiador" required />
+        Disponibilidad:<input type="text" asp-for="DisLimp" placeholder="Ingrese la nueva Disponibilidad" required />
+        Tarifa:<input type="number" asp-for="TarLimp" placeholder="Ingrese el nuevo Precio" required />
+        Usuario:<input type="text" asp-for="Usr" placeholder="Ingrese el nuevo Usuario del Limpiador" required />
+        Contraseña:<input type="password" asp-for="Pwd" placeholder="Ingrese la nueva contraseña" required />
+        Etiqueta:<input type="text" asp-for="Etiqueta" placeholder="Ingrese la nueva Etiqueta" required />
+        Foto:<input type="file" accept="image/jpeg, image/jpg, image/png" name="FotoLimpiador" placeholder="Ingrese la nueva foto del limpiador" required />
         <input type="submit" value="Grabar" />
     </form>
 </body>

@@ -46,5 +46,9 @@ namespace LimpiaMAS.Controllers
             _usuario.EditDetails(user);
             return RedirectToAction("IndexUser");
         }
+        public IActionResult returnIndexAdmin()
+        {
+            return View("~/Views/Admin/Index.cshtml");
+        }
     }
 }

@@ -36,5 +36,9 @@ namespace LimpiaMAS.Controllers
             _Cliente.EditDatails(cliente);
             return RedirectToAction("IndexCliente");
         }
+        public IActionResult returnIndexAdmin()
+        {
+            return View("~/Views/Admin/Index.cshtml");
+        }
     }
 }

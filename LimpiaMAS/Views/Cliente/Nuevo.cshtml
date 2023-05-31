@@ -9,14 +9,14 @@
 </head>
 <body>
     <form asp-controller="Cliente" asp-action="grabar" method="post">
-        Id:<input type="text" asp-for="IdCli" placeholder="Ingrese el Id del Cliente" />
-        Nombre:<input type="text" asp-for="NomCli" placeholder="Ingrese el nombre del Cliente" />
-        Apellido:<input type="text" asp-for="ApeCli" placeholder="Ingrese el apellido del Cliente" />
-        Dirección:<input type="text" asp-for="DirCli" placeholder="Ingrese la dirección del Cliente"/>
-        Celular:<input type="text" asp-for="TelCli" placeholder="Ingresar el número de celular del Cliente"/>
-        Usuario:<input type="text" asp-for="Usr" placeholder="Ingrese el usuario del Cliente" />
-        Contraseña:<input type="text" asp-for="Pwd" placeholder="Ingrese la contraseña del Cliente" />
-        Etiqueta:<input type="text" asp-for="Etiqueta" placeholder="Ingresar la etiqueta del Cliente" />
+        Id:<input type="text" asp-for="IdCli" placeholder="Ingrese el Id del Cliente" required />
+        Nombre:<input type="text" asp-for="NomCli" placeholder="Ingrese el nombre del Cliente" required />
+        Apellido:<input type="text" asp-for="ApeCli" placeholder="Ingrese el apellido del Cliente" required />
+        Dirección:<input type="text" asp-for="DirCli" placeholder="Ingrese la dirección del Cliente" required />
+        Celular:<input type="text" asp-for="TelCli" placeholder="Ingresar el número de celular del Cliente" required />
+        Usuario:<input type="text" asp-for="Usr" placeholder="Ingrese el usuario del Cliente" required />
+        Contraseña:<input type="text" asp-for="Pwd" placeholder="Ingrese la contraseña del Cliente" required />
+        Etiqueta:<input type="text" asp-for="Etiqueta" placeholder="Ingresar la etiqueta del Cliente" required />
         <input type="submit" value="Grabar" />
     </form>
 </body>

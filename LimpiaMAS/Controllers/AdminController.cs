@@ -17,5 +17,10 @@ namespace LimpiaMAS.Controllers
             }
             return View("~/Views/Limpia/login.cshtml");
         }
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return View("~/Views/Limpia/login.cshtml");
+        }
     }
 }
