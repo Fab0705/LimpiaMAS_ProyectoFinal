@@ -25,11 +25,15 @@ namespace LimpiaMAS.Controllers
             // se selecciono algun archivo?
             if (FotoLimpiador != null && FotoLimpiador.Length > 0)
             {
+                //creamos una instancia de la clase MemoryStream, using asegura que el objeto se libere
+                //una vez que terminamos de usarlo
                 using (var memoryStream = new MemoryStream())
                 {
+                    //copia el contenido del archivo de imagen FotoLimpiador, que es del tipo IFormFile,
+                    //al flujo de memoria 
                     FotoLimpiador.CopyTo(memoryStream);
+                    //convierte el contenido del memoryStream en un arreglo de bytes (byte[])
                     byte[] fotoBytes = memoryStream.ToArray();
-                    Console.WriteLine("Bytes: " + BitConverter.ToString(fotoBytes));
                     //asignamos la foto a nuestro modelo
                     limp.FotLimp = fotoBytes;
                 }
