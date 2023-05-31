@@ -17,8 +17,6 @@ public partial class TbCliente
 
     public string Usr { get; set; } = null!;
 
-    public string Etiqueta { get; set; } = null!;
-
     public string Pwd { get; set; } = null!;
 
     public virtual ICollection<TbServicio> TbServicios { get; set; } = new List<TbServicio>();

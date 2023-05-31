@@ -45,10 +45,6 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("USR_ADM");
-            entity.Property(e => e.Etiqueta)
-                .HasMaxLength(40)
-                .IsUnicode(false)
-                .HasColumnName("ETIQUETA");
             entity.Property(e => e.PwdAdm)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -74,10 +70,6 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("DIR_CLI");
-            entity.Property(e => e.Etiqueta)
-                .HasMaxLength(40)
-                .IsUnicode(false)
-                .HasColumnName("ETIQUETA");
             entity.Property(e => e.NomCli)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -144,11 +136,15 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("DIS_LIMP");
-            entity.Property(e => e.Etiqueta)
+            entity.Property(e => e.DistrLimp)
                 .HasMaxLength(40)
                 .IsUnicode(false)
-                .HasColumnName("ETIQUETA");
+                .HasColumnName("DISTR_LIMP");
             entity.Property(e => e.FotLimp).HasColumnName("FOT_LIMP");
+            entity.Property(e => e.GenLimp)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("GEN_LIMP");
             entity.Property(e => e.NomLimp)
                 .HasMaxLength(50)
                 .IsUnicode(false)
