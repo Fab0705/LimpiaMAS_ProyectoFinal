@@ -27,7 +27,6 @@
                         <th>Disponibilidad</th>
                         <th>Tarifa</th>
                         <th>Foto</th>
-                        <th>Etiqueta</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -51,7 +50,6 @@
                                 datos (data URI) en el atributo src de la etiqueta <img>.-->
                                 <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.FotLimp)" alt="Imagen">
                             </td>
-                            <td>@item.Etiqueta</td>
                             <!--le pasamos el codigo del limpiador para saber cual eliminar-->
                             <td><a asp-action="Editar" asp-route-id="@item.IdLimp">Editar</a></td>
                             <td><a asp-action="Eliminar" asp-route-id="@item.IdLimp">Eliminar</a></td>

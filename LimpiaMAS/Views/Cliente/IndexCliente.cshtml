@@ -25,7 +25,6 @@
                         <th>Celular</th>
                         <th>Usuario</th>
                         <th>Contraseña</th>
-                        <th>Etiqueta</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -41,7 +40,6 @@
                             <td>@item.TelCli</td>
                             <td>@item.Usr</td>
                             <td>@item.Pwd</td>
-                            <td>@item.Etiqueta</td>
                             <!--le pasamos el codigo del distrito para saber cual eliminar-->                            
                             <td><a asp-action="Editar" asp-route-id="@item.IdCli">Editar</a></td>
                             <td><a asp-action="Eliminar" asp-route-id="@item.IdCli">Eliminar</a></td>
