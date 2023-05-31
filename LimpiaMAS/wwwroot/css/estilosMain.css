@@ -213,6 +213,7 @@ header {
     margin-left: 6vw;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: auto;
 }
 
     .contenedor_limpiaMAS .header {
@@ -225,7 +226,7 @@ header {
         .contenedor_limpiaMAS .pasos .servicio {
             position: absolute;
             margin-left: 5rem; /*movemos la caja a la derecha de la caja mas grande*/
-            padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
+            padding-right: 1rem; /*con padding-right le estamos dando un marco derecho a la caja*/
             padding-bottom: 1rem;
             padding-top: 2rem;
             width: 24vw;
@@ -256,7 +257,7 @@ header {
         .contenedor_limpiaMAS .pasos .pago {
             position: absolute;
             margin-left: 34rem; /*movemos la caja a la derecha de la caja mas grande*/
-            padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
+            padding-right: 1rem; /*con padding-right le estamos dando un marco derecho a la caja*/
             padding-bottom: 1rem;
             padding-top: 2rem;
             width: 24vw;
@@ -289,7 +290,7 @@ header {
     .contenedor_limpiaMAS .pasos .satisfaccion {
         position: absolute;
         margin-left: 67rem; /*movemos la caja a la derecha de la caja mas grande*/
-        padding-right: 2rem; /*con padding-right le estamos dando un marco derecho a la caja*/
+        padding-right: 1rem; /*con padding-right le estamos dando un marco derecho a la caja*/
         padding-bottom: 1rem;
         padding-top: 1rem;
         width: 24vw;
@@ -350,7 +351,7 @@ header {
 
 
     /*CONTENIDO*/
-    
+
     .contenedor_imgtext .text {
         position: absolute;
         width: 50vw;
@@ -361,16 +362,14 @@ header {
         width: 50vw;
     }
 
-    .contenedor_imgtext .text-btn {
-        margin-left: 50vw;
-        height: 37.5vw;
-    }
+        .contenedor_imgtext .text-btn {
+            margin-left: 50vw;
+            height: 37.5vw;
+        }
 
-    .contenedor_imgtext .servicios-btn
-    {
-        font-size: 1rem;
-    }
-}
+        .contenedor_imgtext .servicios-btn {
+            font-size: 1rem;
+        }
     /*ESTO MANTIENE A LOS DIV INTERNOS PEGADOS*/
     .contenedor_limpiaMAS .pasos .servicio {
         width: 22vw;
@@ -378,14 +377,14 @@ header {
 
     .contenedor_limpiaMAS .pasos .pago {
         width: 22vw;
-        margin-left: 30vw;
+        margin-left: 31vw;
     }
 
     .contenedor_limpiaMAS .pasos .satisfaccion {
         width: 22vw;
         margin-left: 57vw;
     }
-
+}
 @media screen and (max-width:1748px) {
     .contenedor_imgtext .text-btn .text {
         /*font-size: 3rem;*/
