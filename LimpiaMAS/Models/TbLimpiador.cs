@@ -27,7 +27,7 @@ public partial class TbLimpiador
 
     public string Pwd { get; set; } = null!;
 
-    public virtual TbDetalledi? TbDetalledi { get; set; }
+    public virtual ICollection<TbDisponibilidad> TbDisponibilidads { get; set; } = new List<TbDisponibilidad>();
 
     public virtual ICollection<TbServicio> TbServicios { get; set; } = new List<TbServicio>();
 }

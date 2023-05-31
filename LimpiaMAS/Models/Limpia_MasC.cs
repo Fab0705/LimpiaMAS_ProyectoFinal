@@ -19,7 +19,7 @@ public partial class Limpia_MasC : DbContext
 
     public virtual DbSet<TbCliente> TbClientes { get; set; }
 
-    public virtual DbSet<TbDetalledi> TbDetalledis { get; set; }
+    public virtual DbSet<TbDisponibilidad> TbDisponibilidads { get; set; }
 
     public virtual DbSet<TbLimpiador> TbLimpiadors { get; set; }
 
@@ -97,27 +97,28 @@ public partial class Limpia_MasC : DbContext
                 .HasColumnName("USR");
         });
 
-        modelBuilder.Entity<TbDetalledi>(entity =>
+        modelBuilder.Entity<TbDisponibilidad>(entity =>
         {
-            entity.HasKey(e => e.IdLimp).HasName("PK__TB_DETAL__9BCD0B391D69367A");
+            entity.HasKey(e => e.Id).HasName("PK__TB_DISPO__3214EC277C18BC14");
 
-            entity.ToTable("TB_DETALLEDIS");
+            entity.ToTable("TB_DISPONIBILIDAD");
 
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.FecDis)
+                .HasColumnType("date")
+                .HasColumnName("FEC_DIS");
             entity.Property(e => e.IdLimp)
                 .HasMaxLength(6)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ID_LIMP");
-            entity.Property(e => e.FecDet)
-                .HasColumnType("date")
-                .HasColumnName("FEC_DET");
             entity.Property(e => e.TDone).HasColumnName("T_DONE");
             entity.Property(e => e.TStart).HasColumnName("T_START");
 
-            entity.HasOne(d => d.IdLimpNavigation).WithOne(p => p.TbDetalledi)
-                .HasForeignKey<TbDetalledi>(d => d.IdLimp)
+            entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDisponibilidads)
+                .HasForeignKey(d => d.IdLimp)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_DETALL__ID_LI__52593CB8");
+                .HasConstraintName("FK__TB_DISPON__ID_LI__02FC7413");
         });
 
         modelBuilder.Entity<TbLimpiador>(entity =>
