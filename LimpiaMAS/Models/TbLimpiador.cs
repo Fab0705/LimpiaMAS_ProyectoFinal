@@ -31,5 +31,5 @@ public partial class TbLimpiador
 
     public virtual ICollection<TbDisponibilidad> TbDisponibilidads { get; set; } = new List<TbDisponibilidad>();
 
-    public List<string> Servicios { get; set; } // Lista de servicios seleccionados en TbLimpiador
+    public List<string> ServLimp{ get; set; } // Lista de servicios seleccionados en TbLimpiador
 }
