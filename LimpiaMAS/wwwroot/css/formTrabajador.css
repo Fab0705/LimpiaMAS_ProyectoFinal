@@ -162,11 +162,11 @@ form .input-box span.details {
     padding-top:1.5em;
 }
 
-.detalles-trabajador .input-box select {
+/*.detalles-trabajador .input-box select {
     height: 40px;
-    overflow-y: scroll;
+    /*overflow-y: scroll;
     border-radius: 5px;
-}
+}*/
 
 .detalles-trabajador .input-box textarea {
     height: 100px;

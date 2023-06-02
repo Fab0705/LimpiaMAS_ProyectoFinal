@@ -67,7 +67,7 @@
                         <div class="input-box">
                             <section class="combo-box">
                                 <span class="detalles">Distrito</span>
-                                <select name="distrito">
+                            <select asp-for=DistrLimp style="height: 40px; border-radius: 5px;">
                                         <option value="Ancon" id="ancon">Ancon</option>
                                         <option value="Ate-Vitarte" id="ate-vitarte">Ate Vitarte</option>
                                         <option value="Barranco" id="barranco">Barranco</option>
@@ -130,7 +130,18 @@
                         </div>
                         <div class="input-box">
                             <span class="detalles">Foto carnet</span>
-                        <input type="file" accept="image/jpeg, image/jpg, image/png" name="FotoLimpiador" placeholder="Ingrese la nueva foto del limpiador" required/>
+                        <input type="file" accept="image/jpeg, image/jpg, image/png" name="FotoLimpiador" placeholder="Ingrese la nueva foto del limpiador" required />
+                        </div>
+                        <div class="input-box">
+                            <section class="combo-box">
+                            <span class="detalles" style="display: flex; align-items: center;">Servicios a ofrecer</span>
+                            <select asp-for="ServiciosAJSON" style="width:80px; overflow: hidden; border-radius: 5px;">
+                                    <option value="baño">Baño</option>
+                                    <option value="cocina">Cocina</option>
+                                    <option value="sala">Sala</option>
+                                    <option value="patio">Patio</option>
+                                </select>
+                            </section>
                         </div>
                     </div>
                     <div class="detalles-genero">
@@ -154,7 +165,7 @@
                         </div>
                     </div>
                     <div class="button">
-                        <input type="submit" value="Registrar">
+                    <input type="submit"  id="genLimpHidden" asp-for="GenLimp" value="Registrar">
                     </div>
                 </form>
             </div>
@@ -162,6 +173,7 @@
     <script>
         function obtenerValor(elemento) {
             var valor = elemento.getAttribute("name");
+            document.getElementById("genLimpHidden").value = valor;
         }
     </script>
     </body>

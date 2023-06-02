@@ -38,6 +38,9 @@ namespace LimpiaMAS.Controllers
                     limp.FotLimp = fotoBytes;
                 }
             }
+            limp.ServLimp = "abc";
+            limp.DistrLimp = "laviky";
+            limp.GenLimp = "monse";
             _Limpiador.add(limp);
             return RedirectToAction("IndexLimpiador");
         }

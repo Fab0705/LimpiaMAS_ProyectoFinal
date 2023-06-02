@@ -12,6 +12,4 @@ public partial class TbDetalledi
     public TimeSpan TStart { get; set; }
 
     public TimeSpan TDone { get; set; }
-
-    public virtual TbLimpiador IdLimpNavigation { get; set; } = null!;
 }

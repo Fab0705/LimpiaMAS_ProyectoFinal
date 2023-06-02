@@ -15,6 +15,7 @@ namespace LimpiaMAS.Service
         }
         public void add_limp(TbLimpiador obj)
         {
+            obj.IdLimp = GetNextUsrId().ToString();
             conexion.TbLimpiadors.Add(obj);
             conexion.SaveChanges();
         }

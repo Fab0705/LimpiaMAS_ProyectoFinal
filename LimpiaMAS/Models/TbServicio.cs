@@ -20,6 +20,4 @@ public partial class TbServicio
     public string IdLimp { get; set; } = null!;
 
     public virtual TbCliente IdCliNavigation { get; set; } = null!;
-
-    public virtual TbLimpiador IdLimpNavigation { get; set; } = null!;
 }

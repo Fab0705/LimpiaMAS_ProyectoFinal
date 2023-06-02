@@ -30,7 +30,6 @@ namespace LimpiaMAS.Service
             objModificar.TelCli = cliente.TelCli;
             objModificar.Usr = cliente.Usr;
             objModificar.Pwd = cliente.Pwd;
-            objModificar.Etiqueta = cliente.Etiqueta;
 
             conexion.SaveChanges();
         }
