@@ -31,7 +31,7 @@ public partial class Limpia_MasC : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=FAB-PC\\SQLEXPRESS01;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        => optionsBuilder.UseSqlServer("Data Source=RYZEN-PC\\SQLEXPRESS;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -107,10 +107,10 @@ public partial class Limpia_MasC : DbContext
             entity.Property(e => e.TDone).HasColumnName("T_DONE");
             entity.Property(e => e.TStart).HasColumnName("T_START");
 
-            entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDisponibilidads)
+            /*entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDisponibilidads)
                 .HasForeignKey(d => d.IdLimp)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_DISPON__ID_LI__02FC7413");
+                .HasConstraintName("FK__TB_DISPON__ID_LI__02FC7413");*/
         });
 
         modelBuilder.Entity<TbLimpiador>(entity =>
@@ -161,6 +161,8 @@ public partial class Limpia_MasC : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("TEL_LIMP");
+            entity.Property(e => e.ServLimp)
+                .HasColumnName("SERV_LIMP");
             entity.Property(e => e.Usr)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -205,10 +207,10 @@ public partial class Limpia_MasC : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__TB_SERVIC__ID_CL__4D94879B");
 
-            entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbServicios)
+            /*entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbServicios)
                 .HasForeignKey(d => d.IdLimp)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_SERVIC__ID_LI__4E88ABD4");
+                .HasConstraintName("FK__TB_SERVIC__ID_LI__4E88ABD4");*/
         });
 
         modelBuilder.Entity<TbServiciocat>(entity =>
