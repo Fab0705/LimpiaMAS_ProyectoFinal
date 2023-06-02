@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LimpiaMAS.Models;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LimpiaMAS.Controllers
 {
@@ -6,7 +8,14 @@ namespace LimpiaMAS.Controllers
     {
         public IActionResult FormTrabajador()
         {
-            return View();
+            var objSession = HttpContext.Session.GetString("sUsuario");
+            if (objSession != null)
+            {
+                //Deserializar
+                var obj1 = JsonConvert.DeserializeObject<TbUser>(HttpContext.Session.GetString("sUsuario"));
+                return View();
+            }
+            return RedirectToAction("login", "Limpia");
         }
     }
 }
