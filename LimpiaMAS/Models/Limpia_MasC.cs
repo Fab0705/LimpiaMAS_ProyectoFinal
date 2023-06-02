@@ -25,19 +25,17 @@ public partial class Limpia_MasC : DbContext
 
     public virtual DbSet<TbServicio> TbServicios { get; set; }
 
-    public virtual DbSet<TbServiciocat> TbServiciocats { get; set; }
-
     public virtual DbSet<TbUser> TbUsers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=RYZEN-PC\\SQLEXPRESS;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-7VE2EHC\\SQLEXPRESS;Initial Catalog=LIMPIA_MAS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TbAdmin>(entity =>
         {
-            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA537163730");
+            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA5422D3C7B");
 
             entity.ToTable("TB_ADMIN");
 
@@ -53,7 +51,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbCliente>(entity =>
         {
-            entity.HasKey(e => e.IdCli).HasName("PK__TB_CLIEN__2BF8836D891CE6A0");
+            entity.HasKey(e => e.IdCli).HasName("PK__TB_CLIEN__2BF8836DDC483014");
 
             entity.ToTable("TB_CLIENTE");
 
@@ -91,7 +89,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbDisponibilidad>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TB_DISPO__3214EC277C18BC14");
+            entity.HasKey(e => e.Id).HasName("PK__TB_DISPO__3214EC27C17D7DC3");
 
             entity.ToTable("TB_DISPONIBILIDAD");
 
@@ -107,15 +105,15 @@ public partial class Limpia_MasC : DbContext
             entity.Property(e => e.TDone).HasColumnName("T_DONE");
             entity.Property(e => e.TStart).HasColumnName("T_START");
 
-            /*entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDisponibilidads)
+            entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDisponibilidads)
                 .HasForeignKey(d => d.IdLimp)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_DISPON__ID_LI__02FC7413");*/
+                .HasConstraintName("FK__TB_DISPON__ID_LI__5CD6CB2B");
         });
 
         modelBuilder.Entity<TbLimpiador>(entity =>
         {
-            entity.HasKey(e => e.IdLimp).HasName("PK__TB_LIMPI__9BCD0B39634A6997");
+            entity.HasKey(e => e.IdLimp).HasName("PK__TB_LIMPI__9BCD0B39094FD90C");
 
             entity.ToTable("TB_LIMPIADOR");
 
@@ -153,6 +151,7 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("PWD");
+            entity.Property(e => e.ServLimp).HasColumnName("SERV_LIMP");
             entity.Property(e => e.TarLimp)
                 .HasColumnType("money")
                 .HasColumnName("TAR_LIMP");
@@ -161,8 +160,6 @@ public partial class Limpia_MasC : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("TEL_LIMP");
-            entity.Property(e => e.ServLimp)
-                .HasColumnName("SERV_LIMP");
             entity.Property(e => e.Usr)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -171,7 +168,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbServicio>(entity =>
         {
-            entity.HasKey(e => e.IdServ).HasName("PK__TB_SERVI__F5FF1C93692F83A1");
+            entity.HasKey(e => e.IdServ).HasName("PK__TB_SERVI__F5FF1C93309E230E");
 
             entity.ToTable("TB_SERVICIO");
 
@@ -205,50 +202,12 @@ public partial class Limpia_MasC : DbContext
             entity.HasOne(d => d.IdCliNavigation).WithMany(p => p.TbServicios)
                 .HasForeignKey(d => d.IdCli)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_SERVIC__ID_CL__4D94879B");
-
-            /*entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbServicios)
-                .HasForeignKey(d => d.IdLimp)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_SERVIC__ID_LI__4E88ABD4");*/
-        });
-
-        modelBuilder.Entity<TbServiciocat>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("TB_SERVICIOCAT");
-
-            entity.Property(e => e.BathCat)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("BATH_CAT");
-            entity.Property(e => e.CookCat)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("COOK_CAT");
-            entity.Property(e => e.LivingCat)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("LIVING_CAT");
-            entity.Property(e => e.MultiCat)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("MULTI_CAT");
-            entity.Property(e => e.YardCat)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("YARD_CAT");
+                .HasConstraintName("FK__TB_SERVIC__ID_CL__4F7CD00D");
         });
 
         modelBuilder.Entity<TbUser>(entity =>
         {
-            entity.HasKey(e => e.IdUsr).HasName("PK__TB_USER__2A8C692A3B155425");
+            entity.HasKey(e => e.IdUsr).HasName("PK__TB_USER__2A8C692A8BD4D9C7");
 
             entity.ToTable("TB_USER");
 

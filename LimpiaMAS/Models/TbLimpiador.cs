@@ -29,7 +29,9 @@ public partial class TbLimpiador
     public string GenLimp { get; set; } = null!;
 
     public string DistrLimp { get; set; } = null!;
+
+    public string ServLimp { get; set; } = null!;
     [NotMapped]
     public List<string> ServiciosAJSON { get; set; } // Lista de servicios seleccionados en TbLimpiador
-    public string? ServLimp { get; set; }
+    public virtual ICollection<TbDisponibilidad> TbDisponibilidads { get; set; } = new List<TbDisponibilidad>();
 }

@@ -8,6 +8,4 @@ public partial class TbAdmin
     public string UsrAdm { get; set; } = null!;
 
     public string PwdAdm { get; set; } = null!;
-
-    public string Etiqueta { get; set; } = null!;
 }
