@@ -1,4 +1,5 @@
 ﻿@model LimpiaMAS.Models.TbLimpiador
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -50,16 +51,17 @@
         <div class="contenedor">
             <div class="titulo">Formulario de trabajadores</div>
             <div class="contenido">
-                <form asp-controller="Register" asp-action="new_limp" method="post">
+                <form asp-controller="Register" asp-action="new_limp" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="IdLimp" />
                     <div class="detalles-trabajador">
-                        <div class="input-box">
+                        <!--<div class="input-box">
                             <span class="detalles">Nombre</span>
                             <input type="text" asp-for="NomLimp" placeholder="Ingresa tu nombre" required>
                         </div>
                         <div class="input-box">
                             <span class="detalles">Apellidos</span>
                             <input type="text" asp-for="ApeLimp" placeholder="Ingresa tus apellidos" required>
-                        </div>
+                    </div>-->
                         <div class="input-box">
                             <span class="detalles">Direccion</span>
                             <input type="text" asp-for="DirLimp" placeholder="Ingrese su domicilio" required>
@@ -145,35 +147,44 @@
                         </div>
                     </div>
                     <div class="detalles-genero">
-                        <input type="radio" name="genero" id="pto-1">
-                        <input type="radio" name="genero" id="pto-2">
-                        <input type="radio" name="genero" id="pto-3">
+                    <input type="radio" name="genero" id="pto-1" value="hombre">
+                    <input type="radio" name="genero" id="pto-2" value="mujer">
+                    <input type="radio" name="genero" id="pto-3" value="ns">
                         <span class="titulo-genero">Género</span>
                         <div class="categoria">
                             <label for="pto-1">
-                            <span class="pto uno" name="hombre" onclick="obtenerValor(this)"></span>
+                            <span class="pto uno"></span>
                                 <span class="genero">Hombre</span>
                             </label>
                             <label for="pto-2">
-                                <span class="pto dos"></span>
+                            <span class="pto dos"></span>
                                 <span class="genero">Mujer</span>
                             </label>
                             <label for="pto-3">
-                                <span class="pto tres"></span>
+                            <span class="pto tres"></span>
                                 <span class="genero">Prefiero no decirlo</span>
                             </label>
                         </div>
                     </div>
                     <div class="button">
-                    <input type="submit"  id="genLimpHidden" asp-for="GenLimp" value="Registrar">
+                    <!--<input type="hidden" name="genLimp" id="genLimpHidden" value="" />-->
+                    <input type="submit" onclick="submitForm()" value="Registrar">
                     </div>
                 </form>
             </div>
         </div>
     <script>
-        function obtenerValor(elemento) {
-            var valor = elemento.getAttribute("name");
-            document.getElementById("genLimpHidden").value = valor;
+        function getRadioButtonValue(radioButtonId) {
+            var radioButton = document.getElementById(radioButtonId);
+            return radioButton.value;
+        }
+
+        function submitForm() {
+            var value = getRadioButtonValue("GenLimp");
+            var form = document.getElementById("myForm");
+            form.action = "/Register/new_limp";
+            form.method = "post";
+            form.submit();
         }
     </script>
     </body>

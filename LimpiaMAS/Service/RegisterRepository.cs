@@ -15,7 +15,7 @@ namespace LimpiaMAS.Service
         }
         public void add_limp(TbLimpiador obj)
         {
-            obj.IdLimp = GetNextUsrId().ToString();
+            obj.IdLimp = GetNextLimpId().ToString();
             conexion.TbLimpiadors.Add(obj);
             conexion.SaveChanges();
         }
@@ -26,7 +26,22 @@ namespace LimpiaMAS.Service
             conexion.TbUsers.Add(obj);
             conexion.SaveChanges();
         }
+        public int GetNextLimpId()
+        {
+            int nextId = 1;
 
+            // hay registros?
+            if (conexion.TbLimpiadors.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbLimpiadors.Max(u => u.IdLimp);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
+        }
         public int GetNextUsrId()
         {
             int nextId = 1;
@@ -42,6 +57,12 @@ namespace LimpiaMAS.Service
             }
 
             return nextId;
+        }
+
+        public TbUser getUser(string usr, string pwd)
+        {
+            var user = conexion.TbUsers.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
+            return user;
         }
 
         public IEnumerable<TbLimpiador> GetAllCleaners()

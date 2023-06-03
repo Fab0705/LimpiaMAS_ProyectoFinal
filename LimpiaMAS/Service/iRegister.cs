@@ -9,5 +9,7 @@ namespace LimpiaMAS.Service
         void add_limp(TbLimpiador obj);
         IEnumerable<TbCliente> GetAllClients();
         IEnumerable<TbLimpiador> GetAllCleaners();
+
+        public TbUser getUser(string usr, string pwd);
     }
 }

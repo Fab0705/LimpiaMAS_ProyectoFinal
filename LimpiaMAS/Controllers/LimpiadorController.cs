@@ -20,7 +20,7 @@ namespace LimpiaMAS.Controllers
         {
             return View();
         }
-        public IActionResult grabar(TbLimpiador limp, IFormFile? FotoLimpiador)
+        public IActionResult grabar(TbLimpiador limp, IFormFile FotoLimpiador)
         {
             // se selecciono algun archivo?
             if (FotoLimpiador != null && FotoLimpiador.Length > 0)

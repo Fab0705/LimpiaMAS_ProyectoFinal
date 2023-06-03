@@ -18,6 +18,11 @@ namespace LimpiaMAS.Controllers
             if (_logeo.LoginComparision(obj) == 1)
             {
                 //Crear variable de sesion
+                //pasar de un obj tabla de usuario a un obj user para guardar solo usr y pwd
+                /*User user = new User();
+                user.Usr = obj.Usr;
+                user.Pwd = obj.Pwd;*/
+                Console.WriteLine(obj.Usr.ToString());
                 HttpContext.Session.SetString("sUsuario",JsonConvert.SerializeObject(obj));
                 return View("~/Views/Usuario/Index.cshtml");
             }

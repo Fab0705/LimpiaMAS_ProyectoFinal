@@ -26,7 +26,7 @@ public partial class TbLimpiador
 
     public byte[] FotLimp { get; set; } = null!;
 
-    public string GenLimp { get; set; } = null!;
+    public string GenLimp { get; set; } = string.Empty;
 
     public string DistrLimp { get; set; } = null!;
 

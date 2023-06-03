@@ -1,4 +1,5 @@
 ﻿using LimpiaMAS.Models;
+using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -8,14 +9,17 @@ namespace LimpiaMAS.Controllers
     {
         public IActionResult FormTrabajador()
         {
-            var objSession = HttpContext.Session.GetString("sUsuario");
-            if (objSession != null)
+            string usuarioJson = HttpContext.Session.GetString("sUsuario");
+            if (!string.IsNullOrEmpty(usuarioJson))
             {
-                //Deserializar
-                var obj1 = JsonConvert.DeserializeObject<TbUser>(HttpContext.Session.GetString("sUsuario"));
+                TbUser usuario = JsonConvert.DeserializeObject<TbUser>(usuarioJson);
+                Console.WriteLine(usuario.Usr.ToString());//prueba
                 return View();
             }
-            return RedirectToAction("login", "Limpia");
+            else
+            {
+                return RedirectToAction("login", "Limpia");
+            }
         }
     }
 }

@@ -19,8 +19,10 @@ namespace LimpiaMAS.Controllers
             return RedirectToAction("login", "Limpia");
         }
 
-        public IActionResult new_limp(TbLimpiador obj, IFormFile? FotoLimpiador)
+        public IActionResult new_limp(TbLimpiador obj, IFormFile FotoLimpiador, string genero)
         {
+            string usuarioJson = HttpContext.Session.GetString("sUsuario");
+            TbUser usuario = JsonConvert.DeserializeObject<TbUser>(usuarioJson);
             // se selecciono algun archivo?
             if (FotoLimpiador != null && FotoLimpiador.Length > 0)
             {
@@ -32,16 +34,19 @@ namespace LimpiaMAS.Controllers
                     obj.FotLimp = fotoBytes;
                 }
             }
-            else
-            {
-                Console.WriteLine("NO HAY FOTO");
-            }
-            /*datos para que me deje ingresar limpiador
-            obj.Usr = "mongo";
-            obj.Pwd = "db";*/
+            /*llamo a la funcion para que me de el user completo, con el user y pwd
+             * que me dio la sesion deserializada*/
+            TbUser user = _register.getUser(usuario.Usr, usuario.Pwd);
+            obj.Usr = user.Usr;
+            obj.Pwd = user.Pwd;
+            obj.NomLimp = user.Nom;
+            obj.ApeLimp = user.Ape;
+            obj.GenLimp = genero;
+            Console.WriteLine(genero);
+            Console.WriteLine(obj.NomLimp.ToString() + obj.ApeLimp.ToString());
             obj.ServLimp = JsonConvert.SerializeObject(obj.ServiciosAJSON);
             _register.add_limp(obj);
-            return RedirectToAction("login", "Limpia");
+            return RedirectToAction("Index");
         }
     }
 }
