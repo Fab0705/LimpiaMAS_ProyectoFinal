@@ -8,11 +8,29 @@ namespace LimpiaMAS.Service
         public void add(TbCliente cliente)
         {
             try { 
+                cliente.IdCli = GetNextCliId().ToString();
                 conexion.TbClientes.Add(cliente);
                 conexion.SaveChanges();
             }catch (Exception ex) {
                 Console.WriteLine("Ocurrio un error al grabar al archivo",ex.Message);
             }
+        }
+
+        public int GetNextCliId()
+        {
+            int nextId = 1;
+
+            // hay registros?
+            if (conexion.TbLimpiadors.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbClientes.Max(u => u.IdCli);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
         }
 
         public TbCliente edit(string id)

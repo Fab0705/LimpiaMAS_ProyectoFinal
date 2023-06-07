@@ -1,7 +1,7 @@
 ﻿using LimpiaMAS.Models;
 using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
-
+using Newtonsoft.Json;
 
 namespace LimpiaMAS.Controllers
 {
@@ -38,9 +38,7 @@ namespace LimpiaMAS.Controllers
                     limp.FotLimp = fotoBytes;
                 }
             }
-            limp.ServLimp = "abc";
-            limp.DistrLimp = "laviky";
-            limp.GenLimp = "monse";
+            limp.ServLimp = JsonConvert.SerializeObject(limp.ServiciosAJSON);
             _Limpiador.add(limp);
             return RedirectToAction("IndexLimpiador");
         }

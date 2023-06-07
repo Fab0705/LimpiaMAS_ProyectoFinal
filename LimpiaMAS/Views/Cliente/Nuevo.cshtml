@@ -9,7 +9,7 @@
 </head>
 <body>
     <form asp-controller="Cliente" asp-action="grabar" method="post">
-        Id:<input type="text" asp-for="IdCli" placeholder="Ingrese el Id del Cliente" required />
+        <input type="hidden" asp-for="IdCli" required />
         Nombre:<input type="text" asp-for="NomCli" placeholder="Ingrese el nombre del Cliente" required />
         Apellido:<input type="text" asp-for="ApeCli" placeholder="Ingrese el apellido del Cliente" required />
         Dirección:<input type="text" asp-for="DirCli" placeholder="Ingrese la dirección del Cliente" required />

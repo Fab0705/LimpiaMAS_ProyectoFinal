@@ -9,7 +9,7 @@
 </head>
 <body>
     <form asp-controller="User" asp-action="grabar" method="post">
-        Id:<input type="text" asp-for="IdUsr" placeholder="Ingrese el id del usuario" required/>
+        <input type="hidden" asp-for="IdUsr" required/>
         Nombre:<input type="text" asp-for="Usr" placeholder="Ingrese el nombre del usuario" required />
         Contraseña:<input type="text" asp-for="Pwd" placeholder="Ingrese la contraseña del usuario" required />
         Nombre:<input type="text" asp-for="Nom" placeholder="Ingrese el nombre del usuario" required />

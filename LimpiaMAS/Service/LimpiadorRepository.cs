@@ -1,4 +1,5 @@
 ﻿using LimpiaMAS.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LimpiaMAS.Service
 {
@@ -10,6 +11,7 @@ namespace LimpiaMAS.Service
         {
             try
             {
+                limpiador.IdLimp = GetNextLimpId().ToString();
                 conexion.TbLimpiadors.Add(limpiador);
                 conexion.SaveChanges();
             }
@@ -19,12 +21,28 @@ namespace LimpiaMAS.Service
             }
         }
 
+        public int GetNextLimpId()
+        {
+            int nextId = 1;
+
+            // hay registros?
+            if (conexion.TbLimpiadors.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbLimpiadors.Max(u => u.IdLimp);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
+        }
+
         public TbLimpiador edit(string id)
         {
             var obj = (from tLimp in conexion.TbLimpiadors where tLimp.IdLimp == id select tLimp).Single();
             return obj;
         }
-
         public void EditDatails(TbLimpiador limpiador)
         {
             var objModificar = (from tLimp in conexion.TbLimpiadors where tLimp.IdLimp == limpiador.IdLimp select tLimp).Single();
@@ -39,9 +57,22 @@ namespace LimpiaMAS.Service
             conexion.SaveChanges();
         }
 
+        public IEnumerable<TbLimpiador> GetTodayCleaners()
+        {
+            //se genera la fecha actual
+            DateTime fechaActual = DateTime.Now;
+            var limpiadoresDisponibles = (from limpiador in conexion.TbLimpiadors
+                                          join disponibilidad in conexion.TbDisponibilidads
+                                              on limpiador.IdLimp equals disponibilidad.IdLimp
+                                          where disponibilidad.FecDis.Date == fechaActual
+                                          select limpiador).ToList();
+
+            return limpiadoresDisponibles;
+        }
+
         public IEnumerable<TbLimpiador> GetAllCleaners()
         {
-            return conexion.TbLimpiadors;
+            return conexion.TbLimpiadors.Include(l => l.TbDisponibilidads).ToList();
         }
 
         public void remove(string id)

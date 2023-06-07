@@ -11,6 +11,7 @@ namespace LimpiaMAS.Service
         {
             try
             {
+                user.IdUsr = GetNextUsrId().ToString();
                 conexion.TbUsers.Add(user);
                 conexion.SaveChanges();
             }
@@ -18,6 +19,23 @@ namespace LimpiaMAS.Service
             {
                 Console.WriteLine("Ocurrio un error al graba los datos");
             }
+        }
+
+        public int GetNextUsrId()
+        {
+            int nextId = 1;
+
+            // hay registros?
+            if (conexion.TbLimpiadors.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbUsers.Max(u => u.IdUsr);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
         }
 
         public TbUser edit(string id)

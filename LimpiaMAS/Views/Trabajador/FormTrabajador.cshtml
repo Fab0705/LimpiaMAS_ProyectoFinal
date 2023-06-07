@@ -136,7 +136,7 @@
                         </div>
                         <div class="input-box">
                             <section class="combo-box">
-                            <span class="detalles" style="display: flex; align-items: center;">Servicios a ofrecer</span>
+                            <span class="detalles" style="display: flex; align-items: center;">Servicios a ofrecer<em>(si son varios apriete Ctrl y seleccione)</em></span>
                             <select asp-for="ServiciosAJSON" style="width:80px; overflow: hidden; border-radius: 5px;">
                                     <option value="baño">Baño</option>
                                     <option value="cocina">Cocina</option>
@@ -168,24 +168,10 @@
                     </div>
                     <div class="button">
                     <!--<input type="hidden" name="genLimp" id="genLimpHidden" value="" />-->
-                    <input type="submit" onclick="submitForm()" value="Registrar">
+                    <input type="submit" value="Registrar">
                     </div>
                 </form>
             </div>
         </div>
-    <script>
-        function getRadioButtonValue(radioButtonId) {
-            var radioButton = document.getElementById(radioButtonId);
-            return radioButton.value;
-        }
-
-        function submitForm() {
-            var value = getRadioButtonValue("GenLimp");
-            var form = document.getElementById("myForm");
-            form.action = "/Register/new_limp";
-            form.method = "post";
-            form.submit();
-        }
-    </script>
     </body>
 </html>

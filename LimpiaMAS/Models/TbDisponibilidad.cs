@@ -5,7 +5,7 @@ namespace LimpiaMAS.Models;
 
 public partial class TbDisponibilidad
 {
-    public int Id { get; set; }
+    public string Id { get; set; }
 
     public string IdLimp { get; set; } = null!;
 

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<LimpiaMAS.Models.TbLimpiador>
+@using System.Text.Json
+@{
+    Layout = null;
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<head>
+    <title>LimpiaMAS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/indexSeleccion.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><a href="#">LIMPIAMÁS</a></div>
+        <ul class="links">
+            <li>
+                <a asp-controller="Limpia" asp-action="Servicios">Servicios</a>
+            </li>
+            <li>
+                <a asp-controller="Limpia" asp-action="Nosotros">Nosotros</a>
+            </li>
+            <li>
+                <a asp-controller="Limpia" asp-action="Login">Ingresar</a>
+            </li>
+            <li>
+                <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
+            </li>
+        </ul>
+        <a asp-action="Register" class="register-btn">Registrate!</a>
+        <div class="toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+    <div class="cajita">
+        <div class="info-bar">
+            <!-- contenido de la barra de información -->
+            <ul>
+                <li>
+                    <em>✓CALIDAD ASEGURADA</em>
+                </li>
+                <li>
+                    <em>✓GARANTÍA DE SATISFACCIÓN</em>
+                </li>
+                <li>
+                    <em>✓PRECIOS JUSTOS</em>
+                </li>
+                <li>
+                    <em>✓PROFESIONALISMO GARANTIZADO</em>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <main>
+        <label class="textlabel">SELECCIONA A TU LIMPIADOR</label>
+        <div class="caja">
+            <section class="caja_limpiadores">
+                <div class="tarjeta">
+                    <form asp-controller="Servicio" asp-action="Carrito">
+                        @foreach (var card in Model)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(card.FotLimp)" alt="Imagen" width="100" height="100">
+                            <p>@card.NomLimp @card.ApeLimp</p>
+                            <p>Tarifa: S/.@Math.Round(card.TarLimp, 2) por m^2</p>
+                            <p>Servicio(s): </p>
+                            <select style="font-size:17px;">
+                                @foreach (var opcion in JsonSerializer.Deserialize<List<string>>(@card.ServLimp))
+                                {
+                                    <option>@opcion</option>
+                                }
+                            </select>
+                            @if (card.TbDisponibilidads != null && card.TbDisponibilidads.Any())
+                            {
+                                @foreach (var disponibilidad in card.TbDisponibilidads)
+                                {
+                                    //genero la fecha de mañana para solo cargar a los limpiadores con disponibilidad de mñn
+                                    DateTime fechaActual = DateTime.Now.Date;
+                                    DateTime fechaManana = fechaActual.AddDays(1);
+                                    //respecto a la fecha de mañana para que el servicio sea mas real
+                                    if (disponibilidad.IdLimp == card.IdLimp && disponibilidad.FecDis == fechaManana)
+                                    {
+                                        <p>Fecha: @fechaManana.ToString("dd/MM/yyyy")</p>
+                                        <p>Disponibilidad: <br>@disponibilidad.TStart - @disponibilidad.TDone</p>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                DateTime fechaActual = DateTime.Now.Date;
+                                DateTime fechaManana = fechaActual.AddDays(1);
+                                //fecha de mañana
+                                <p>Fecha: @fechaManana.ToString("dd/MM/yyyy")</p>
+                                <p>No hay disponibilidad</p>
+                            }
+                            <h5>@card.ServLimp</h5>
+                            <div class="boton_carrito">
+                                <!--este boton lleva al carrito-->
+                                <input type="submit" value="añadir al carrito" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly>
+                            </div>
+                        }
+                    </form>  
+                </div>
+                </section>
+            <aside class="caja_filtrado">
+                <label>
+                    FILTRADOS
+                    <div class="form">
+                        <form>
+                            <br><span>•Fecha para el servicio:</span><br>
+                            <input type="date"><br>
+                            <span>•Intervalo de inicio para el servicio:</span><br>
+                            <input type="date"><br>
+                            <span>•Intervalo final para el servicio:</span><br>
+                            <input type="date"><br><br>
+                            <div class="boton">
+                                <input type="submit" value="Filtrar">
+                            </div>
+                        </form>
+
+                        <div class="boton_carrito">
+                            <a>ir al carrito</a>
+                        </div>
+                    </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
