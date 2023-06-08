@@ -1,4 +1,5 @@
 ﻿using LimpiaMAS.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LimpiaMAS.Service
 {
@@ -62,6 +63,24 @@ namespace LimpiaMAS.Service
             var obj = (from tbCli in conexion.TbClientes where tbCli.IdCli == id select tbCli).Single();
             conexion.Remove(obj);
             conexion.SaveChanges() ;
+        }
+        public TbUser getUser(string usr, string pwd)
+        {
+            var user = conexion.TbUsers.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
+            return user;
+        }
+
+        public bool SearchCli(string usr, string pwd)
+        {
+            var obj = (from tcli in conexion.TbClientes where tcli.Usr == usr && tcli.Pwd == pwd select tcli).FirstOrDefault();
+            if (obj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

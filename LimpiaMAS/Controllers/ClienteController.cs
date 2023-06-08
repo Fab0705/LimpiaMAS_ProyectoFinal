@@ -1,6 +1,7 @@
 ﻿using LimpiaMAS.Service;
 using LimpiaMAS.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LimpiaMAS.Controllers
 {
@@ -39,6 +40,20 @@ namespace LimpiaMAS.Controllers
         public IActionResult returnIndexAdmin()
         {
             return View("~/Views/Admin/Index.cshtml");
+        }
+        public IActionResult FormCliente()
+        {
+            string usuarioJson = HttpContext.Session.GetString("sUsuario");
+            if (!string.IsNullOrEmpty(usuarioJson))
+            {
+                TbUser usuario = JsonConvert.DeserializeObject<TbUser>(usuarioJson);
+                Console.WriteLine(usuario.Usr.ToString());//prueba
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "Limpia");
+            }
         }
     }
 }

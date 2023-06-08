@@ -1,4 +1,4 @@
-﻿
+﻿@model LimpiaMAS.Models.TbAdmin
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -10,24 +10,10 @@
 </head>
     <body>
         <header class="encabezado">
-            <p>Bienvenido administrador.</p>
+            <p>Bienvenido administrador</p>
         </header>
         <div class="navbar">
-        <div class="logo"><a asp-controller="Limpia" asp-action="Index">LIMPIAMÁS</a></div>
-            <ul class="links">
-                <li>
-                    <a asp-controller="Limpia" asp-action="Servicios">Servicios</a>
-                </li>
-                <li>
-                    <a asp-controller="Limpia" asp-action="Nosotros">Nosotros</a>
-                </li>
-                <li>
-                    <a asp-controller="Limpia" asp-action="Login">Ingresar</a>
-                </li>
-                <li>
-                    <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
-                </li>
-            </ul>
+        <div class="logo"><a asp-action="Index">LIMPIAMÁS</a></div>
             <a asp-controller="Admin" asp-action="LogOut" class="register-btn">Cerrar Sesion</a>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
