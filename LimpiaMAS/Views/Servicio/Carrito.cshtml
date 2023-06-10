@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<LimpiaMAS.Models.TbDetalleservicio>
+
+@{
     Layout = null;
 }
 @*
@@ -11,6 +13,55 @@
         <title>LimpiaMAS</title>
     </head>
     <body>
-        <p>carrito</p>
+        <!--siempre que entres al carrito deberas completar el item-->
+        <form asp-action="Carrito" method="post">
+        <!--datos para pasar al controlador-->
+        <input type="hidden" name="nomApeLimp" value="@ViewBag.NombreApellidoLimpiador" />
+        <input type="hidden" name="nomApeCli" value="@ViewBag.NombreApellidoCliente" />
+        <input type="hidden" name="catServ" value="@ViewBag.CategoriaServicio" />
+        <input type="hidden" name="tarife" value="@ViewBag.Tarifa" />
+        <input type="hidden" name="dirCli" value="@ViewBag.DireccionCliente" />
+        <input type="hidden" name="fecServ" value="@ViewBag.FechaServicio" />
+        <input type="hidden" name="idCli" value="@ViewBag.IdLimp" />
+        <label>Fuera de lista</label>
+        <label>@ViewBag.NombreApellidoLimpiador</label>
+        <label>@ViewBag.NombreApellidoCliente</label>
+        <label>@ViewBag.DireccionCliente</label>
+        <label>@ViewBag.CategoriaServicio</label>
+        <label>@ViewBag.FechaServicio</label>
+        <input name="area" placeholder="Ingrese el area en m^2 del lugar a limpiar" required />
+        <label>Ingrese la hora para el servicio: </label>
+        <select name="horaServicio">
+            @foreach (var opcion in ViewBag.OpcionesTiempo)
+            {
+                <option>@opcion</option>
+            }
+        </select>
+        <input type="submit" value="grabar" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
+        <a asp-action="Index">Regresar</a>
+        <!--<a asp-action="Eliminar" asp-route-id="">Eliminar</a>-->
+    </form>
+    @if (Model.Any())
+        {
+            @foreach (var detalle in Model)
+            {
+                <form asp-action="Carrito" method="post">
+                    <label>Dentro de lista</label>
+                    <label>@detalle.IdDetserv</label>
+                    <label>@detalle.NomapeLim</label>
+                    <label>@detalle.NomapeCli</label>
+                    <label>@detalle.DirCli</label>
+                    <label>@detalle.CatServ</label>
+                    <label>@detalle.FecServ</label> 
+                    <label>@detalle.DurServ</label>
+                    <label>@detalle.ImpServ</label>
+                    <label>@detalle.HoraServ</label>
+                    <label>Ingrese la hora para el servicio: </label>
+                    <input type="submit" value="grabar" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
+                <a asp-action="Eliminar" asp-route-id="@detalle.IdDetserv">Eliminar</a>
+                <a asp-action="Index">Regresar</a>
+                </form>
+            }
+        }
     </body>
 </html>

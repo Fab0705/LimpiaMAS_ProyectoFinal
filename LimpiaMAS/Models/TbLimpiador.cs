@@ -26,12 +26,13 @@ public partial class TbLimpiador
 
     public byte[] FotLimp { get; set; } = null!;
 
-    public string GenLimp { get; set; } = string.Empty;
+    public string GenLimp { get; set; } = null!;
 
     public string DistrLimp { get; set; } = null!;
 
     public string ServLimp { get; set; } = null!;
     [NotMapped]
     public List<string> ServiciosAJSON { get; set; } // Lista de servicios seleccionados en TbLimpiador
+
     public virtual ICollection<TbDisponibilidad> TbDisponibilidads { get; set; } = new List<TbDisponibilidad>();
 }

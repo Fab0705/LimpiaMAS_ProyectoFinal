@@ -8,6 +8,7 @@ builder.Services.Add(new ServiceDescriptor(typeof(iUsuario), new UserRepository(
 builder.Services.AddControllersWithViews();
 builder.Services.Add(new ServiceDescriptor(typeof(iRegister), new RegisterRepository()));
 builder.Services.Add(new ServiceDescriptor(typeof(iLimpiador), new LimpiadorRepository()));
+builder.Services.Add(new ServiceDescriptor(typeof(iDetalleServicio), new DetalleServicioRepository()));
 builder.Services.Add(new ServiceDescriptor(typeof(iLogeo), new LogeoRepository()));
 
 builder.Services.AddControllersWithViews();
