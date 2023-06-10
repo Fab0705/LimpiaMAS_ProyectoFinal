@@ -84,7 +84,21 @@ namespace LimpiaMAS.Controllers
             }
             else
             {
-                return RedirectToAction("Logeo, Login");
+                return RedirectToAction("Login", "Limpia");
+            }
+        }
+
+        public IActionResult Filtrado(DateTime fecha, DateTime fecha_inicio, DateTime fecha_fin)
+        {
+            if (fecha != null)
+            {
+                ViewBag.Fecha = fecha;
+                Console.Write(_limpiador.GetLimpiadoresFecha(fecha).ToString());
+                return View(_limpiador.GetLimpiadoresFecha(fecha));
+            }
+            else
+            {
+                return View(_limpiador.GetLimpiadoresFechaInicioFin(fecha_inicio, fecha_fin));
             }
         }
         /*public IActionResult Carrito(

@@ -81,5 +81,23 @@ namespace LimpiaMAS.Service
             conexion.Remove(obj);
             conexion.SaveChanges();
         }
+
+        public IEnumerable<TbLimpiador> GetLimpiadoresFecha(DateTime fecha)
+        {
+            var limpiadores = conexion.TbLimpiadors
+                .Where(l => l.TbDisponibilidads.Any(d => d.FecDis == fecha))
+                .ToList();
+
+            return limpiadores;
+        }
+
+        public IEnumerable<TbLimpiador> GetLimpiadoresFechaInicioFin(DateTime inicio, DateTime fin)
+        {
+            var limpiadores = conexion.TbLimpiadors
+            .Where(l => l.TbDisponibilidads.Any(d => d.FecDis.Date >= inicio.Date && d.FecDis.Date <= fin.Date))
+            .ToList();
+
+            return limpiadores;
+        }
     }
 }
