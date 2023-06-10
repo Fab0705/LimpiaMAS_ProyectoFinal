@@ -1,14 +1,16 @@
-﻿@model LimpiaMAS.Models.TbUser
+﻿@{
+    Layout = null;
+}
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+
 <html>
     <head>
-        <LINK rel=StyleSheet href="~/css/estilosMain.css" media="screen">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <meta name="viewport" content="width=device-width" />
+        <LINK rel=StyleSheet href="~/css/StyleSheet.css">
+
     </head>
     <body>
         <!--<header>
@@ -18,29 +20,29 @@
             <div class="logo"><a href="#">LIMPIAMÁS</a></div>
             <ul class="links">
                 <li>
-                    <a asp-controller="Servicio" asp-action="Index">Servicios</a>
+                    <a asp-action="Servicios">Servicios</a>
                 </li>
                 <li>
-                    <a asp-action="Nosotros">Nosotros</a>
+                    <a asp-action="Nosotros">Disponibilidad</a>
                 </li>
                 <li>
-                    <a asp-action="Login">Ingresar</a>
+                    <a asp-action="SoporteTecnico">Soporte Tecnico</a>
                 </li>
                 <li>
-                    <a asp-controller="Perfil" asp-action="PerfilCliente">Perfil Cliente</a>
-                </li>
-                <li>
-                    <a asp-controller="Perfil" asp-action="PerfilLimpiador">Perfil Limpiador</a>
-                </li>
-                <li>
-                    <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
+                    <a asp-action="Perfil">Perfil</a>
+                    <ul class="menu-vertical">
+                        <li>
+                            <a asp-controller="Limpiador" asp-action="Modificar">Modificar</a>
+                        </li>
+                        <li>
+                            <a asp-action="cerrarCesion">Cerrar Cesión</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-            <a asp-controller="Usuario" asp-action="LogOut" class="register-btn">Cerrar Sesión</a>
-            <div class="toggle-btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
         </div>
+
+
         <div class="cajita">
             <div class="info-bar">
                 <!-- contenido de la barra de información -->
@@ -59,15 +61,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="alert alert-success">
-                <strong>BIENVENIDO:</strong> Indicates a successful or positive action.
-            </div>
             <div class="contenedor_imgtext">
-                <img src="images/ordenado.jpg" class="img-fluid" />
+                <img src="~/Img/imgPrincipal.jpg" class="img-fluid" />
                 <div class="text-btn">
                     <div class="text">
-                        <p>"Nos aseguramos de que tu entorno esté siempre limpio y agradable"</p>
-                        <a asp-action="Servicios" class="servicios-btn">Solicita tu reserva</a>
+                        <p>"La atención al cliente se refleja en las calificaciones"</p>
+                        <p>"Una sonrisa hace el dia :)"</p>
+
                     </div>
                 </div>
             </div>
@@ -76,19 +76,19 @@
                 <p class="header">Conviértete en un cliente "LIMPIAMÁS"</p>
                 <ul class="pasos">
                     <li class="servicio">
-                        <img src="images/agenda.png" />
-                        <h6>1. Elige tu servicio</h6>
-                        <p>Elige tu servicio, selecciona la fecha y características del servicio que necesites.</p>
+                        <img src="~/Img/imagen2.jpg" />
+                        <h6>1. Modificar perfil</h6>
+                        <p>Poniendo tu cursor en perfil, se desplegara una barra donde aparecera la función de modificar</p>
                     </li>
                     <li class="pago">
-                        <img src="images/tarjeta2.png" />
-                        <h6>2. Realiza tus pagos con tranquilidad</h6>
-                        <p>Nuestra plataforma de pago es segura y encriptada.</p>
+                        <img src="~/Img/imagen3.jpg" />
+                        <h6>2. Disponibilidad</h6>
+                        <p>Es importante estar al tanto de la disponibilidad que se tiene; en la barra superior podras visualizar la opción para ver tu disponibilidad.</p>
                     </li>
                     <li class="satisfaccion">
-                        <img src="images/limpieza1.png" />
-                        <h6>3. Disfruta de tu espacio limpio y libre de gérmenes</h6>
-                        <p>Tu casa ahora está´perfectamente limpia y desinfectada.<br><b> Esperamos verte de nuevo pronto.</b></p>
+                        <img src="~/Img/imagen-4.jpg" />
+                        <h6>3. Soporte Tecnico</h6>
+                        <p>En la barra superior podras dirigirte a soporte tecnico donde muy gustosos resolveremos tus dudas.</b></p>
                     </li>
                 </ul>
             </div>

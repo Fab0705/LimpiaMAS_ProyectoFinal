@@ -9,6 +9,34 @@ namespace LimpiaMAS.Controllers
         {
             return View();
         }
+        public IActionResult IndexLimpiador() 
+        {
+            return View();
+        }
+        public IActionResult IndexCliente()
+        {
+            return View();
+        }
+        [Route("Servicios")]
+        public IActionResult Servicios()
+        {
+            return View();
+        }
+        [Route("SoporteTecnico")]
+        public IActionResult SoporteTecnico()
+        {
+            return View();
+        }
+        [Route("Modificar")]
+        public IActionResult Modificar()
+        {
+            return View();
+        }
+        [Route("Disponibilidad")]
+        public IActionResult Disponibilidad()
+        {
+            return View();
+        }
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();
