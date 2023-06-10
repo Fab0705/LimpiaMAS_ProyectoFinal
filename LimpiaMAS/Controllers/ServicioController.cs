@@ -24,7 +24,70 @@ namespace LimpiaMAS.Controllers
         {
             return View(_limpiador.GetAllCleaners());
         }
+
         public IActionResult Carrito(
+            //variables que recibimos del listado de limpiadores
+            string idLimp, string Nom, string Ape, DateTime TInicial, DateTime TFinal, string catServicio, double Tarifa, DateTime Fecha)
+        {
+            int idServ;
+            //Lista para los intervalos de tiempo
+            List<string> opcionesTiempo = new List<string>();
+
+            while (TInicial <= TFinal)
+            {
+                opcionesTiempo.Add(TInicial.ToString("HH:mm"));
+                TInicial = TInicial.AddMinutes(30);
+            }
+            Console.Write(opcionesTiempo.Count());
+            //verificar si la sesion de usuario existe
+            var objSession = HttpContext.Session.GetString("sUsuario");
+            if (objSession != null)
+            {
+                //Deserializar
+                TbUser usuario = JsonConvert.DeserializeObject<TbUser>(objSession);
+                TbCliente cliente = _cliente.getCliente(usuario.Usr, usuario.Pwd);
+
+                if (_cliente.SearchCli(usuario.Usr, usuario.Pwd) == false)
+                {
+                    return RedirectToAction("FormCliente", "Cliente");
+                }
+                else
+                {
+                        //VIEWBAGS PARA LA VISTA DEL CARRITO PARA GRABAR
+                        //ViewBag para el ID
+                        ViewBag.IdLimp = idLimp;
+
+                        //agregamos a un ViewBag para pasar el nombre y apellido del limpiador
+                        ViewBag.NombreApellidoLimpiador = Nom + " " + Ape;
+
+                        //ViewBag para el NomApe del cliente, obtenemos de la sesion
+                        ViewBag.NombreApellidoCliente = usuario.Nom + " " + usuario.Ape;
+
+                        //ViewBag para la dirCli, obtenemos de la sesion
+                        ViewBag.DireccionCliente = cliente.DirCli;
+
+                        //ViewBag para la categoria del servicio
+                        ViewBag.CategoriaServicio = catServicio;
+
+                        //ViewBag para la fecha del servicio
+                        ViewBag.FechaServicio = Fecha.Date;
+
+                        //tarifa
+                        ViewBag.Tarifa = Tarifa;
+                        Console.WriteLine("la tarifa es: " + Tarifa);
+                        //usamos nuestra lista y eliminamos el ultimo element
+                        opcionesTiempo.RemoveAt(opcionesTiempo.Count - 1);
+                        //ViewBag para el tiempo
+                        ViewBag.OpcionesTiempo = opcionesTiempo;
+                        return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction("Logeo, Login");
+            }
+        }
+        /*public IActionResult Carrito(
             //variables que recibimos del listado de limpiadores
             string idLimp, string Nom, string Ape, DateTime TInicial, DateTime TFinal, string catServicio, double Tarifa, DateTime Fecha,
             //variables que recibimos del carrito
@@ -141,7 +204,7 @@ namespace LimpiaMAS.Controllers
             {
                 return RedirectToAction("Logeo, Login");
             }
-        }
+        }*/
 
         [Route("Servicio/Eliminar/{Id}")]
         public IActionResult eliminar(string id)
