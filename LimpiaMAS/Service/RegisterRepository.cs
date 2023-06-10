@@ -7,12 +7,6 @@ namespace LimpiaMAS.Service
     public class RegisterRepository : iRegister
     {
         private readonly Limpia_MasC conexion = new Limpia_MasC();
-
-        public void add_cli(TbCliente obj)
-        {
-            conexion.TbClientes.Add(obj);
-            conexion.SaveChanges();
-        }
         public void add_limp(TbLimpiador obj)
         {
             obj.IdLimp = GetNextLimpId().ToString();
@@ -25,6 +19,28 @@ namespace LimpiaMAS.Service
             obj.IdUsr = GetNextUsrId().ToString(); // Obtener el siguiente valor de la secuencia
             conexion.TbUsers.Add(obj);
             conexion.SaveChanges();
+        }
+        public void add_cli(TbCliente obj)
+        {
+            obj.IdCli = GetNextCliId().ToString(); // Obtener el siguiente valor de la secuencia
+            conexion.TbClientes.Add(obj);
+            conexion.SaveChanges();
+        }
+        public int GetNextCliId()
+        {
+            int nextId = 1;
+
+            // hay registros?
+            if (conexion.TbClientes.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbClientes.Max(u => u.IdCli);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
         }
         public int GetNextLimpId()
         {
@@ -63,6 +79,17 @@ namespace LimpiaMAS.Service
         {
             var user = conexion.TbUsers.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
             return user;
+        }
+
+        public TbCliente getCli(string usr, string pwd)
+        {
+            var cli = conexion.TbClientes.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
+            return cli;
+        }
+        public TbLimpiador getLimp(string usr, string pwd)
+        {
+            var limp = conexion.TbLimpiadors.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
+            return limp;
         }
 
         public IEnumerable<TbLimpiador> GetAllCleaners()

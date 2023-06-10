@@ -23,7 +23,7 @@
             <div class="logo"><a href="#">LIMPIAMÁS</a></div>
             <ul class="links">
                 <li>
-                    <a asp-action="Servicios">Servicios</a>
+                    <a asp-controller="Servicio" asp-action="Index">Servicios</a>
                 </li>
                 <li>
                     <a asp-action="Nosotros">Nosotros</a>
@@ -32,10 +32,16 @@
                     <a asp-action="Login">Ingresar</a>
                 </li>
                 <li>
+                    <a asp-controller="Perfil" asp-action="PerfilCliente">Perfil Cliente</a>
+                </li>
+                <li>
+                    <a asp-controller="Perfil" asp-action="PerfilLimpiador">Perfil Limpiador</a>
+                </li>
+                <li>
                     <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
                 </li>
             </ul>
-            <a asp-action="Register" class="register-btn">Registrate!</a>
+            <a asp-controller="Usuario" asp-action="LogOut" class="register-btn">Cerrar Sesión</a>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>

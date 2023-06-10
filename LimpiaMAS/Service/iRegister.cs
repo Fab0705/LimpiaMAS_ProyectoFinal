@@ -11,5 +11,7 @@ namespace LimpiaMAS.Service
         IEnumerable<TbLimpiador> GetAllCleaners();
 
         public TbUser getUser(string usr, string pwd);
+        TbCliente getCli(string usr, string pwd);
+        TbLimpiador getLimp(string usr, string pwd);
     }
 }

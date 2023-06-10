@@ -46,7 +46,20 @@ namespace LimpiaMAS.Controllers
             Console.WriteLine(obj.NomLimp.ToString() + obj.ApeLimp.ToString());
             obj.ServLimp = JsonConvert.SerializeObject(obj.ServiciosAJSON);
             _register.add_limp(obj);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Usuario");
+        }
+        public IActionResult new_cli(TbCliente obj)
+        {
+            string usuarioJson = HttpContext.Session.GetString("sUsuario");
+            TbUser usuario = JsonConvert.DeserializeObject<TbUser>(usuarioJson);
+            TbUser usr = _register.getUser(usuario.Usr, usuario.Pwd);
+
+            obj.Usr = usr.Usr;
+            obj.Pwd = usr.Pwd;
+            obj.NomCli = usr.Nom;
+            obj.ApeCli = usr.Ape;
+            _register.add_cli(obj);
+            return RedirectToAction("Index","Servicio");
         }
     }
 }

@@ -12,15 +12,15 @@ namespace LimpiaMAS.Controllers
             if (objSession != null)
             {
                 //Deserializar
-                var obj = JsonConvert.DeserializeObject<TbUser>(HttpContext.Session.GetString("sUsuario"));
+                var obj = JsonConvert.DeserializeObject<TbAdmin>(HttpContext.Session.GetString("sUsuario"));
                 return View();
             }
-            return View("~/Views/Limpia/login.cshtml");
+            return RedirectToAction("login", "Limpia");
         }
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();
-            return View("~/Views/Limpia/login.cshtml");
+            return RedirectToAction("login", "Limpia");
         }
     }
 }

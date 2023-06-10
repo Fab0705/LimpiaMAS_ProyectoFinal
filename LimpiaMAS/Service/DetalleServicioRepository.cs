@@ -20,6 +20,7 @@ namespace LimpiaMAS.Service
             }
         }
 
+
         public int GetNextDetId()
         {
             int nextId = 1;
