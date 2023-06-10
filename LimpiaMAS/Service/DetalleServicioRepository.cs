@@ -1,0 +1,69 @@
+﻿using LimpiaMAS.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LimpiaMAS.Service
+{
+    public class DetalleServicioRepository : iDetalleServicio
+    {
+        Limpia_MasC conexion = new Limpia_MasC();
+        public void add(TbDetalleservicio detalleServ)
+        {
+            try
+            {
+                detalleServ.IdDetserv = GetNextDetId().ToString();
+                conexion.TbDetalleservicios.Add(detalleServ);
+                conexion.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrio un error al grabar al archivo", ex.Message);
+            }
+        }
+
+
+        public int GetNextDetId()
+        {
+            int nextId = 1;
+
+            // hay registros?
+            if (conexion.TbDetalleservicios.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbDetalleservicios.Max(u => u.IdDetserv);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
+        }
+
+        public TbDetalleservicio edit(string id)
+        {
+            var obj = (from tDetServ in conexion.TbDetalleservicios where tDetServ.IdDetserv == id select tDetServ).Single();
+            return obj;
+        }
+
+        public void EditDetails(TbDetalleservicio detalleServ)
+        {
+            var objModificar = (from tDetServ in conexion.TbDetalleservicios where tDetServ.IdDetserv == detalleServ.IdDetserv select tDetServ).Single();
+            objModificar.CatServ = detalleServ.CatServ;
+            objModificar.ImpServ = detalleServ.ImpServ;
+            objModificar.NomapeCli = detalleServ.NomapeCli;
+            objModificar.DirCli = detalleServ.DirCli;
+            objModificar.NomapeLim = detalleServ.NomapeLim;
+
+            conexion.SaveChanges();
+        }
+
+        public IEnumerable<TbDetalleservicio> GetAllDetalles(string idCli)
+        {
+            return conexion.TbDetalleservicios;
+        }
+
+        public void remove(string id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

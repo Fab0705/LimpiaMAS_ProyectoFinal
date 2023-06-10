@@ -64,10 +64,10 @@ namespace LimpiaMAS.Service
             conexion.Remove(obj);
             conexion.SaveChanges() ;
         }
-        public TbUser getUser(string usr, string pwd)
+        public TbCliente getCliente(string usr, string pwd)
         {
-            var user = conexion.TbUsers.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
-            return user;
+            var cliente = conexion.TbClientes.FirstOrDefault(l => l.Usr == usr && l.Pwd == pwd);
+            return cliente;
         }
 
         public bool SearchCli(string usr, string pwd)

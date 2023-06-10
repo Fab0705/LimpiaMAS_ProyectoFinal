@@ -9,7 +9,7 @@ namespace LimpiaMAS.Service
         void remove(string id);
         TbCliente edit(String id);
         void EditDatails(TbCliente cliente);
-        TbUser getUser(string usr, string pwd);
+        TbCliente getCliente(string usr, string pwd);
         bool SearchCli(string usr, string pwd);
     }
 }
