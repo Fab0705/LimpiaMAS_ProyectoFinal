@@ -3,6 +3,7 @@ using LimpiaMAS.Models;
 using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Data.SqlTypes;
 using System.Text;
 
 namespace LimpiaMAS.Controllers
@@ -12,13 +13,15 @@ namespace LimpiaMAS.Controllers
         private readonly iLimpiador _limpiador;
         private readonly iCliente _cliente;
         private readonly iDetalleServicio _detalleServicio;
+        private readonly iServicio _servicio;
 
         private bool _esPrimeraVez;
-        public ServicioController(iLimpiador limpiador, iCliente cliente, iDetalleServicio detalleServicio)
+        public ServicioController(iLimpiador limpiador, iCliente cliente, iDetalleServicio detalleServicio, iServicio servicio)
         {
             _limpiador = limpiador;
             _detalleServicio = detalleServicio;
             _cliente = cliente;
+            _servicio = servicio;
         }
         public IActionResult Index()
         {
@@ -57,11 +60,13 @@ namespace LimpiaMAS.Controllers
                         //ViewBag para el ID
                         ViewBag.IdLimp = idLimp;
 
+                        ViewBag.IdCli = cliente.IdCli;
+
                         //agregamos a un ViewBag para pasar el nombre y apellido del limpiador
                         ViewBag.NombreApellidoLimpiador = Nom + " " + Ape;
 
                         //ViewBag para el NomApe del cliente, obtenemos de la sesion
-                        ViewBag.NombreApellidoCliente = usuario.Nom + " " + usuario.Ape;
+                        ViewBag.NombreApellidoCliente = cliente.NomCli + " " + cliente.ApeCli;
 
                         //ViewBag para la dirCli, obtenemos de la sesion
                         ViewBag.DireccionCliente = cliente.DirCli;
@@ -86,6 +91,56 @@ namespace LimpiaMAS.Controllers
             {
                 return RedirectToAction("Login", "Limpia");
             }
+        }
+
+        public IActionResult Carrito_grabado(
+            TbServicio obj,
+            string nomApeLimp, string dirCli, string idCli, string area)
+        {
+            var objSession = HttpContext.Session.GetString("sUsuario");
+            if (objSession != null)
+            {
+                //Deserializar
+                TbUser usuario = JsonConvert.DeserializeObject<TbUser>(objSession);
+                TbCliente cliente = _cliente.getCliente(usuario.Usr, usuario.Pwd);
+
+                if (_cliente.SearchCli(usuario.Usr, usuario.Pwd) == false)
+                {
+                    return RedirectToAction("FormCliente", "Cliente");
+                }
+                else
+                {
+                    //Se agregan primero los datos al TB_Servicio
+                    _servicio.add(obj);
+                    TimeSpan Standardtime = new TimeSpan(0, 30, 0);
+                    //Luego dependiendo de los datos se extraen para implementarlo para el TB_DetalleServicio
+                    TbDetalleservicio detServicio = new TbDetalleservicio();
+                    //ViewBag para el ID del servicio grabado
+                    detServicio.IdServ = obj.IdServ;
+                    detServicio.NomapeLim = nomApeLimp;
+                    detServicio.NomapeCli = cliente.NomCli + " " + cliente.ApeCli;
+                    detServicio.CatServ = obj.CatServ;
+                    ViewBag.area = area;
+                    decimal impServ = decimal.Parse(obj.PreServ.ToString()) * decimal.Parse(ViewBag.area.ToString());
+
+                    detServicio.ImpServ = impServ;
+                    detServicio.DirCli = dirCli;
+                    detServicio.DurServ = Standardtime;
+                    detServicio.HoraServ = obj.DurServ;
+                    detServicio.FecServ = obj.FecServ.Date;
+                    detServicio.IdCli = cliente.IdCli;
+
+                    //Con los datos implementados al objeto "detServicio" se añaden a la base de datos
+                    _detalleServicio.add(detServicio);
+                    
+                }
+                return View(_detalleServicio.GetAllDetalles(obj.IdCli));
+            }
+            else
+            {
+                return RedirectToAction("Login", "Limpia");
+            }
+            return View();
         }
 
         public IActionResult Filtrado(DateTime fecha, DateTime fecha_inicio, DateTime fecha_fin)

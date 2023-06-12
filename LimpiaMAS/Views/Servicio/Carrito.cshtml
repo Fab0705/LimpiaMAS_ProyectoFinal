@@ -1,4 +1,4 @@
-﻿
+﻿@model LimpiaMAS.Models.TbServicio
 
 @{
     Layout = null;
@@ -14,32 +14,34 @@
     </head>
     <body>
         <!--siempre que entres al carrito deberas completar el item-->
-        <form asp-action="Carrito" method="post">
-        <!--datos para pasar al controlador-->
-        <input type="hidden" name="nomApeLimp" value="@ViewBag.NombreApellidoLimpiador" />
-        <input type="hidden" name="nomApeCli" value="@ViewBag.NombreApellidoCliente" />
-        <input type="hidden" name="catServ" value="@ViewBag.CategoriaServicio" />
-        <input type="hidden" name="tarife" value="@ViewBag.Tarifa" />
-        <input type="hidden" name="dirCli" value="@ViewBag.DireccionCliente" />
-        <input type="hidden" name="fecServ" value="@ViewBag.FechaServicio" />
-        <input type="hidden" name="idCli" value="@ViewBag.IdLimp" />
-        <label>Fuera de lista</label>
-        <label>@ViewBag.NombreApellidoLimpiador</label>
-        <label>@ViewBag.NombreApellidoCliente</label>
-        <label>@ViewBag.DireccionCliente</label>
-        <label>@ViewBag.CategoriaServicio</label>
-        <label>@ViewBag.FechaServicio</label>
-        <input name="area" placeholder="Ingrese el area en m^2 del lugar a limpiar" required />
-        <label>Ingrese la hora para el servicio: </label>
-        <select name="horaServicio">
-            @foreach (var opcion in ViewBag.OpcionesTiempo)
-            {
-                <option>@opcion</option>
-            }
-        </select>
-        <input type="submit" value="grabar" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
-        <a asp-action="Index">Regresar</a>
-        <!--<a asp-action="Eliminar" asp-route-id="">Eliminar</a>-->
-    </form>
+        <form asp-action="Carrito_grabado" method="post">
+            <!--datos para pasar al controlador-->
+            <input type="hidden" name="nomApeLimp"  value="@ViewBag.NombreApellidoLimpiador" />
+            <input type="hidden" name="nomApeCli" value="@ViewBag.NombreApellidoCliente" />
+            <input type="hidden" asp-for="CatServ" value="@ViewBag.CategoriaServicio" />
+            <input type="hidden" asp-for="PreServ" value="@ViewBag.Tarifa" />
+            <input type="hidden" name="dirCli" value="@ViewBag.DireccionCliente" />
+            <input type="hidden" asp-for="FecServ" value="@ViewBag.FechaServicio" />
+            <input type="hidden" asp-for="IdLimp" value="@ViewBag.IdLimp" />
+            <input type="hidden" asp-for="IdCli" value="@ViewBag.IdCli" />
+            <label>Fuera de lista</label>
+            <label>@ViewBag.IdCLi</label><br />
+            <label>@ViewBag.NombreApellidoLimpiador</label><br />
+            <label>@ViewBag.NombreApellidoCliente</label><br />
+            <label>@ViewBag.DireccionCliente</label><br />
+            <label>@ViewBag.CategoriaServicio</label><br />
+            <label>@ViewBag.FechaServicio</label>
+            <input name="area" placeholder="Ingrese el area en m^2 del lugar a limpiar" required />
+            <label>Ingrese la hora para el servicio: </label>
+            <select asp-for="DurServ">
+                @foreach (var opcion in ViewBag.OpcionesTiempo)
+                {
+                    <option>@opcion</option>
+                }
+            </select>
+            <input type="submit" value="grabar" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
+            <a asp-action="Index">Regresar</a>
+            <!--<a asp-action="Eliminar" asp-route-id="">Eliminar</a>-->
+        </form>
     </body>
 </html>
