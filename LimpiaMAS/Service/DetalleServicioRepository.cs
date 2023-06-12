@@ -56,9 +56,9 @@ namespace LimpiaMAS.Service
             conexion.SaveChanges();
         }
 
-        public IEnumerable<TbDetalleservicio> GetAllDetalles(string idCli)
+        public IEnumerable<TbDetalleservicio> GetAllDetalles(string IdCli)
         {
-            return conexion.TbDetalleservicios;
+            return conexion.TbDetalleservicios.Where(d => d.IdCli == IdCli);
         }
 
         public void remove(string id)

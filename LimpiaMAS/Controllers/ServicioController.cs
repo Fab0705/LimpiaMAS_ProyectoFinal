@@ -97,7 +97,6 @@ namespace LimpiaMAS.Controllers
             TbServicio obj,
             string nomApeLimp, string dirCli, string idCli, string area)
         {
-            int IdServ = 1;
             var objSession = HttpContext.Session.GetString("sUsuario");
             if (objSession != null)
             {
@@ -135,7 +134,7 @@ namespace LimpiaMAS.Controllers
                     _detalleServicio.add(detServicio);
                     
                 }
-                return View(_detalleServicio.GetAllDetalles(idCli));
+                return View(_detalleServicio.GetAllDetalles(obj.IdCli));
             }
             else
             {
