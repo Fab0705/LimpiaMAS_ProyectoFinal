@@ -10,6 +10,7 @@ builder.Services.Add(new ServiceDescriptor(typeof(iRegister), new RegisterReposi
 builder.Services.Add(new ServiceDescriptor(typeof(iLimpiador), new LimpiadorRepository()));
 builder.Services.Add(new ServiceDescriptor(typeof(iDetalleServicio), new DetalleServicioRepository()));
 builder.Services.Add(new ServiceDescriptor(typeof(iLogeo), new LogeoRepository()));
+builder.Services.Add(new ServiceDescriptor(typeof(iServicio), new ServicioRepository()));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(options =>
