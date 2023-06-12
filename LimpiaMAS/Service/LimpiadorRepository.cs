@@ -82,6 +82,7 @@ namespace LimpiaMAS.Service
             conexion.SaveChanges();
         }
 
+        /*         FILTRAMOS LOS LIMPIADORES POR FECHA        */
         public IEnumerable<TbLimpiador> GetLimpiadoresFecha(DateTime fecha)
         {
             var limpiadores = conexion.TbLimpiadors
@@ -94,7 +95,7 @@ namespace LimpiaMAS.Service
         public IEnumerable<TbLimpiador> GetLimpiadoresFechaInicioFin(DateTime inicio, DateTime fin)
         {
             var limpiadores = conexion.TbLimpiadors
-            .Where(l => l.TbDisponibilidads.Any(d => d.FecDis.Date >= inicio.Date && d.FecDis.Date <= fin.Date))
+            .Where(l => l.TbDisponibilidads.Any(d => d.FecDis >= inicio && d.FecDis <= fin))
             .ToList();
 
             return limpiadores;

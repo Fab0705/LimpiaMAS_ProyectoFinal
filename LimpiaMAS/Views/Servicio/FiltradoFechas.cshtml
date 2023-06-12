@@ -3,11 +3,13 @@
 @{
     Layout = null;
 }
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+
 <html>
 <head>
     <title>LimpiaMAS</title>
@@ -69,7 +71,7 @@
                             {
                                 //DATO PARA PASAR AL CONTROLADOR
                                 // Verificar si la disponibilidad esta entre ambas fechas
-                                if (disponibilidad.FecDis == ViewBag.Fecha)
+                                if (disponibilidad.FecDis >= ViewBag.FechaInicio && disponibilidad.FecDis <= ViewBag.FechaFin)
                                 {
                                     <input type="hidden" name="idLimp" value=@card.IdLimp />
                                     <input type="hidden" name="Nom" value=@card.NomLimp />
@@ -103,7 +105,7 @@
                                     </div>
                                 }
                             }
-
+                            
                         }
                     </form>
                 </div>

@@ -90,16 +90,24 @@ namespace LimpiaMAS.Controllers
 
         public IActionResult Filtrado(DateTime fecha, DateTime fecha_inicio, DateTime fecha_fin)
         {
-            if (fecha != null)
+            //la fecha tiene un valor valido?
+            if (fecha != DateTime.MinValue)
             {
-                ViewBag.Fecha = fecha;
-                Console.Write(_limpiador.GetLimpiadoresFecha(fecha).ToString());
+                ViewBag.Fecha = fecha;                
                 return View(_limpiador.GetLimpiadoresFecha(fecha));
             }
             else
             {
-                return View(_limpiador.GetLimpiadoresFechaInicioFin(fecha_inicio, fecha_fin));
+                return FiltradoFechas(fecha_inicio, fecha_fin);
             }
+        }
+
+        public IActionResult FiltradoFechas(DateTime fecha_inicio, DateTime fecha_fin)
+        {
+            Console.WriteLine("filtradofechas");
+            ViewBag.FechaInicio = fecha_inicio;
+            ViewBag.FechaFin = fecha_fin;
+            return View("FiltradoFechas", _limpiador.GetLimpiadoresFechaInicioFin(fecha_inicio, fecha_fin));
         }
         /*public IActionResult Carrito(
             //variables que recibimos del listado de limpiadores
