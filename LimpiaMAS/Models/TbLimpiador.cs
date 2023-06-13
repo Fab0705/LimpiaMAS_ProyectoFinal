@@ -33,6 +33,5 @@ public partial class TbLimpiador
     public string ServLimp { get; set; } = null!;
     [NotMapped]
     public List<string> ServiciosAJSON { get; set; } // Lista de servicios seleccionados en TbLimpiador
-
     public virtual ICollection<TbDisponibilidad> TbDisponibilidads { get; set; } = new List<TbDisponibilidad>();
 }

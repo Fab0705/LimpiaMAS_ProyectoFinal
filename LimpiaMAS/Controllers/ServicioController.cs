@@ -33,7 +33,6 @@ namespace LimpiaMAS.Controllers
             //variables que recibimos del listado de limpiadores
             string idLimp, string Nom, string Ape, DateTime TInicial, DateTime TFinal, string catServicio, double Tarifa, DateTime Fecha)
         {
-            int idServ;
             //Lista para los intervalos de tiempo
             List<string> opcionesTiempo = new List<string>();
 
@@ -134,20 +133,12 @@ namespace LimpiaMAS.Controllers
                         // Manejar el caso en el que no se pueda obtener el GUID de la sesión
                         Console.WriteLine("Error al tratar de convertir el guid");                        
                     }
-                    //Se agregan primero los datos al TB_Servicio, esto va a la hora de hacer el pago
-                    _servicio.add(obj);
                     TimeSpan Standardtime = new TimeSpan(0, 30, 0);
                     //Luego dependiendo de los datos se extraen para implementarlo para el TB_DetalleServicio
                     TbDetalleservicio detServicio = new TbDetalleservicio();
                     //asignamos los valores al detalle servicio
                     //el id va a ir nulo por mientras, cuando se haga el pago se crea el servicio y se jala el id
                     // para el detServicio
-                    //VIEWBAG PARA EL CARRITOGRABADO Y PASARLE EL OBJETO SERVICIO A LA FUNCION PAGAR PARA QUE CREE EL SERVICIO
-                    ViewBag.CateServ = obj.CatServ;
-                    ViewBag.FecServ = obj.FecServ.Date;
-                    ViewBag.Guidetserv = obj.Guidserv;
-                    ViewBag.IdCli = cliente.IdCli;
-                    ViewBag.IdLimp = obj.IdLimp;
                     //DETALLES DE NUESTRO SERVICIO
                     detServicio.IdServ = null;
                     detServicio.NomapeLim = nomApeLimp;
@@ -179,30 +170,52 @@ namespace LimpiaMAS.Controllers
             return View();
         }
 
-        public IActionResult Pagar(
-            string CateServ, DateTime FecServ, Guid Guidetserv, string IdCli, string IdLimp)
+        public IActionResult Pago()
         {
             // Obtener el identificador de sesión
             string sessionIdString = HttpContext.Session.GetString("SessionId");
 
             // Verificar si el identificador de sesión es válido
-            if (!string.IsNullOrEmpty(sessionIdString) && Guid.TryParse(sessionIdString, out Guid sessionId))
+            if (!string.IsNullOrEmpty(sessionIdString) && Guid.TryParse(sessionIdString, out Guid sessionGuid))
             {
-                // Eliminar la sesión
-                HttpContext.Session.Remove("SessionId");
-                //Crear el objeto servicio
+                //Crear el objeto servicio, obtenemos la informacion de la tabla detalle servicio
                 TbServicio objServ = new TbServicio();
-                objServ.IdCli = IdCli;
-                objServ.IdLimp = IdLimp;
-                objServ.CatServ = CateServ;
+                /*ya que tenemos el objeto servicio, y generado el id, se lo asignamos a los elementos de la 
+                tabla detalle servicio que tengan en mismo GUID*/
+                objServ.IdServ = _servicio.GetNextServId().ToString();
+                Console.WriteLine("el id del servicio es: " + objServ.IdServ);
+                objServ.IdCli = _detalleServicio.GetDetallesxGuid(sessionGuid).FirstOrDefault(detalle => detalle.IdCli != null).IdCli;
+                Console.WriteLine("el id del cliente es: " + objServ.IdCli);
+                //contar cuantas categorias de servicio tenemos
+                int cantidadRegistros = _detalleServicio.GetDetallesxGuid(sessionGuid).Count(detalle => detalle.CatServ != null);
+                //si hay 1 registro entonces le pasamos el valor de catServ al objeto
+                if (cantidadRegistros == 1)
+                {
+                    //ahora que sabemos que hay 1 registro, extraemos ese valor con first or default
+                    objServ.CatServ = _detalleServicio.GetDetallesxGuid(sessionGuid).FirstOrDefault(detalle => detalle.CatServ != null).CatServ;
+                }
+                else
+                {
+                    objServ.CatServ = "multiple";
+                }
                 //Acumular el PrecServ respecto al guid
-                objServ.PreServ = _detalleServicio.GetDetallesxGuid(Guidetserv)
+                objServ.PreServ = _detalleServicio.GetDetallesxGuid(sessionGuid)
                 .Sum(detalle => detalle.ImpServ);
-                objServ.FecServ = FecServ;
-                objServ.Guidserv = Guidetserv;
+                Console.WriteLine("el acumulado es: " + objServ.PreServ);
+                //agregamos la fecha de la transaccion (servicio)
+                objServ.FecServ = DateTime.Now.Date;
+                //agregamos la hora de la transaccion (servicio)
+                objServ.HoraServ = DateTime.Now.TimeOfDay;
+                objServ.Guidserv = sessionGuid;
+                Console.WriteLine("el guid es es: " + objServ.Guidserv);
                 //Se agregan primero los datos al TB_Servicio, esto va a la hora de hacer el pago
                 _servicio.add(objServ);
-
+                /*asignamos el  id del detalleservicio despues de agregar el servicio a la BD
+                para no tener problemas al añadir el idservicio en tbdetalleservicio ya que
+                es una foreign key*/
+                _detalleServicio.AsignarId(sessionGuid, objServ.IdServ);
+                // Eliminar la sesión
+                HttpContext.Session.Remove("SessionId");
             }
             return View();
         }
@@ -241,6 +254,7 @@ namespace LimpiaMAS.Controllers
                 Console.WriteLine("Error al tratar de convertir el guid");
             }
             _detalleServicio.remove(id);
+            //si hay elementos en el carrito:
             if (_detalleServicio.GetDetallesxGuid(sessionId).Any())
             {
                 return View("Carrito_grabado", _detalleServicio.GetDetallesxGuid(sessionId));

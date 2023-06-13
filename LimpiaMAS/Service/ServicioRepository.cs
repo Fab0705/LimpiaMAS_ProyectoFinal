@@ -10,7 +10,7 @@ namespace LimpiaMAS.Service
         {
             try
             {
-                servicio.IdServ = GetNextServId().ToString();
+                //hemos quitado el que genere el id pq lo haremos en el ServicioController                
                 conexion.TbServicios.Add(servicio);
                 conexion.SaveChanges();
             }

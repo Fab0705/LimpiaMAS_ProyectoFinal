@@ -1,5 +1,6 @@
 ﻿using LimpiaMAS.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LimpiaMAS.Service
 {
@@ -54,6 +55,19 @@ namespace LimpiaMAS.Service
             objModificar.NomapeLim = detalleServ.NomapeLim;
 
             conexion.SaveChanges();
+        }
+
+        public void AsignarId(Guid guid, string idServ)
+        {
+            try
+            {
+                conexion.TbDetalleservicios.Where(d => d.Guidetserv == guid).ToList().ForEach(detalle => detalle.IdServ = idServ);
+                conexion.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Ocurrio un error al grabar al archivo", ex.Message);
+            }
         }
 
         public IEnumerable<TbDetalleservicio> GetDetallesxGuid(Guid guid)

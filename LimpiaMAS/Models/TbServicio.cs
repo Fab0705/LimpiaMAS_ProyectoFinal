@@ -15,8 +15,6 @@ public partial class TbServicio
 
     public string IdCli { get; set; } = null!;
 
-    public string IdLimp { get; set; } = null!;
-
     public Guid? Guidserv { get; set; }
 
     public TimeSpan? HoraServ { get; set; }
