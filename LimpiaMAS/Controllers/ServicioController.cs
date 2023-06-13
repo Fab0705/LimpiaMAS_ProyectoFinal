@@ -3,6 +3,7 @@ using LimpiaMAS.Models;
 using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using System.Data.SqlTypes;
 using System.Text;
 
@@ -56,35 +57,50 @@ namespace LimpiaMAS.Controllers
                 }
                 else
                 {
-                        //VIEWBAGS PARA LA VISTA DEL CARRITO PARA GRABAR
-                        //ViewBag para el ID
-                        ViewBag.IdLimp = idLimp;
+                    //USAREMOS UN GUID PARA IDENTIFICAR NUESTRO SERVICIO Y DETALLE SERVICIO
+                    string sessionIdString = HttpContext.Session.GetString("SessionId");
+                    Guid sessionId;
 
-                        ViewBag.IdCli = cliente.IdCli;
+                    if (string.IsNullOrEmpty(sessionIdString))
+                    {
+                        // Si no existe, generar un nuevo GUID
+                        sessionId = Guid.NewGuid();
 
-                        //agregamos a un ViewBag para pasar el nombre y apellido del limpiador
-                        ViewBag.NombreApellidoLimpiador = Nom + " " + Ape;
+                        // Guardar el GUID en la sesión
+                        HttpContext.Session.SetString("SessionId", sessionId.ToString());
+                    }
+                    else
+                    {
+                        // Si ya existe, obtener el GUID de la sesión
+                        sessionId = Guid.Parse(sessionIdString);
+                    }
 
-                        //ViewBag para el NomApe del cliente, obtenemos de la sesion
-                        ViewBag.NombreApellidoCliente = cliente.NomCli + " " + cliente.ApeCli;
-
-                        //ViewBag para la dirCli, obtenemos de la sesion
-                        ViewBag.DireccionCliente = cliente.DirCli;
-
-                        //ViewBag para la categoria del servicio
-                        ViewBag.CategoriaServicio = catServicio;
-
-                        //ViewBag para la fecha del servicio
-                        ViewBag.FechaServicio = Fecha.Date;
-
-                        //tarifa
-                        ViewBag.Tarifa = Tarifa;
-                        Console.WriteLine("la tarifa es: " + Tarifa);
-                        //usamos nuestra lista y eliminamos el ultimo element
-                        opcionesTiempo.RemoveAt(opcionesTiempo.Count - 1);
-                        //ViewBag para el tiempo
-                        ViewBag.OpcionesTiempo = opcionesTiempo;
-                        return View();
+                    //VIEWBAGS PARA LA VISTA DEL CARRITO PARA GRABAR
+                    //ViewBag para el GUID
+                    ViewBag.GUID = sessionId;
+                    //ViewBag para el ID
+                    ViewBag.IdLimp = idLimp;
+                    ViewBag.IdCli = cliente.IdCli;
+                    //agregamos a un ViewBag para pasar el nombre y apellido del limpiador
+                    ViewBag.NombreApellidoLimpiador = Nom + " " + Ape;
+                    //ViewBag para el NomApe del cliente, obtenemos de la sesion
+                    ViewBag.NombreApellidoCliente = cliente.NomCli + " " + cliente.ApeCli;
+                    //ViewBag para la dirCli, obtenemos de la sesion
+                    ViewBag.DireccionCliente = cliente.DirCli;
+                    //ViewBag para la categoria del servicio
+                    ViewBag.CategoriaServicio = catServicio;
+                    Console.WriteLine(catServicio);
+                    //ViewBag para la fecha del servicio
+                    ViewBag.FechaServicio = Fecha.Date;
+                    Console.WriteLine(Fecha.Date);
+                    //tarifa
+                    ViewBag.Tarifa = Tarifa;
+                    Console.WriteLine("la tarifa es: " + Tarifa);
+                    //usamos nuestra lista y eliminamos el ultimo element
+                    opcionesTiempo.RemoveAt(opcionesTiempo.Count - 1);
+                    //ViewBag para el tiempo
+                    ViewBag.OpcionesTiempo = opcionesTiempo;
+                    return View();
                 }
             }
             else
@@ -110,35 +126,83 @@ namespace LimpiaMAS.Controllers
                 }
                 else
                 {
-                    //Se agregan primero los datos al TB_Servicio
+                    // Obtener el GUID de la sesión
+                    string sessionIdString = HttpContext.Session.GetString("SessionId");
+                    //tratamos de convertir el string a guid
+                    if (!Guid.TryParse(sessionIdString, out Guid sessionId))
+                    {
+                        // Manejar el caso en el que no se pueda obtener el GUID de la sesión
+                        Console.WriteLine("Error al tratar de convertir el guid");                        
+                    }
+                    //Se agregan primero los datos al TB_Servicio, esto va a la hora de hacer el pago
                     _servicio.add(obj);
                     TimeSpan Standardtime = new TimeSpan(0, 30, 0);
                     //Luego dependiendo de los datos se extraen para implementarlo para el TB_DetalleServicio
                     TbDetalleservicio detServicio = new TbDetalleservicio();
-                    //ViewBag para el ID del servicio grabado
-                    detServicio.IdServ = obj.IdServ;
+                    //asignamos los valores al detalle servicio
+                    //el id va a ir nulo por mientras, cuando se haga el pago se crea el servicio y se jala el id
+                    // para el detServicio
+                    //VIEWBAG PARA EL CARRITOGRABADO Y PASARLE EL OBJETO SERVICIO A LA FUNCION PAGAR PARA QUE CREE EL SERVICIO
+                    ViewBag.CateServ = obj.CatServ;
+                    ViewBag.FecServ = obj.FecServ.Date;
+                    ViewBag.Guidetserv = obj.Guidserv;
+                    ViewBag.IdCli = cliente.IdCli;
+                    ViewBag.IdLimp = obj.IdLimp;
+                    //DETALLES DE NUESTRO SERVICIO
+                    detServicio.IdServ = null;
                     detServicio.NomapeLim = nomApeLimp;
                     detServicio.NomapeCli = cliente.NomCli + " " + cliente.ApeCli;
                     detServicio.CatServ = obj.CatServ;
-                    ViewBag.area = area;
-                    decimal impServ = decimal.Parse(obj.PreServ.ToString()) * decimal.Parse(ViewBag.area.ToString());
+                    detServicio.TarifaLimp = obj.PreServ;
+                    detServicio.Area = decimal.Parse(area);
+                    decimal impServ = (decimal)((decimal)detServicio.TarifaLimp * detServicio.Area);
 
                     detServicio.ImpServ = impServ;
                     detServicio.DirCli = dirCli;
                     detServicio.DurServ = Standardtime;
-                    detServicio.HoraServ = obj.DurServ;
+                    //luego cambiar obj.horaServ con la hora en la que se pago
+                    detServicio.HoraDetserv = obj.HoraServ;
                     detServicio.FecServ = obj.FecServ.Date;
                     detServicio.IdCli = cliente.IdCli;
+                    detServicio.Guidetserv = obj.Guidserv;
 
                     //Con los datos implementados al objeto "detServicio" se añaden a la base de datos
                     _detalleServicio.add(detServicio);
-                    
                 }
-                return View(_detalleServicio.GetAllDetalles(obj.IdCli));
+                //retornar con respecto al GUID
+                return View(_detalleServicio.GetDetallesxGuid((Guid)obj.Guidserv));
             }
             else
             {
                 return RedirectToAction("Login", "Limpia");
+            }
+            return View();
+        }
+
+        public IActionResult Pagar(
+            string CateServ, DateTime FecServ, Guid Guidetserv, string IdCli, string IdLimp)
+        {
+            // Obtener el identificador de sesión
+            string sessionIdString = HttpContext.Session.GetString("SessionId");
+
+            // Verificar si el identificador de sesión es válido
+            if (!string.IsNullOrEmpty(sessionIdString) && Guid.TryParse(sessionIdString, out Guid sessionId))
+            {
+                // Eliminar la sesión
+                HttpContext.Session.Remove("SessionId");
+                //Crear el objeto servicio
+                TbServicio objServ = new TbServicio();
+                objServ.IdCli = IdCli;
+                objServ.IdLimp = IdLimp;
+                objServ.CatServ = CateServ;
+                //Acumular el PrecServ respecto al guid
+                objServ.PreServ = _detalleServicio.GetDetallesxGuid(Guidetserv)
+                .Sum(detalle => detalle.ImpServ);
+                objServ.FecServ = FecServ;
+                objServ.Guidserv = Guidetserv;
+                //Se agregan primero los datos al TB_Servicio, esto va a la hora de hacer el pago
+                _servicio.add(objServ);
+
             }
             return View();
         }
@@ -164,130 +228,28 @@ namespace LimpiaMAS.Controllers
             ViewBag.FechaFin = fecha_fin;
             return View("FiltradoFechas", _limpiador.GetLimpiadoresFechaInicioFin(fecha_inicio, fecha_fin));
         }
-        /*public IActionResult Carrito(
-            //variables que recibimos del listado de limpiadores
-            string idLimp, string Nom, string Ape, DateTime TInicial, DateTime TFinal, string catServicio, double Tarifa, DateTime Fecha,
-            //variables que recibimos del carrito
-            string nomApeLimp, string nomApeCli, string catServ, double tarife, string dirCli, DateTime fecServ,
-            string idCli, string area, DateTime horaServicio)
-        {
-            int idServ;
-            //Lista para los intervalos de tiempo
-            List<string> opcionesTiempo = new List<string>();
 
-            while (TInicial <= TFinal)
-            {
-                opcionesTiempo.Add(TInicial.ToString("HH:mm"));
-                TInicial = TInicial.AddMinutes(30);
-            }
-            Console.Write(opcionesTiempo.Count());
-            //verificar si la sesion de usuario existe
-            var objSession = HttpContext.Session.GetString("sUsuario");
-            if (objSession != null)
-            {
-                //Deserializar
-                TbUser usuario = JsonConvert.DeserializeObject<TbUser>(objSession);
-                TbCliente cliente = _cliente.getCliente(usuario.Usr, usuario.Pwd);
-
-                if (_cliente.SearchCli(usuario.Usr, usuario.Pwd) == false)
-                {
-                    return RedirectToAction("FormCliente", "Cliente");
-                }
-                else
-                {
-                    //BOOLEANO
-                    if (!HttpContext.Session.TryGetValue("EsPrimeraVez", out byte[] esPrimeraVezValue))
-                    {
-                        // No se ha establecido en la sesión, por lo tanto, es la primera vez
-                        _esPrimeraVez = true;
-                        HttpContext.Session.Set("EsPrimeraVez", Encoding.UTF8.GetBytes(_esPrimeraVez.ToString()));
-                        //VIEWBAGS PARA LA VISTA DEL CARRITO LA 1RA VEZ
-                        //ViewBag para el ID
-                        ViewBag.IdLimp = idLimp;
-
-                        //agregamos a un ViewBag para pasar el nombre y apellido del limpiador
-                        ViewBag.NombreApellidoLimpiador = Nom + " " + Ape;
-
-                        //ViewBag para el NomApe del cliente, obtenemos de la sesion
-                        ViewBag.NombreApellidoCliente = usuario.Nom + " " + usuario.Ape;
-
-                        //ViewBag para la dirCli, obtenemos de la sesion
-                        ViewBag.DireccionCliente = cliente.DirCli;
-
-                        //ViewBag para la categoria del servicio
-                        ViewBag.CategoriaServicio = catServicio;
-
-                        //ViewBag para la fecha del servicio
-                        ViewBag.FechaServicio = Fecha.Date;
-
-                        //tarifa
-                        ViewBag.Tarifa = Tarifa;
-                        Console.WriteLine("la tarifa es: " + Tarifa);
-                        //usamos nuestra lista y eliminamos el ultimo element
-                        opcionesTiempo.RemoveAt(opcionesTiempo.Count - 1);
-                        //ViewBag para el tiempo
-                        ViewBag.OpcionesTiempo = opcionesTiempo;
-                    }
-                    else
-                    {
-                        Console.WriteLine("obtenemos el valor del bool de la sesion");
-                        // Se ha establecido en la sesión, obtenemos su valor
-                        bool.TryParse(Encoding.UTF8.GetString(esPrimeraVezValue), out _esPrimeraVez);
-                        Console.WriteLine("valor: " + _esPrimeraVez);
-                    }
-                    if (!_esPrimeraVez)
-                    {
-                        Console.WriteLine("no es primera vez");
-                        //eliminamos el ultimo intervalo ya que es el que no usaremos pq la 
-                        //disponibilidad termina ahi, y el servicio dura 30min por defecto
-                        opcionesTiempo.RemoveAt(opcionesTiempo.Count - 1);
-                        //creamos nuestro objeto detalleServicio
-                        TbDetalleservicio detalleservicio = new TbDetalleservicio();
-                        //UNA VEZ MANDADO EL FORM EN EL CARRITO AGREGAMOS LOS DATOS Y LO
-                        //AGREGAMOS A LA LISTA
-                        detalleservicio.NomapeLim = nomApeLimp;
-                        Console.WriteLine("nomApeLimp: " + detalleservicio.NomapeLim);
-                        detalleservicio.NomapeCli = nomApeCli;
-                        Console.WriteLine("nomApeCli: " + detalleservicio.NomapeCli);
-                        detalleservicio.CatServ = catServ;
-                        Console.WriteLine("catServ: " + detalleservicio.CatServ);
-                        //reemplazar la coma por punto decimal
-                        string areaFormatted = area.Replace(",", ".");
-                        //multiplicar el area por la tarifa
-                        detalleservicio.ImpServ = (decimal)(Convert.ToDouble(areaFormatted) * tarife);
-                        Console.WriteLine("el impServ es: " + detalleservicio.ImpServ);
-                        detalleservicio.DirCli = dirCli;
-                        Console.WriteLine("dirCli: " + detalleservicio.DirCli);
-                        detalleservicio.FecServ = fecServ;
-                        Console.WriteLine("fecServ: " + detalleservicio.FecServ);
-                        detalleservicio.HoraServ = TimeSpan.FromTicks(horaServicio.TimeOfDay.Ticks); ;
-                        Console.WriteLine("horaServicio: " + detalleservicio.HoraServ);
-                        //la duracion del servicio es estandar, 30 minutos
-                        TimeSpan duracion = new TimeSpan(0, 30, 0);
-                        detalleservicio.DurServ = duracion;
-                        Console.WriteLine("DurServ" + detalleservicio.DurServ);
-                        //añadimos a la bd
-                        _detalleServicio.add(detalleservicio);
-                        Console.WriteLine(area);
-                        Console.WriteLine(horaServicio.ToString("HH:mm:ss"));
-                    }
-                    //como ya no es la 1ra vez cambiamos la variable de sesion
-                    _esPrimeraVez = false;
-                    HttpContext.Session.Set("EsPrimeraVez", Encoding.UTF8.GetBytes(_esPrimeraVez.ToString()));
-                    return View(_detalleServicio.GetAllDetalles(idCli));
-                }
-            }
-            else
-            {
-                return RedirectToAction("Logeo, Login");
-            }
-        }*/
 
         [Route("Servicio/Eliminar/{Id}")]
         public IActionResult eliminar(string id)
         {
-            //_detallesCarrito.RemoveAll(d => d.IdDetserv == id);
-            return RedirectToAction("Carrito");
+            // Obtener el GUID de la sesión
+            string sessionIdString = HttpContext.Session.GetString("SessionId");
+            if (!Guid.TryParse(sessionIdString, out Guid sessionId))
+            {
+                // Manejar el caso en el que no se pueda obtener el GUID de la sesión
+                Console.WriteLine("Error al tratar de convertir el guid");
+            }
+            _detalleServicio.remove(id);
+            if (_detalleServicio.GetDetallesxGuid(sessionId).Any())
+            {
+                return View("Carrito_grabado", _detalleServicio.GetDetallesxGuid(sessionId));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
         public IActionResult LogOut()

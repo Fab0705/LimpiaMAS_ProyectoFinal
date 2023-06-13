@@ -19,13 +19,19 @@ public partial class TbDetalleservicio
 
     public decimal ImpServ { get; set; }
 
-    public TimeSpan HoraServ { get; set; }
-
     public string NomapeCli { get; set; } = null!;
 
     public string DirCli { get; set; } = null!;
 
     public string NomapeLim { get; set; } = null!;
+
+    public Guid? Guidetserv { get; set; }
+
+    public TimeSpan? HoraDetserv { get; set; }
+
+    public decimal? Area { get; set; }
+
+    public decimal? TarifaLimp { get; set; }
 
     public virtual TbCliente IdCliNavigation { get; set; } = null!;
 

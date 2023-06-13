@@ -167,10 +167,12 @@ main {
 
     .caja_limpiadores .tarjeta form {
         display: flex;
+        width: 300px;
+        height: 450px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 2.5em;
+        margin: 2em;
         padding: 2em;
         background-color: whitesmoke;
         border-radius: 5px;

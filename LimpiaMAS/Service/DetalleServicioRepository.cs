@@ -56,6 +56,11 @@ namespace LimpiaMAS.Service
             conexion.SaveChanges();
         }
 
+        public IEnumerable<TbDetalleservicio> GetDetallesxGuid(Guid guid)
+        {
+            return conexion.TbDetalleservicios.Where(d => d.Guidetserv == guid);
+        }
+
         public IEnumerable<TbDetalleservicio> GetAllDetalles(string IdCli)
         {
             return conexion.TbDetalleservicios.Where(d => d.IdCli == IdCli);
@@ -63,7 +68,9 @@ namespace LimpiaMAS.Service
 
         public void remove(string id)
         {
-            throw new NotImplementedException();
+            var obj = (from tDetServ  in conexion.TbDetalleservicios where tDetServ.IdDetserv == id select tDetServ).Single();
+            conexion.Remove(obj);
+            conexion.SaveChanges();
         }
     }
 }

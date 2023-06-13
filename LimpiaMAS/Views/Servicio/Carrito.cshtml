@@ -18,22 +18,22 @@
             <!--datos para pasar al controlador-->
             <input type="hidden" name="nomApeLimp"  value="@ViewBag.NombreApellidoLimpiador" />
             <input type="hidden" name="nomApeCli" value="@ViewBag.NombreApellidoCliente" />
+            <input type="hidden" asp-for="Guidserv" value="@ViewBag.GUID" />
             <input type="hidden" asp-for="CatServ" value="@ViewBag.CategoriaServicio" />
             <input type="hidden" asp-for="PreServ" value="@ViewBag.Tarifa" />
             <input type="hidden" name="dirCli" value="@ViewBag.DireccionCliente" />
             <input type="hidden" asp-for="FecServ" value="@ViewBag.FechaServicio" />
             <input type="hidden" asp-for="IdLimp" value="@ViewBag.IdLimp" />
             <input type="hidden" asp-for="IdCli" value="@ViewBag.IdCli" />
-            <label>Fuera de lista</label>
             <label>@ViewBag.IdCLi</label><br />
             <label>@ViewBag.NombreApellidoLimpiador</label><br />
             <label>@ViewBag.NombreApellidoCliente</label><br />
             <label>@ViewBag.DireccionCliente</label><br />
             <label>@ViewBag.CategoriaServicio</label><br />
-            <label>@ViewBag.FechaServicio</label>
+            <label>@ViewBag.FechaServicio.ToString("dd/MM/yyyy")</label>
             <input name="area" placeholder="Ingrese el area en m^2 del lugar a limpiar" required />
             <label>Ingrese la hora para el servicio: </label>
-            <select asp-for="DurServ">
+            <select asp-for="HoraServ">
                 @foreach (var opcion in ViewBag.OpcionesTiempo)
                 {
                     <option>@opcion</option>

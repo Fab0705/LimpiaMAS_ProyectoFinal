@@ -7,6 +7,13 @@
 <html>
     <head></head>
     <body>
+        <!--DATOS PARA PASAR A LA FUNCION PAGAR-->
+        <input type="hidden" value=@ViewBag.CateServ name="CateServ"/>
+        <input type="hidden" value=@ViewBag.FecServ name="FecServ" />
+        <input type="hidden" value=@ViewBag.Guidetserv name="Guidetserv" />
+        <input type="hidden" value=@ViewBag.IdCli name="IdCli" />
+        <input type="hidden" value=@ViewBag.IdLimp name="IdLimp" />
+
         @foreach (var detalle in Model)
         {
             <form asp-action="Carrito" method="post">
@@ -19,11 +26,10 @@
                 <label>@detalle.FecServ.ToString("dd/MM/yyyy")</label>
                 <label>@detalle.DurServ</label>
                 <label>@detalle.ImpServ</label>
-                <label>@detalle.HoraServ</label>
-                <label>Ingrese la hora para el servicio: </label>
-                <input type="submit" value="grabar" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
+                <label>@detalle.HoraDetserv</label>
                 <a asp-action="Eliminar" asp-route-id="@detalle.IdDetserv">Eliminar</a>
                 <a asp-action="Index">Regresar</a>
+                <a asp-action="Pagar" asp-route-id="@detalle.IdDetserv">Pagar</a>
             </form>
         }
     </body>

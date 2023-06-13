@@ -61,57 +61,55 @@
         <div class="caja">
             <section class="caja_limpiadores">
                 <div class="tarjeta">
-                    <form asp-controller="Servicio" asp-action="Carrito" method="post">
-                        @foreach (var card in Model)
-                        {
+                    @foreach (var card in Model)
+                    {
                         //SOLO SE MOSTRARAN LOS LIMPIADORES CON DISPONIBILIDAD MAYOR A MAÑANA
-                            
+                        @if (card.TbDisponibilidads != null && card.TbDisponibilidads.Any(d => d.FecDis.Date >= DateTime.Now.Date.AddDays(1)))
+                        {
 
-                                @if (card.TbDisponibilidads != null && card.TbDisponibilidads.Any(d => d.FecDis.Date >= DateTime.Now.Date.AddDays(1)))
-                                {
-                                
-                                    // Obtener las disponibilidades de mañana en adelante para el limpiador actual
-                                    var disponibilidadesMañana = card.TbDisponibilidads.Where(d => d.FecDis.Date >= DateTime.Now.Date.AddDays(1));
+                            // Obtener las disponibilidades de mañana en adelante para el limpiador actual
+                            var disponibilidadesMañana = card.TbDisponibilidads.Where(d => d.FecDis.Date >= DateTime.Now.Date.AddDays(1));
 
-                                    // Mostrar una tarjeta por cada disponibilidad
-                                    foreach (var disponibilidad in disponibilidadesMañana)
-                                    {
-                                        //DATO PARA PASAR AL CONTROLADOR
-                                        <input type="hidden" name="idLimp" value=@card.IdLimp />
-                                        <input type="hidden" name="Nom" value=@card.NomLimp />
-                                        <input type="hidden" name="Ape" value=@card.ApeLimp />
-                                        <input type="hidden" name="Tarifa" value=@Math.Round(card.TarLimp, 2) />
+                            // Mostrar una tarjeta por cada disponibilidad
+                            foreach (var disponibilidad in disponibilidadesMañana)
+                            {
+                                <form asp-controller="Servicio" asp-action="Carrito" method="post">
 
-                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(card.FotLimp)" alt="Imagen" width="100" height="100">
-                                        <p>@card.NomLimp @card.ApeLimp</p>
-                                        <p>Tarifa: S/.@Math.Round(card.TarLimp, 2) por m^2</p>
-                                        <p>Servicio(s): </p>
-                                        <select name="catServicio" style="font-size:17px;">
-                                            @foreach (var opcion in JsonSerializer.Deserialize<List<string>>(@card.ServLimp))
-                                            {
-                                                <option>@opcion</option>
-                                            }
-                                        </select>
+                                    <!--DATO PARA PASAR AL CONTROLADOR-->
+                                    <input type="hidden" name="idLimp" value=@card.IdLimp />
+                                    <input type="hidden" name="Nom" value=@card.NomLimp />
+                                    <input type="hidden" name="Ape" value=@card.ApeLimp />
+                                    <input type="hidden" name="Tarifa" value=@Math.Round(card.TarLimp, 2) />
 
-                                        //PARA PASAR AL CONTROLADOR
-                                        <input type="hidden" name="Fecha" value=@disponibilidad.FecDis.ToString("yyyy-MM-dd") />
-                                        <input type="hidden" name="TInicial" value=@disponibilidad.TStart />
-                                        <input type="hidden" name="TFinal" value=@disponibilidad.TDone />
+                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(card.FotLimp)" alt="Imagen" width="100" height="100">
+                                    <p>@card.NomLimp @card.ApeLimp</p>
+                                    <p>Tarifa: S/.@Math.Round(card.TarLimp, 2) por m^2</p>
+                                    <p>Servicio(s): </p>
+                                    <select name="catServicio" style="font-size:17px;">
+                                        @foreach (var opcion in JsonSerializer.Deserialize<List<string>>(@card.ServLimp))
+                                        {
+                                            <option>@opcion</option>
+                                        }
+                                    </select>
 
-                                        <div class="tarjeta_disponibilidad">
-                                            <p>Fecha: @disponibilidad.FecDis.ToString("dd/MM/yyyy")</p>
-                                            <p>Disponibilidad: <br>@disponibilidad.TStart - @disponibilidad.TDone</p>
+                                    <!--PARA PASAR AL CONTROLADOR-->
+                                    <input type="hidden" name="Fecha" value=@disponibilidad.FecDis />
+                                    <input type="hidden" name="TInicial" value=@disponibilidad.TStart />
+                                    <input type="hidden" name="TFinal" value=@disponibilidad.TDone />
 
-                                            <div class="boton_carrito">
-                                                <!--este boton lleva al carrito-->
-                                                <input type="submit" value="añadir al carrito" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
-                                            </div>
+                                    <div class="tarjeta_disponibilidad">
+                                        <p>Fecha: @disponibilidad.FecDis.ToString("dd/MM/yyyy")</p>
+                                        <p>Disponibilidad: <br>@disponibilidad.TStart - @disponibilidad.TDone</p>
+
+                                        <div class="boton_carrito">
+                                            <!--este boton lleva al carrito-->
+                                            <input type="submit" value="añadir al carrito" style="border: none; background: none; color: black; font-weight: bold; font-size:18px; cursor: pointer;" readonly />
                                         </div>
-                                    }
-                                }
-                            
+                                    </div>
+                                </form>
+                            }
                         }
-                    </form>
+                    }
                 </div>
                 </section>
             <aside class="caja_filtrado">
