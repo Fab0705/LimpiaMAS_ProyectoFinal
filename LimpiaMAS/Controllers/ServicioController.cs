@@ -78,7 +78,7 @@ namespace LimpiaMAS.Controllers
                     //ViewBag para el GUID
                     ViewBag.GUID = sessionId;
                     //ViewBag para el ID
-                    ViewBag.IdLimp = idLimp;
+                    ViewBag.idLimp = idLimp;
                     ViewBag.IdCli = cliente.IdCli;
                     //agregamos a un ViewBag para pasar el nombre y apellido del limpiador
                     ViewBag.NombreApellidoLimpiador = Nom + " " + Ape;
@@ -156,7 +156,7 @@ namespace LimpiaMAS.Controllers
                     detServicio.FecServ = obj.FecServ.Date;
                     detServicio.IdCli = cliente.IdCli;
                     detServicio.Guidetserv = obj.Guidserv;
-
+                    detServicio.IdLimp = obj.IdLimp;
                     //Con los datos implementados al objeto "detServicio" se añaden a la base de datos
                     _detalleServicio.add(detServicio);
                 }
@@ -186,6 +186,7 @@ namespace LimpiaMAS.Controllers
                 Console.WriteLine("el id del servicio es: " + objServ.IdServ);
                 objServ.IdCli = _detalleServicio.GetDetallesxGuid(sessionGuid).FirstOrDefault(detalle => detalle.IdCli != null).IdCli;
                 Console.WriteLine("el id del cliente es: " + objServ.IdCli);
+                objServ.IdLimp = _detalleServicio.GetDetallesxGuid(sessionGuid).FirstOrDefault(detalle => detalle.IdLimp != null).IdLimp;
                 //contar cuantas categorias de servicio tenemos
                 int cantidadRegistros = _detalleServicio.GetDetallesxGuid(sessionGuid).Count(detalle => detalle.CatServ != null);
                 //si hay 1 registro entonces le pasamos el valor de catServ al objeto
@@ -204,6 +205,12 @@ namespace LimpiaMAS.Controllers
                 Console.WriteLine("el acumulado es: " + objServ.PreServ);
                 //agregamos la fecha de la transaccion (servicio)
                 objServ.FecServ = DateTime.Now.Date;
+                //sumamos la duracion de los detalles del servicio para tener el total
+                TimeSpan totalDurServ = _detalleServicio.GetDetallesxGuid(sessionGuid)
+                .Select(detalle => detalle.DurServ)
+                .Aggregate(TimeSpan.Zero, (subtotal, durServ) => subtotal + durServ);
+
+                objServ.DurServ = totalDurServ;
                 //agregamos la hora de la transaccion (servicio)
                 objServ.HoraServ = DateTime.Now.TimeOfDay;
                 objServ.Guidserv = sessionGuid;
