@@ -7,6 +7,7 @@ namespace LimpiaMAS.Service
         void add_usr(TbUser obj);
         void add_cli(TbCliente obj);
         void add_limp(TbLimpiador obj);
+        void add_dis(TbDisponibilidad obj);
         IEnumerable<TbCliente> GetAllClients();
         IEnumerable<TbLimpiador> GetAllCleaners();
 

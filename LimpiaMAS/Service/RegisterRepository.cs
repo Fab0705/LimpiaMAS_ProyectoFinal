@@ -26,6 +26,12 @@ namespace LimpiaMAS.Service
             conexion.TbClientes.Add(obj);
             conexion.SaveChanges();
         }
+        public void add_dis(TbDisponibilidad obj)
+        {
+            obj.Id = GetNextDisId().ToString();
+            conexion.TbDisponibilidads.Add(obj);
+            conexion.SaveChanges();
+        }
         public int GetNextCliId()
         {
             int nextId = 1;
@@ -35,6 +41,22 @@ namespace LimpiaMAS.Service
             {
                 // obtener el ultimo id
                 string lastId = conexion.TbClientes.Max(u => u.IdCli);
+
+                // generar el siguiente id + 1
+                nextId = int.Parse(lastId) + 1;
+            }
+
+            return nextId;
+        }
+        public int GetNextDisId()
+        {
+            int nextId = 1;
+
+            // hay registros?
+            if (conexion.TbDisponibilidads.Any())
+            {
+                // obtener el ultimo id
+                string lastId = conexion.TbDisponibilidads.Max(u => u.Id);
 
                 // generar el siguiente id + 1
                 nextId = int.Parse(lastId) + 1;
@@ -101,5 +123,7 @@ namespace LimpiaMAS.Service
         {
             return conexion.TbClientes;
         }
+
+
     }
 }

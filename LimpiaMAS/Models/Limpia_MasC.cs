@@ -39,7 +39,7 @@ public partial class Limpia_MasC : DbContext
     {
         modelBuilder.Entity<TbAdmin>(entity =>
         {
-            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA54F8F01FB");
+            entity.HasKey(e => e.UsrAdm).HasName("PK__TB_ADMIN__CEA0CDA53358DA9F");
 
             entity.ToTable("TB_ADMIN");
 
@@ -55,7 +55,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbCliente>(entity =>
         {
-            entity.HasKey(e => e.IdCli).HasName("PK__TB_CLIEN__2BF8836D250D9F35");
+            entity.HasKey(e => e.IdCli).HasName("PK__TB_CLIEN__2BF8836D3B5D113C");
 
             entity.ToTable("TB_CLIENTE");
 
@@ -95,7 +95,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbDetalleservicio>(entity =>
         {
-            entity.HasKey(e => e.IdDetserv).HasName("PK__TB_DETAL__419ECED2F8977816");
+            entity.HasKey(e => e.IdDetserv).HasName("PK__TB_DETAL__419ECED283623D00");
 
             entity.ToTable("TB_DETALLESERVICIOS");
 
@@ -104,6 +104,9 @@ public partial class Limpia_MasC : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ID_DETSERV");
+            entity.Property(e => e.Area)
+                .HasColumnType("decimal(6, 4)")
+                .HasColumnName("AREA");
             entity.Property(e => e.CatServ)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -116,12 +119,18 @@ public partial class Limpia_MasC : DbContext
             entity.Property(e => e.FecServ)
                 .HasColumnType("date")
                 .HasColumnName("FEC_SERV");
-            entity.Property(e => e.HoraServ).HasColumnName("HORA_SERV");
+            entity.Property(e => e.Guidetserv).HasColumnName("GUIDETSERV");
+            entity.Property(e => e.HoraDetserv).HasColumnName("HORA_DETSERV");
             entity.Property(e => e.IdCli)
                 .HasMaxLength(6)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ID_CLI");
+            entity.Property(e => e.IdLimp)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ID_LIMP");
             entity.Property(e => e.IdServ)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -138,20 +147,28 @@ public partial class Limpia_MasC : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("NOMAPE_LIM");
+            entity.Property(e => e.TarifaLimp)
+                .HasColumnType("money")
+                .HasColumnName("TARIFA_LIMP");
 
             entity.HasOne(d => d.IdCliNavigation).WithMany(p => p.TbDetalleservicios)
                 .HasForeignKey(d => d.IdCli)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_DETALL__ID_CL__0880433F");
+                .HasConstraintName("FK__TB_DETALL__ID_CL__44FF419A");
+
+            entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDetalleservicios)
+                .HasForeignKey(d => d.IdLimp)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__TB_DETALL__ID_LI__45F365D3");
 
             entity.HasOne(d => d.IdServNavigation).WithMany(p => p.TbDetalleservicios)
                 .HasForeignKey(d => d.IdServ)
-                .HasConstraintName("FK__TB_DETALL__ID_SE__09746778");
+                .HasConstraintName("FK_TB_DETALLESERVICIOS_TB_SERVICIO");
         });
 
         modelBuilder.Entity<TbDisponibilidad>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TB_DISPO__3214EC27927211E5");
+            entity.HasKey(e => e.Id).HasName("PK__TB_DISPO__3214EC27B36BE37C");
 
             entity.ToTable("TB_DISPONIBILIDAD");
 
@@ -174,12 +191,12 @@ public partial class Limpia_MasC : DbContext
             entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbDisponibilidads)
                 .HasForeignKey(d => d.IdLimp)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_DISPON__ID_LI__4F47C5E3");
+                .HasConstraintName("FK__TB_DISPON__ID_LI__47DBAE45");
         });
 
         modelBuilder.Entity<TbLimpiador>(entity =>
         {
-            entity.HasKey(e => e.IdLimp).HasName("PK__TB_LIMPI__9BCD0B39887E0C76");
+            entity.HasKey(e => e.IdLimp).HasName("PK__TB_LIMPI__9BCD0B3943C9C776");
 
             entity.ToTable("TB_LIMPIADOR");
 
@@ -234,7 +251,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbServicio>(entity =>
         {
-            entity.HasKey(e => e.IdServ).HasName("PK__TB_SERVI__F5FF1C931466E20D");
+            entity.HasKey(e => e.IdServ).HasName("PK__TB_SERVI__F5FF1C9310E3C443");
 
             entity.ToTable("TB_SERVICIO");
 
@@ -251,6 +268,8 @@ public partial class Limpia_MasC : DbContext
             entity.Property(e => e.FecServ)
                 .HasColumnType("date")
                 .HasColumnName("FEC_SERV");
+            entity.Property(e => e.Guidserv).HasColumnName("GUIDSERV");
+            entity.Property(e => e.HoraServ).HasColumnName("HORA_SERV");
             entity.Property(e => e.IdCli)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -268,7 +287,12 @@ public partial class Limpia_MasC : DbContext
             entity.HasOne(d => d.IdCliNavigation).WithMany(p => p.TbServicios)
                 .HasForeignKey(d => d.IdCli)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TB_SERVIC__ID_CL__4D94879B");
+                .HasConstraintName("FK__TB_SERVIC__ID_CL__48CFD27E");
+
+            entity.HasOne(d => d.IdLimpNavigation).WithMany(p => p.TbServicios)
+                .HasForeignKey(d => d.IdLimp)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__TB_SERVIC__ID_LI__49C3F6B7");
         });
 
         modelBuilder.Entity<TbServiciocat>(entity =>
@@ -306,7 +330,7 @@ public partial class Limpia_MasC : DbContext
 
         modelBuilder.Entity<TbUser>(entity =>
         {
-            entity.HasKey(e => e.IdUsr).HasName("PK__TB_USER__2A8C692A72FB68FF");
+            entity.HasKey(e => e.IdUsr).HasName("PK__TB_USER__2A8C692A32945C4E");
 
             entity.ToTable("TB_USER");
 

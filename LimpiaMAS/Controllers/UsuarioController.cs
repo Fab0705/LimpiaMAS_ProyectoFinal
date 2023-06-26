@@ -1,5 +1,7 @@
-﻿using LimpiaMAS.Service;
+﻿using LimpiaMAS.Models;
+using LimpiaMAS.Service;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LimpiaMAS.Controllers
 {
@@ -10,6 +12,10 @@ namespace LimpiaMAS.Controllers
             return View();
         }
         public IActionResult IndexLimpiador() 
+        {
+            return View();
+        }
+        public IActionResult Disponibilidad()
         {
             return View();
         }
@@ -33,10 +39,6 @@ namespace LimpiaMAS.Controllers
             return View();
         }
         [Route("Disponibilidad")]
-        public IActionResult Disponibilidad()
-        {
-            return View();
-        }
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();

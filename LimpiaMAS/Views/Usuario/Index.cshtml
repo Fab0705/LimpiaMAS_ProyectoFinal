@@ -20,20 +20,22 @@
                 <li>
                     <a asp-controller="Servicio" asp-action="Index">Servicios</a>
                 </li>
-                <li>
-                    <a asp-action="Nosotros">Nosotros</a>
+            <!--                 <li>
+                <a asp-action="Nosotros">Nosotros</a>
+            </li>-->
+                <li class="drop">
+                    <a href="#" class="dropbtn">Perfil</a>
+                    <div class="dropdown-conten">  
+                        <a asp-controller="Perfil" asp-action="PerfilCliente">Perfil Cliente</a>
+                        <a asp-controller="Perfil" asp-action="PerfilLimpiador">Perfil Limpiador</a>
+                    </div>
                 </li>
-                <li>
-                    <a asp-action="Login">Ingresar</a>
-                </li>
-                <li>
-                    <a asp-controller="Perfil" asp-action="PerfilCliente">Perfil Cliente</a>
-                </li>
-                <li>
-                    <a asp-controller="Perfil" asp-action="PerfilLimpiador">Perfil Limpiador</a>
-                </li>
+
                 <li>
                     <a asp-controller="Trabajador" asp-action="FormTrabajador">Trabaja con nosotros</a>
+                </li>
+                <li>
+                    <a asp-controller="Usuario" asp-action="IndexLimpiador">Limpiador</a>
                 </li>
             </ul>
             <a asp-controller="Usuario" asp-action="LogOut" class="register-btn">Cerrar Sesión</a>

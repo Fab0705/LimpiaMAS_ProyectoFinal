@@ -19,6 +19,19 @@ namespace LimpiaMAS.Controllers
             return RedirectToAction("login", "Limpia");
         }
 
+        public IActionResult new_dis(TbDisponibilidad obj/*TimeSpan TStart, TimeSpan TDone, DateTime FecDis*/)
+        {
+            string usuarioJson = HttpContext.Session.GetString("sUsuario");
+            TbUser usuario = JsonConvert.DeserializeObject<TbUser>(usuarioJson);
+            TbLimpiador user = _register.getLimp(usuario.Usr, usuario.Pwd);
+            obj.IdLimp = user.IdLimp;
+            //obj.FecDis = FecDis;
+            //obj.TStart = TStart;
+            //obj.TDone = TDone;
+            _register.add_dis(obj);
+            return RedirectToAction("Index", "Usuario");
+            
+        }
         public IActionResult new_limp(TbLimpiador obj, IFormFile FotoLimpiador, string genero)
         {
             string usuarioJson = HttpContext.Session.GetString("sUsuario");
